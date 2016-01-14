@@ -19,7 +19,7 @@
 <p>這表示你有沒關掉的 vargant instance，導致預設要綁定的 port 已經被某個 process 佔用了，因此請先用 <code>ps aux | grep vm</code> 來看:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">veck            78729   1.1  5.6  3000248 471340   ??  U     4:45AM   2:08.39 /Applications/VirtualBox.app/Contents/MacOS/VBoxHeadless --comment rove-27c8af801d4c671e25f2791b7311bbe0_default_1414614223406_26774 --startvm 541cafa7-5bb3-45d7-bd27-899a824a3e74 --vrde config</span><br></pre></td></tr></table></figure></p>
 <p>再用 kill -9 [PID] 砍掉 Process，然後重新 <code>vagrant up</code> 就可以了</p>
 </div><!-- comment system--><div class="container"><hr><div id="disqus_thread"></div><script type="text/javascript">
-var disqus_shortname = 'veckhtw';
+var disqus_shortname = 'vecktw';
 var disqus_identifier = '2014/10/30/revoio-quite-customize-your-vagrantfile/';
 var disqus_title = 'Revo.io - Quick Customize Your Vagrantfile';
 var disqus_url = 'http://fbukevin.github.io/Veck/2014/10/30/revoio-quite-customize-your-vagrantfile/';

@@ -5,7 +5,7 @@
 <p>routers/index.js</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">router.get(<span class="string">'/'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">req, res</span>)</span>&#123;</span><br><span class="line">	connection.query(<span class="string">'SELECT * FROM `test`'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">err, rows, fields</span>)</span>&#123;</span><br><span class="line">  	res.render(<span class="string">'index'</span>, &#123;title: rows[<span class="number">0</span>].id&#125;);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
 </div><!-- comment system--><div class="container"><hr><div id="disqus_thread"></div><script type="text/javascript">
-var disqus_shortname = 'veckhtw';
+var disqus_shortname = 'vecktw';
 var disqus_identifier = '2015/12/25/npm-nodejs-mysql-simple-query-example/';
 var disqus_title = '[npm] Node.js MySQL 簡單查詢範例';
 var disqus_url = 'http://fbukevin.github.io/Veck/2015/12/25/npm-nodejs-mysql-simple-query-example/';
