@@ -1,0 +1,47 @@
+<!DOCTYPE html><html><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description"><title>[Julia] 集大成的科學計算新星 | Veck's Blog</title><link rel="stylesheet" type="text/css" href="/Veck//css/normalize.css"><link rel="stylesheet" type="text/css" href="/Veck//css/highlight.css"><link rel="stylesheet" type="text/css" href="/Veck//css/very-simple.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/font-awesome/4.5.0/css/font-awesome.min.css"><link rel="Shortcut Icon" type="image/x-icon" href="/Veck/favicon.ico"></head><body><!-- include the sidebar--><!-- include ./includes/sidebar.jade--><!-- Blog title and subtitle--><header><div class="container header"><a id="logo" href="/Veck/." class="title">Veck's Blog</a><span class="subtitle"></span><label id="toggle-menu" for="menu" onclick><i class="fa fa-bars"></i></label></div></header><!-- use checkbox hack for toggle nav-bar on small screens--><input id="menu" type="checkbox"><!-- Navigation Links--><nav id="nav"><div class="container"><a href="/" class="sidebar-nav-item">Home</a><a href="/Veck/archives" class="sidebar-nav-item">Archives</a></div></nav><div id="header-margin-bar"></div><!-- gallery that comes before the header--><div class="wrapper"><div class="container post-header"><h1>[Julia] 集大成的科學計算新星</h1></div></div><div class="wrapper"><div class="container meta"><div class="post-time">2015-05-24</div><div class="post-categories"><a class="post-category-link" href="/Veck/categories/Matlab/">Matlab</a>><a class="post-category-link" href="/Veck/categories/Matlab/r/">r</a>><a class="post-category-link" href="/Veck/categories/Matlab/r/data/">data</a>><a class="post-category-link" href="/Veck/categories/Matlab/r/data/julia/">julia</a></div></div></div><article><div class="container post"><p>最近在調查比較想學習的資料處理語言<br>我的需求是要開源如 R、簡潔如 Python<br>剛好我在非資訊領域做科學分析的朋友說 Matlab 很容易寫(他以建構矩陣為例子)<br>找來找去，大概就是 <code>Julia</code> 了</p>
+<p><a href="http://julialang.org/" target="_blank" rel="external">http://julialang.org/</a><br><img src="http://user-image.logdown.io/user/3330/blog/3407/post/277068/BWSV4K8nR3GfIs3nZUVK_j.JPG" alt="j.JPG"></p>
+<p>這個語言野心極大，標榜結合了像 Python/Matlab/R 的易用和彈性，又兼具 Fortran 或是 C 的執行速度，能無縫銜接現有的 C/Fortran/python/R 所累積的龐大函式庫，又可以支援平行運算，並具有處理資料表格(data frame)的能力。</p>
+<p>這麼剛好符合我要的需求 XD</p>
+<p>它的創作者是一群用 Matlab 出身的 MIT guys，很有感啊！</p>
+<h1 id="Julia_REPL__u57F7_u884C_u756B_u9762"><a href="#Julia_REPL__u57F7_u884C_u756B_u9762" class="headerlink" title="Julia REPL 執行畫面"></a>Julia REPL 執行畫面</h1><p><img src="http://user-image.logdown.io/user/3330/blog/3407/post/277068/F1C7gItXRRaDsXdek81k_Julia_REPL.png" alt="Julia_REPL.png"></p>
+<p>不過資料還很少，中文也是</p>
+<p>以下是一些我覺得蠻喜歡的特性</p>
+<h1 id="u8B8A_u6578_u9810_u8A2D_u63A1_u7528_Unicode"><a href="#u8B8A_u6578_u9810_u8A2D_u63A1_u7528_Unicode" class="headerlink" title="變數預設採用 Unicode"></a>變數預設採用 Unicode</h1><p><img src="http://user-image.logdown.io/user/3330/blog/3407/post/277068/KanvGy1ESfS24KOisHww_var_name1.JPG" alt="var_name1.JPG"></p>
+<p><img src="http://user-image.logdown.io/user/3330/blog/3407/post/277068/4V4nytUTg2XDHC2ktdU6_var_name2.JPG" alt="var_name2.JPG"></p>
+<p>這讓我想到了<a href="http://www.dywt.com.cn/" target="_blank" rel="external">易語言</a>和<a href="https://code.google.com/p/zhpy/wiki/AboutZhpy" target="_blank" rel="external">周蟒</a>…</p>
+<h1 id="u65B0_u820A_u5B9A_u7FA9_function__u7684_u65B9_u5F0F"><a href="#u65B0_u820A_u5B9A_u7FA9_function__u7684_u65B9_u5F0F" class="headerlink" title="新舊定義 function 的方式"></a>新舊定義 function 的方式</h1><ol>
+<li><p>traditional</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">julia&#62; function f(x,y)&#10;       x + y, x-y&#10;       end&#10;f (generic function with 1 method)&#10;julia&#62; f(2,4)&#10;(6,-2)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Functional </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">julia&#62; &#8721;(x,y) = x + y&#10;&#8721; (generic function with 1 method)&#10;julia&#62; &#8721;(2,3)&#10;5&#10;( &#8721; in OS X is &#8220;option + w&#34;)</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h1 id="u6709_u4E09_u7A2E_u4F7F_u7528_function__u7684_u65B9_u5F0F"><a href="#u6709_u4E09_u7A2E_u4F7F_u7528_function__u7684_u65B9_u5F0F" class="headerlink" title="有三種使用 function 的方式"></a>有三種使用 function 的方式</h1><ol>
+<li><p>genaral<br><code>julia&gt; f(2,3)</code></p>
+</li>
+<li><p>apply()<br><code>julia&gt; apply(f, 2, 3)</code></p>
+</li>
+<li><p>special operator syntax for certain function name<br>(waiting)</p>
+</li>
+</ol>
+<h1 id="function__u56DE_u50B3_u591A_u500B_u503C_u7684_u65B9_u6CD5"><a href="#function__u56DE_u50B3_u591A_u500B_u503C_u7684_u65B9_u6CD5" class="headerlink" title="function 回傳多個值的方法"></a>function 回傳多個值的方法</h1><p><img src="http://user-image.logdown.io/user/3330/blog/3407/post/277068/57QaF83WSdyjVPhjxIlO_%E5%9B%9E%E5%82%B3%E5%A4%9A%E5%80%8B%E5%80%BC.JPG" alt="回傳多個值.JPG"></p>
+<p><img src="http://user-image.logdown.io/user/3330/blog/3407/post/277068/TzpNTAsSAS9Q2T0Wwh81_%E5%9B%9E%E5%82%B3%E5%A4%9A%E5%80%8B%E5%80%BC2.JPG" alt="回傳多個值2.JPG"></p>
+<p>hkl31 大的 iThome 2014 鐵人邦幫忙系列文章：<br><a href="http://ithelp.ithome.com.tw/question/10157446" target="_blank" rel="external">Julia(1) - Why Julia?</a><br><a href="http://ithelp.ithome.com.tw/question/10157714" target="_blank" rel="external">Julia (2) – 2048遊戲的架構，Julia的安裝和暖身</a><br><a href="http://ithelp.ithome.com.tw/question/10157888" target="_blank" rel="external">Julia (3) – 2048遊戲實作開始</a><br><a href="http://ithelp.ithome.com.tw/question/10158099" target="_blank" rel="external">Julia(4) - 2048遊戲核心完成!</a><br><a href="http://ithelp.ithome.com.tw/question/10158208" target="_blank" rel="external">Julia (5) – Julia的標準輸出</a><br><a href="http://ithelp.ithome.com.tw/question/10158466" target="_blank" rel="external">Julia (6) – Julia的標準輸入，2048主程式迴圈</a><br>(其餘文章請參考作者 <a href="http://ithelp.ithome.com.tw/profile/share?id=20091968&amp;page=1" target="_blank" rel="external">iThome 活動列表</a>)</p>
+<p>Julia for Matlab User 系列文章：<br><a href="http://sveme.org/julia-for-matlab-users-i.html" target="_blank" rel="external">http://sveme.org/julia-for-matlab-users-i.html</a><br><a href="http://sveme.org/julia-for-matlab-users-ii.html" target="_blank" rel="external">http://sveme.org/julia-for-matlab-users-ii.html</a><br><a href="http://sveme.org/julia-for-matlab-users-iii.html" target="_blank" rel="external">http://sveme.org/julia-for-matlab-users-iii.html</a></p>
+<p>Reference：<br><a href="http://juliatw.readthedocs.org/zh_TW/latest/" target="_blank" rel="external">http://juliatw.readthedocs.org/zh_TW/latest/</a><br><a href="http://learnxinyminutes.com/docs/julia/" target="_blank" rel="external">Learn Julia in Y minutes</a></p>
+</div><!-- comment system--><div class="container"><hr><div id="disqus_thread"></div><script type="text/javascript">
+var disqus_shortname = 'veckhsiao';
+var disqus_identifier = '2015/05/24/julia-survey/';
+var disqus_title = '[Julia] 集大成的科學計算新星';
+var disqus_url = 'http://fbukevin.github.io/Veck/2015/05/24/julia-survey/';
+(function() {
+   var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+   dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+   (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">Blog comments powered by <span class="logo-disqus">Disqus</span></a></div></article><footer id="footer"><div class="container"><div class="bar"><div class="social"><a href="mailto:fbukevin@gmail.com" target="_blank"><i class="fa fa-envelope-o"></i></a><a href="http://twitter.com/VeckHsiao" target="_blank"><i class="fa fa-twitter"></i></a><a href="https://github.com/fbukevin" target="_blank"><i class="fa fa-github"></i></a><a href="/atom.xml" target="_blank"><i class="fa fa-rss"></i></a></div><div class="footer">© 2016 <a href="/" rel="nofollow">Veck's Blog</a>. Powered by <a rel="nofollow" target="_blank" href="https://hexo.io">Hexo</a>. Theme <a target="_blank" href="https://github.com/lotabout/very-simple">very-simple</a>.</div></div></div></footer><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.css"><script src="//cdn.bootcss.com/jquery/2.0.3/jquery.min.js"></script><script src="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.pack.js"></script><script>$(document).ready(function() {
+    $(".fancybox").fancybox();
+});</script></body></html>

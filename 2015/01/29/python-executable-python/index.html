@@ -1,0 +1,31 @@
+<!DOCTYPE html><html><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description"><title>[Python] Executable Python | Veck's Blog</title><link rel="stylesheet" type="text/css" href="/Veck//css/normalize.css"><link rel="stylesheet" type="text/css" href="/Veck//css/highlight.css"><link rel="stylesheet" type="text/css" href="/Veck//css/very-simple.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/font-awesome/4.5.0/css/font-awesome.min.css"><link rel="Shortcut Icon" type="image/x-icon" href="/Veck/favicon.ico"></head><body><!-- include the sidebar--><!-- include ./includes/sidebar.jade--><!-- Blog title and subtitle--><header><div class="container header"><a id="logo" href="/Veck/." class="title">Veck's Blog</a><span class="subtitle"></span><label id="toggle-menu" for="menu" onclick><i class="fa fa-bars"></i></label></div></header><!-- use checkbox hack for toggle nav-bar on small screens--><input id="menu" type="checkbox"><!-- Navigation Links--><nav id="nav"><div class="container"><a href="/" class="sidebar-nav-item">Home</a><a href="/Veck/archives" class="sidebar-nav-item">Archives</a></div></nav><div id="header-margin-bar"></div><!-- gallery that comes before the header--><div class="wrapper"><div class="container post-header"><h1>[Python] Executable Python</h1></div></div><div class="wrapper"><div class="container meta"><div class="post-time">2015-01-29</div></div></div><article><div class="container post"><p>繼 node.js 後，我也想讓 Python 的程式碼可以不需要輸入 “python” 就可以執行，找到大部分的作法，這是在 UNIX/Linux 和 Mac 上的說明</p>
+<ol>
+<li><p>寫個簡單的 exe.py</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python</span></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">"__main__"</span>:</span><br><span class="line">print(<span class="string">"Execute Python without typing \"python\")</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在終端機輸入 <code>chmod +x exe.py</code> 修改權限</p>
+</li>
+<li>答啦！<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"> ~/Desktop --&#62;./exe.py &#10;Execute Python without typing &#34;python&#34;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>甚至也不用打 “./“ 了！</p>
+<p>如果想連附檔名都不要，有篇<a href="http://sebug.net/paper/python/ch03s05.html" target="_blank" rel="external">教學</a>說可以把檔名改成 exe，也就是拿掉附檔名，而系統會自己知道要用程式碼第一行指定的那個直譯器來執行這個檔案 <code>~/Desktop --&gt;exe</code><br><img src="http://user-image.logdown.io/user/3330/blog/3407/post/252814/k5oRwu97Qeqzv62Es8b5_%E8%9E%A2%E5%B9%95%E5%BF%AB%E7%85%A7%202015-01-29%20%E4%B8%8A%E5%8D%883.08.56.png" alt="螢幕快照 2015-01-29 上午3.08.56.png"></p>
+<p>當然，你也可以把 exe 加入 PATH 中，這樣就可以到處都直接執行它了～</p>
+<p>有個問題是，Python 利用 pip 來管理和發佈套件，在 node.js 那邊我們用 npm install -g <package> 就可以安裝成 global command，不需要另外設定權限，那如果今天需要設定權限，那給人安裝後，是不是應該寫 shell script 來設定呢？</package></p>
+<p>還沒研究有沒有人用 pip 來安裝成 command tool，pip 好像主要是拿來安裝 Python module package，如果用 shell script 來設定路徑好像就不是 pip 的用途了</p>
+<p>原文參考：<a href="http://sebug.net/paper/python/ch03s05.html" target="_blank" rel="external">http://sebug.net/paper/python/ch03s05.html</a></p>
+</div><!-- comment system--><div class="container"><hr><div id="disqus_thread"></div><script type="text/javascript">
+var disqus_shortname = 'veckhsiao';
+var disqus_identifier = '2015/01/29/python-executable-python/';
+var disqus_title = '[Python] Executable Python';
+var disqus_url = 'http://fbukevin.github.io/Veck/2015/01/29/python-executable-python/';
+(function() {
+   var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+   dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+   (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">Blog comments powered by <span class="logo-disqus">Disqus</span></a></div></article><footer id="footer"><div class="container"><div class="bar"><div class="social"><a href="mailto:fbukevin@gmail.com" target="_blank"><i class="fa fa-envelope-o"></i></a><a href="http://twitter.com/VeckHsiao" target="_blank"><i class="fa fa-twitter"></i></a><a href="https://github.com/fbukevin" target="_blank"><i class="fa fa-github"></i></a><a href="/atom.xml" target="_blank"><i class="fa fa-rss"></i></a></div><div class="footer">© 2016 <a href="/" rel="nofollow">Veck's Blog</a>. Powered by <a rel="nofollow" target="_blank" href="https://hexo.io">Hexo</a>. Theme <a target="_blank" href="https://github.com/lotabout/very-simple">very-simple</a>.</div></div></div></footer><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.css"><script src="//cdn.bootcss.com/jquery/2.0.3/jquery.min.js"></script><script src="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.pack.js"></script><script>$(document).ready(function() {
+    $(".fancybox").fancybox();
+});</script></body></html>

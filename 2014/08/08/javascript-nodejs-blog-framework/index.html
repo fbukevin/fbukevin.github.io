@@ -1,0 +1,37 @@
+<!DOCTYPE html><html><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description"><title>[JavaScript] Node.js Blog Framework - Hexo - 私人伺服器佈署 | Veck's Blog</title><link rel="stylesheet" type="text/css" href="/Veck//css/normalize.css"><link rel="stylesheet" type="text/css" href="/Veck//css/highlight.css"><link rel="stylesheet" type="text/css" href="/Veck//css/very-simple.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/font-awesome/4.5.0/css/font-awesome.min.css"><link rel="Shortcut Icon" type="image/x-icon" href="/Veck/favicon.ico"></head><body><!-- include the sidebar--><!-- include ./includes/sidebar.jade--><!-- Blog title and subtitle--><header><div class="container header"><a id="logo" href="/Veck/." class="title">Veck's Blog</a><span class="subtitle"></span><label id="toggle-menu" for="menu" onclick><i class="fa fa-bars"></i></label></div></header><!-- use checkbox hack for toggle nav-bar on small screens--><input id="menu" type="checkbox"><!-- Navigation Links--><nav id="nav"><div class="container"><a href="/" class="sidebar-nav-item">Home</a><a href="/Veck/archives" class="sidebar-nav-item">Archives</a></div></nav><div id="header-margin-bar"></div><!-- gallery that comes before the header--><div class="wrapper"><div class="container post-header"><h1>[JavaScript] Node.js Blog Framework - Hexo - 私人伺服器佈署</h1></div></div><div class="wrapper"><div class="container meta"><div class="post-time">2014-08-08</div></div></div><article><div class="container post"><p><a href="http://hexo.io/" target="_blank" rel="external">http://hexo.io/</a></p>
+<p>有鑑於網路上大部分的文章都是教學如何佈署到 GitHub 和 Heroku 為主的教學<br>雖然我的需求沒什麼太大不同，還是分享一下給需要的人參考<br>簡單建立專案、基本設定、套用主題、產生靜態檔案和佈署設定這邊不說，我針對佈署到個人站台做說明</p>
+<ol>
+<li>建立好專案和寫了些 post 之後，使用 <code>hexo generate</code> 或 <code>hexo g</code> 產生靜態檔案，會放在 public 這個資料夾下，當我們使用 <code>hexo deploy</code> 的時候，其實是把 public 的內容傳上 GitHub 或 Heroku 等空間(更正確來說是上傳 .deploy 的內容)，因此我們同樣只需要把 public 的東西放到站台上就好了</li>
+</ol>
+<p>例如我在：<code>http://fancy.cs.nccu.edu.tw</code> 伺服器中的 Apache 根目錄中建立了 <code>project/vexo</code> 這個目錄，我打算把專案放在這裡，因此我用 FTP 傳送到這個目錄下<br><img src="http://user-image.logdown.io/user/3330/blog/3407/post/218116/TFTHfj5CRGasXCDRKqsk_%E8%9E%A2%E5%B9%95%E5%BF%AB%E7%85%A7%202014-08-08%20%E4%B8%8B%E5%8D%889.28.20.png" alt="螢幕快照 2014-08-08 下午9.28.20.png"></p>
+<p>接著我們就可以連上網址看結果了<br><img src="http://user-image.logdown.io/user/3330/blog/3407/post/218116/KibjJfQZQ6CzRtudN1Eu_%E8%9E%A2%E5%B9%95%E5%BF%AB%E7%85%A7%202014-08-08%20%E4%B8%8B%E5%8D%889.29.14.png" alt="螢幕快照 2014-08-08 下午9.29.14.png"></p>
+<p>Oops! 看來 CSS 和 JavaScript 等靜態資料沒有正確的載入<br>開一下 console 來看<br><img src="http://user-image.logdown.io/user/3330/blog/3407/post/218116/HATLWCATQyGbCZ5T9WZz_%E8%9E%A2%E5%B9%95%E5%BF%AB%E7%85%A7%202014-08-08%20%E4%B8%8B%E5%8D%889.29.25.png" alt="螢幕快照 2014-08-08 下午9.29.25.png"></p>
+<p>resource 的路徑直接 request 根目錄下的 img、css 和 js，所以當然找不到，因為我們是放在 根目錄下的 <code>project/novex</code><br>解決方法是設定好 _config.yml 的 url 和 root<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">url: http://fancy.cs.nccu.edu.tw/project/novex&#10;root: /project/novex</span><br></pre></td></tr></table></figure></p>
+<p>把 root 設定為我們專案的根目錄，然後再 generate 一次後放到站台上<br><img src="http://user-image.logdown.io/user/3330/blog/3407/post/218116/8p2eLpOuT3eSaAnfg4iD_%E8%9E%A2%E5%B9%95%E5%BF%AB%E7%85%A7%202014-08-08%20%E4%B8%8B%E5%8D%889.58.19.png" alt="螢幕快照 2014-08-08 下午9.58.19.png"></p>
+<p>參考文章：</p>
+<ul>
+<li><p>基本教學<br><a href="http://yangjian.me/workspace/building-blog-with-hexo/" target="_blank" rel="external">http://yangjian.me/workspace/building-blog-with-hexo/</a><br><a href="http://blog.zjun.tw/2014/02/01/hexoSetupNote/" target="_blank" rel="external">http://blog.zjun.tw/2014/02/01/hexoSetupNote/</a><br><a href="http://zipperary.com/2013/05/28/hexo-guide-2/" target="_blank" rel="external">http://zipperary.com/2013/05/28/hexo-guide-2/</a></p>
+</li>
+<li><p>有提到 gh-pages (Project site)<br><a href="http://eva0919.github.io/2013/04/21/%E4%BD%BF%E7%94%A8hexo%E4%BB%A5%E5%8F%8Agithub-page%E5%BB%BA%E7%AB%8B%E8%87%AA%E5%B7%B1%E7%9A%84%E9%83%A8%E8%90%BD%E6%A0%BC/" target="_blank" rel="external">http://eva0919.github.io/2013/04/21/%E4%BD%BF%E7%94%A8hexo%E4%BB%A5%E5%8F%8Agithub-page%E5%BB%BA%E7%AB%8B%E8%87%AA%E5%B7%B1%E7%9A%84%E9%83%A8%E8%90%BD%E6%A0%BC/</a></p>
+</li>
+<li><p>有提到購買網域<br><a href="http://jianshu.io/p/05289a4bc8b2" target="_blank" rel="external">http://jianshu.io/p/05289a4bc8b2</a></p>
+</li>
+<li><p>CSS 和 JavaScript 配置問題<br><a href="http://blog.fens.me/hexo-blog-github/" target="_blank" rel="external">http://blog.fens.me/hexo-blog-github/</a></p>
+</li>
+</ul>
+<p>PS: 後來發現是台灣人寫的，採用 MIT License，也真的是 Made in Taiwan，感動！</p>
+</div><!-- comment system--><div class="container"><hr><div id="disqus_thread"></div><script type="text/javascript">
+var disqus_shortname = 'veckhsiao';
+var disqus_identifier = '2014/08/08/javascript-nodejs-blog-framework/';
+var disqus_title = '[JavaScript] Node.js Blog Framework - Hexo - 私人伺服器佈署';
+var disqus_url = 'http://fbukevin.github.io/Veck/2014/08/08/javascript-nodejs-blog-framework/';
+(function() {
+   var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+   dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+   (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">Blog comments powered by <span class="logo-disqus">Disqus</span></a></div></article><footer id="footer"><div class="container"><div class="bar"><div class="social"><a href="mailto:fbukevin@gmail.com" target="_blank"><i class="fa fa-envelope-o"></i></a><a href="http://twitter.com/VeckHsiao" target="_blank"><i class="fa fa-twitter"></i></a><a href="https://github.com/fbukevin" target="_blank"><i class="fa fa-github"></i></a><a href="/atom.xml" target="_blank"><i class="fa fa-rss"></i></a></div><div class="footer">© 2016 <a href="/" rel="nofollow">Veck's Blog</a>. Powered by <a rel="nofollow" target="_blank" href="https://hexo.io">Hexo</a>. Theme <a target="_blank" href="https://github.com/lotabout/very-simple">very-simple</a>.</div></div></div></footer><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.css"><script src="//cdn.bootcss.com/jquery/2.0.3/jquery.min.js"></script><script src="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.pack.js"></script><script>$(document).ready(function() {
+    $(".fancybox").fancybox();
+});</script></body></html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html><html><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description"><title>Compare of Xen, KVM, LXC and Traditional VM | Veck's Blog</title><link rel="stylesheet" type="text/css" href="/Veck//css/normalize.css"><link rel="stylesheet" type="text/css" href="/Veck//css/highlight.css"><link rel="stylesheet" type="text/css" href="/Veck//css/very-simple.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/font-awesome/4.5.0/css/font-awesome.min.css"><link rel="Shortcut Icon" type="image/x-icon" href="/Veck/favicon.ico"></head><body><!-- include the sidebar--><!-- include ./includes/sidebar.jade--><!-- Blog title and subtitle--><header><div class="container header"><a id="logo" href="/Veck/." class="title">Veck's Blog</a><span class="subtitle"></span><label id="toggle-menu" for="menu" onclick><i class="fa fa-bars"></i></label></div></header><!-- use checkbox hack for toggle nav-bar on small screens--><input id="menu" type="checkbox"><!-- Navigation Links--><nav id="nav"><div class="container"><a href="/" class="sidebar-nav-item">Home</a><a href="/Veck/archives" class="sidebar-nav-item">Archives</a></div></nav><div id="header-margin-bar"></div><!-- gallery that comes before the header--><div class="wrapper"><div class="container post-header"><h1>Compare of Xen, KVM, LXC and Traditional VM</h1></div></div><div class="wrapper"><div class="container meta"><div class="post-time">2014-05-20</div><div class="post-categories"><a class="post-category-link" href="/Veck/categories/LXC/">LXC</a>><a class="post-category-link" href="/Veck/categories/LXC/KVM/">KVM</a>><a class="post-category-link" href="/Veck/categories/LXC/KVM/XEN/">XEN</a>><a class="post-category-link" href="/Veck/categories/LXC/KVM/XEN/Container/">Container</a></div></div></div><article><div class="container post"><p>* 以下將 VMware、Virtual Box、Virtual PC 歸類為 Traditional Vitual Machine，簡稱 TVM </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">TVM &#21644; &#20854;&#20182;&#34395;&#25836;&#21270;&#25216;&#34899; &#30340;&#26368;&#20027;&#35201;&#24046;&#30064;&#26159;&#20027;&#31995;&#32113;&#30340;&#36039;&#28304;&#20849;&#20139;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>TVM 這是完整一個系統，這裡的系統包含了所有軟體模擬出來的硬體設備，因此他的執行效能最差，但是能夠完整模擬出一個不同於主系統的環境<br><img src="http://user-image.logdown.io/user/3330/blog/3407/post/200566/ZyW2Z6keRD648EdlNBXU_%E8%9E%A2%E5%B9%95%E5%BF%AB%E7%85%A7%202014-05-20%20%E4%B8%8B%E5%8D%886.02.35.png" alt="螢幕快照 2014-05-20 下午6.02.35.png"></li>
+</ul>
+<ul>
+<li><p>Xen 是在 Linux 環境下最早出來的虛擬化技術，這是在硬體與 Linux 核心之間插入一個 Xen 程序，讓開機時的 bootloader 原本是要載入 Linux Kernel Code，改成 loading Xen code，而 Linux Kernel 和其他 VM 則是由 Xen 來管理<br><img src="http://user-image.logdown.io/user/3330/blog/3407/post/200566/iG59YD7lShmmPfy5ktz5_%E8%9E%A2%E5%B9%95%E5%BF%AB%E7%85%A7%202014-05-20%20%E4%B8%8B%E5%8D%886.00.35.png" alt="螢幕快照 2014-05-20 下午6.00.35.png"></p>
+</li>
+<li><p>LXC 是緊接著出來的技術，由 IBM 創立，後來才納入 Linux Kernel)，這個作法是在主系統的 Processes 中，將虛擬機的 process”es” 偽裝成主系統的 process，讓主系統的 OS 將之加入 Process Scheduling 中</p>
+</li>
+</ul>
+<p>會說是偽裝，是因為主系統中本身會有一套屬於作業系統的 Process，這些 Process 也會在虛擬機的系統中存在，例如 Linux 的 init (PID = 1)，如果直接將虛擬機的 Process 插入主系統的排成，可能造成系統錯亂，因此 container 會將虛擬機的 process 偽裝成其他號碼的 process 後才加入排程</p>
+<p><img src="http://user-image.logdown.io/user/3330/blog/3407/post/200566/XtXDLjNSRQi6xZao7hfg_%E8%9E%A2%E5%B9%95%E5%BF%AB%E7%85%A7%202014-05-20%20%E4%B8%8B%E5%8D%886.00.28.png" alt="螢幕快照 2014-05-20 下午6.00.28.png"></p>
+<p>container 要求的虛擬機環境要跟主系統一樣，例如你在 Ubuntu 上安裝並建立一個 container，則 container 的環境就只能是 Ubuntu (因此 <code>-t ubuntu</code> 只是將一個已經包裝好的 ubuntu template (image) 下載下來)，適合 hadoop 那樣需要相同平台的</p>
+<ul>
+<li>KVM 是最新的虛擬化技術，這跟 TVM 的架構有點像，不同的在於，這個技術的虛擬機器上所有的 Process 都是由主系統的 Linux Kernel 管理，而 TVM 則是由虛擬系統自己管理，而且 TVM 需要用軟體模擬硬體(增加 Process)，所以效能較差，KVM 則因為是跟主系統共享資源，因此不會增加硬體模擬的負擔，效能較好</li>
+</ul>
+<p><img src="http://user-image.logdown.io/user/3330/blog/3407/post/200566/HvpwufIWRMHA9FvXJAZg_%E8%9E%A2%E5%B9%95%E5%BF%AB%E7%85%A7%202014-05-20%20%E4%B8%8B%E5%8D%886.03.48.png" alt="螢幕快照 2014-05-20 下午6.03.48.png"></p>
+<p>從效能上來看，TVM 架構下的主系統(host)需要切割實體資源給 Virtual Machine，這些資源就被 Virtaul Machine 佔用了；而 KVM 和 LXC 因為是共享 host 的實體資源，資源的共享就跟 process 或 thread 的佔用與釋放一樣，不會有永久持有，所以硬體資源可以更充分利用，當一個機器(host 或 vm)需要較多資源時，主系統就可以協調另一機器的資源來使用</p>
+<p>另一方面，KVM 和 LXC 因為共享主系統資源，所以不需要將檔案從主系統複製或移動到虛擬機器上，即可在虛擬機上存取或運行，如此一來對於要做快速測試的開發專案而言，可以達到快速測試或佈署的目的</p>
+<p>在進一步拿目前效能最好的 KVM 跟 LXC 做比較，KVM 的效能略遜於 LXC，因為它是完整的一個作業系統，有自己完整同主系統的 Process，但是 LXC 是一個 container 自己就是一個 process，因此使用的資源較少，但是 LXC 相較上來說彈性較差，因為它要求與主系統相同的環境</p>
+<p>額外補充資料：</p>
+<ul>
+<li><a href="http://www.linux-kvm.org/page/Main_Page" target="_blank" rel="external">KVM</a>：Kernel-bases Virtual Machine</li>
+<li><a href="https://linuxcontainers.org/" target="_blank" rel="external">LXC</a>：LinuX Container</li>
+<li><a href="http://www.xenproject.org/" target="_blank" rel="external">Xen</a></li>
+</ul>
+</div><!-- comment system--><div class="container"><hr><div id="disqus_thread"></div><script type="text/javascript">
+var disqus_shortname = 'veckhsiao';
+var disqus_identifier = '2014/05/20/compare-of-kvm-and-lxc/';
+var disqus_title = 'Compare of Xen, KVM, LXC and Traditional VM';
+var disqus_url = 'http://fbukevin.github.io/Veck/2014/05/20/compare-of-kvm-and-lxc/';
+(function() {
+   var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+   dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+   (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">Blog comments powered by <span class="logo-disqus">Disqus</span></a></div></article><footer id="footer"><div class="container"><div class="bar"><div class="social"><a href="mailto:fbukevin@gmail.com" target="_blank"><i class="fa fa-envelope-o"></i></a><a href="http://twitter.com/VeckHsiao" target="_blank"><i class="fa fa-twitter"></i></a><a href="https://github.com/fbukevin" target="_blank"><i class="fa fa-github"></i></a><a href="/atom.xml" target="_blank"><i class="fa fa-rss"></i></a></div><div class="footer">© 2016 <a href="/" rel="nofollow">Veck's Blog</a>. Powered by <a rel="nofollow" target="_blank" href="https://hexo.io">Hexo</a>. Theme <a target="_blank" href="https://github.com/lotabout/very-simple">very-simple</a>.</div></div></div></footer><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.css"><script src="//cdn.bootcss.com/jquery/2.0.3/jquery.min.js"></script><script src="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.pack.js"></script><script>$(document).ready(function() {
+    $(".fancybox").fancybox();
+});</script></body></html>

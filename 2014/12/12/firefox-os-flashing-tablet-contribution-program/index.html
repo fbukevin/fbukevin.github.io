@@ -1,0 +1,37 @@
+<!DOCTYPE html><html><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description"><title>[Firefox OS] Flashing Tablet (Contribution Program) | Veck's Blog</title><link rel="stylesheet" type="text/css" href="/Veck//css/normalize.css"><link rel="stylesheet" type="text/css" href="/Veck//css/highlight.css"><link rel="stylesheet" type="text/css" href="/Veck//css/very-simple.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/font-awesome/4.5.0/css/font-awesome.min.css"><link rel="Shortcut Icon" type="image/x-icon" href="/Veck/favicon.ico"></head><body><!-- include the sidebar--><!-- include ./includes/sidebar.jade--><!-- Blog title and subtitle--><header><div class="container header"><a id="logo" href="/Veck/." class="title">Veck's Blog</a><span class="subtitle"></span><label id="toggle-menu" for="menu" onclick><i class="fa fa-bars"></i></label></div></header><!-- use checkbox hack for toggle nav-bar on small screens--><input id="menu" type="checkbox"><!-- Navigation Links--><nav id="nav"><div class="container"><a href="/" class="sidebar-nav-item">Home</a><a href="/Veck/archives" class="sidebar-nav-item">Archives</a></div></nav><div id="header-margin-bar"></div><!-- gallery that comes before the header--><div class="wrapper"><div class="container post-header"><h1>[Firefox OS] Flashing Tablet (Contribution Program)</h1></div></div><div class="wrapper"><div class="container meta"><div class="post-time">2014-12-12</div></div></div><article><div class="container post"><p>剛收到 TCP (Tablet Contribution Program)的平板<br>查看一下資訊<br>韌體版本是 Flatfish_20140112 的(末兩碼我忘了)<br>作業系統是 1.x.x.x 版本</p>
+<p>要升級 OS<br>首先要照 <code>https://wiki.mozilla.org/FirefoxOS/TCP/Flashing_the_Flatfish_bootloader</code> 先刷 bootloader<br>我再 Mac OS X 10.10 上：</p>
+<ol>
+<li>下載 LiveSuite for Mac</li>
+<li>解壓縮後解開 LiveSuite 並執行</li>
+<li>啟動 LiveSuite</li>
+<li>下載  known-working build files (img files)</li>
+<li>在 LiveSuite 中選擇 .img</li>
+<li>關閉平板的電源，然後先將 USB 接上平板，但不要接上電腦</li>
+<li>長按住音量鍵的 (-)，然後將 USB 另一頭接上電腦，此時應該會看到一個彈跳視窗問你要 format 嗎？選擇 Yes<br>  (沒有的話重複按下電源鍵大約 10 次，我的沒有這個狀況)</li>
+<li>接著等待 Process 跑完顯示 success，平板會自動重開機，此時你可以放開音量鍵並關閉 LiveSuite 了</li>
+<li>平板畫面會停在 FASTBOOT，接著你就可以開始刷 OS<br>(如果累了可以先將平板關機，大丈夫！重新開機還是會停在 FASTBOOT 字樣等你刷 OS，是不是反而覺得要是不會刷了就等於刷壞了這台…)</li>
+</ol>
+<p>目前在 Mac 上還不能刷 OS，所以我還是找了一台 Windows 來用<br><a href="https://wiki.mozilla.org/FirefoxOS/TCP/Flashing_your_device/" target="_blank" rel="external">https://wiki.mozilla.org/FirefoxOS/TCP/Flashing_your_device/</a></p>
+<ol>
+<li><p>接上電腦後，有可能抓不到 Android 驅動，可以先按照<a href="https://wiki.mozilla.org/FirefoxOS/TCP/Installing_USB_Drivers_on_Windows" target="_blank" rel="external">這裡</a>去下載驅動程式安裝<br><img src="http://user-image.logdown.io/user/3330/blog/3407/post/245944/o3msQWzS3K6bNjS2KWPA_%E6%93%B7%E5%8F%96.PNG" alt="擷取.PNG"></p>
+</li>
+<li><p>下載<a href="http://test1.manichord.com/moz-tcp/ADB-Fastboot-and-Scripts.zip" target="_blank" rel="external">這包</a>，解壓縮後，再到<a href="https://www.dropbox.com/sh/b2py1btcwstqldl/AABblbq_csa1IHQwdvLdfptTa" target="_blank" rel="external">這裡</a>下載最新的 build files (至目前為止最後更新為 20141212)，解壓縮後的東西都跟前面的 ADB-Fastboot-and-script 內的東西放在同一目錄下面</p>
+</li>
+<li>雙擊執行 <code>flash.bat</code> 這個批次檔案，沒有錯誤的話正常來說需要等個幾分鐘，就會完成刷新 OS 的作業，並自動重新開機，進入 Firefox OS 最新版囉！</li>
+</ol>
+<p><img src="http://user-image.logdown.io/user/3330/blog/3407/post/245944/pAx0wFGaSVmMQYDR3BaS_2014-12-13-00-38-47.png" alt="2014-12-13-00-38-47.png"><br>作業系統版本：2.2.0.0-prerelease<br>韌體版本：flatfish_20141212-0135<br>硬體版本：flatfish<br>Build Number：20141212<br><img src="http://user-image.logdown.io/user/3330/blog/3407/post/245944/XArOQ5gGT92yFRIUiDNV_2014-12-13-00-39-40.png" alt="2014-12-13-00-39-40.png"></p>
+</div><!-- comment system--><div class="container"><hr><div id="disqus_thread"></div><script type="text/javascript">
+var disqus_shortname = 'veckhsiao';
+var disqus_identifier = '2014/12/12/firefox-os-flashing-tablet-contribution-program/';
+var disqus_title = '[Firefox OS] Flashing Tablet (Contribution Program)';
+var disqus_url = 'http://fbukevin.github.io/Veck/2014/12/12/firefox-os-flashing-tablet-contribution-program/';
+(function() {
+   var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+   dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+   (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">Blog comments powered by <span class="logo-disqus">Disqus</span></a></div></article><footer id="footer"><div class="container"><div class="bar"><div class="social"><a href="mailto:fbukevin@gmail.com" target="_blank"><i class="fa fa-envelope-o"></i></a><a href="http://twitter.com/VeckHsiao" target="_blank"><i class="fa fa-twitter"></i></a><a href="https://github.com/fbukevin" target="_blank"><i class="fa fa-github"></i></a><a href="/atom.xml" target="_blank"><i class="fa fa-rss"></i></a></div><div class="footer">© 2016 <a href="/" rel="nofollow">Veck's Blog</a>. Powered by <a rel="nofollow" target="_blank" href="https://hexo.io">Hexo</a>. Theme <a target="_blank" href="https://github.com/lotabout/very-simple">very-simple</a>.</div></div></div></footer><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.css"><script src="//cdn.bootcss.com/jquery/2.0.3/jquery.min.js"></script><script src="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.pack.js"></script><script>$(document).ready(function() {
+    $(".fancybox").fancybox();
+});</script></body></html>
