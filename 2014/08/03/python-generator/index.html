@@ -7,7 +7,7 @@
 <p>這樣的運作方式需要把一整個 list 存在記憶體中<br>如果項目太多，會導致記憶體浪費(太多被佔用的空間無法釋放給其他行程使用)或是所需記憶體不足的情況</p>
 <p>generator 讓我們可以的 function 可以不用一次取得所有的 list 來累加<br>而可以取得一個就加一次<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># a generator that yields items instead of returning a list&#10;def firstn(n):&#10;    num = 0&#10;    while num &#60; n:&#10;        yield num&#10;        num += 1&#10;&#10;def mysum(iterable_object):&#10;&#9;sum = 0&#10;&#9;for i in iterable_object:&#9;&#9;&#9;# &#27599;&#27425;&#22519;&#34892;&#33267;&#27492;&#65292;&#23601;&#26371; yield &#19968;&#20491;&#26032;&#20540;&#10;&#9;&#9;sum += i&#10;&#9;return sum&#10;&#10;sum_of_first_n = mysum(firstn(1000000))</span><br></pre></td></tr></table></figure></p>
 </div><!-- comment system--><div class="container"><hr><div id="disqus_thread"></div><script type="text/javascript">
-var disqus_shortname = 'veckhsiao';
+var disqus_shortname = 'veckhtw';
 var disqus_identifier = '2014/08/03/python-generator/';
 var disqus_title = '[Python] Generator';
 var disqus_url = 'http://fbukevin.github.io/Veck/2014/08/03/python-generator/';

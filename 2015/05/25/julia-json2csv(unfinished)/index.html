@@ -5,7 +5,7 @@
 <p><img src="http://user-image.logdown.io/user/3330/blog/3407/post/277291/MFribhlSR8u9yxJZfAi2_json.jl.JPG" alt="json.jl.JPG"><br><a href="http://julia.readthedocs.org/en/latest/stdlib/io-network/#Base.writecsv" target="_blank" rel="external">http://julia.readthedocs.org/en/latest/stdlib/io-network/#Base.writecsv</a><br><a href="https://github.com/JuliaLang/JSON.jl" target="_blank" rel="external">https://github.com/JuliaLang/JSON.jl</a></p>
 <p>julia&gt; Pkg.add(“JSON”)<br>julia&gt; import JSON<br>julia&gt; f = open(“file.json”, “r”)<br>julia&gt; s = readline(f)<br>julia&gt; j = JSON.parse(s)<br>Dict{String,Any} with 5 entries:<br>  “newest_mids” =&gt; {}<br>  “_id”         =&gt; [“\$oid”=&gt;”5563114712cc0e3e1ed725f1”]<br>  “follows”     =&gt; {[“uid”=&gt;”3616152072”,”nickname”=&gt;”反反常常-小小??”],[“uid”=&gt;”2548<br>……<br>  “uid”         =&gt; “1431919253”<br>  “fans”        =&gt; {[“uid”=&gt;”5549928463”,”nickname”=&gt;”腄腄腄腄覺覺毛毛了了同同??”],[“uid”=&gt;<br>……<br>julia&gt; get(j, “uid”, null)     # get(collection, key, default), 其中 default 是如果找不到要回傳的值<br>“1431919253”<br>julia&gt; for c in get(j, “follows”, null)<br>         println(get(c, “nickname”, null))<br>       end<br>…</p>
 </div><!-- comment system--><div class="container"><hr><div id="disqus_thread"></div><script type="text/javascript">
-var disqus_shortname = 'veckhsiao';
+var disqus_shortname = 'veckhtw';
 var disqus_identifier = '2015/05/25/julia-json2csv(unfinished)/';
 var disqus_title = '[Julia] json2csv';
 var disqus_url = 'http://fbukevin.github.io/Veck/2015/05/25/julia-json2csv(unfinished)/';
