@@ -3,9 +3,10 @@
 <li><code>cd first</code></li>
 <li><code>vim build.gradle</code></li>
 <li>add <code>apply plugin: &#39;java&#39;</code> into build.gradle, then save file and leave.</li>
-<li><code>gradle build</code>, This will create directory <code>.gradle</code> and <code>build</code>:</li>
-</ol>
+<li><code>gradle build</code>, This will create directory <code>.gradle</code> and <code>build</code>:<a id="more"></a>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"> ~/Desktop/Gradle/first --&#62;gradle build&#10;:compileJava UP-TO-DATE&#10;:processResources UP-TO-DATE&#10;:classes UP-TO-DATE&#10;:jar&#10;:assemble&#10;:compileTestJava UP-TO-DATE&#10;:processTestResources UP-TO-DATE&#10;:testClasses UP-TO-DATE&#10;:test UP-TO-DATE&#10;:check UP-TO-DATE&#10;:build&#10;&#10;BUILD SUCCESSFUL&#10;&#10;Total time: 3.712 secs</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
 <p>上面依序是編譯和打包專案時會做的 tasks，可以用 <code>gradle tasks</code> 來查看有哪些 task 可以指定，這裡因為我們指定到 build，所以就依序做到 build</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"> ~/Desktop/Gradle/first --&#62;ll&#10;total 8&#10;drwxr-xr-x  5 veck  staff  170 Nov  5 03:15 .&#10;drwxr-xr-x  6 veck  staff  204 Nov  5 03:13 ..&#10;drwxr-xr-x  3 veck  staff  102 Nov  5 03:15 .gradle&#10;drwxr-xr-x  4 veck  staff  136 Nov  5 03:15 build&#10;-rw-r--r--  1 veck  staff   22 Nov  5 03:14 build.gradle&#10; ~/Desktop/Gradle/first --&#62;tree&#10;.&#10;&#9500;&#9472;&#9472; build&#10;&#9474;&#160;&#160; &#9500;&#9472;&#9472; libs&#10;&#9474;&#160;&#160; &#9474;&#160;&#160; &#9492;&#9472;&#9472; first.jar&#10;&#9474;&#160;&#160; &#9492;&#9472;&#9472; tmp&#10;&#9474;&#160;&#160;     &#9492;&#9472;&#9472; jar&#10;&#9474;&#160;&#160;         &#9492;&#9472;&#9472; MANIFEST.MF&#10;&#9492;&#9472;&#9472; build.gradle</span><br></pre></td></tr></table></figure>
 <p>可以見到，gradle 會自動打包成 jar 檔和建立 MANIFEST.MF 檔，不過正常應該是，要先建立好 java 專案，根據<a href="http://www.gradle.org/docs/current/userguide/java_plugin.html#N12119" target="_blank" rel="external">官方文件</a>說明，gradle 預設你的 Java 專案結構長這樣:</p>

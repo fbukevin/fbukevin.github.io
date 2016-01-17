@@ -1,0 +1,42 @@
+<!DOCTYPE html><html><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description"><title>~Java~ 提示字符讀取輸入 | Veck's Blog</title><link rel="stylesheet" type="text/css" href="/Veck//css/normalize.css"><link rel="stylesheet" type="text/css" href="/Veck//css/highlight.css"><link rel="stylesheet" type="text/css" href="/Veck//css/very-simple.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/font-awesome/4.5.0/css/font-awesome.min.css"><link rel="Shortcut Icon" type="image/x-icon" href="/Veck/favicon.ico"></head><body><!-- include the sidebar--><!-- include ./includes/sidebar.jade--><!-- Blog title and subtitle--><header><div class="container header"><a id="logo" href="/Veck/." class="title">Veck's Blog</a><span class="subtitle"></span><label id="toggle-menu" for="menu" onclick><i class="fa fa-bars"></i></label></div></header><!-- use checkbox hack for toggle nav-bar on small screens--><input id="menu" type="checkbox"><!-- Navigation Links--><nav id="nav"><div class="container"><a href="/Veck" class="sidebar-nav-item">Home</a><a href="/Veck/archives" class="sidebar-nav-item">Archives</a></div></nav><div id="header-margin-bar"></div><!-- gallery that comes before the header--><div class="wrapper"><div class="container post-header"><h1>~Java~ 提示字符讀取輸入</h1></div></div><div class="wrapper"><div class="container meta"><div class="post-time">2011-04-26</div><div class="post-tags"><a class="post-tag-link" href="/Veck/tags/Java/">Java</a></div></div></div><article><div class="container post"><p>大家有沒有一個疑問<br>為什麼  </p>
+<p>public static void main(String args[]){   }<br>                                        ↑↑↑<br>                                        這是做什麼的?  </p>
+<p>今天看到一個程式內的應用，所以就自己想到這個想法實作一遍<br>以下是我的程式碼片段:  </p>
+<pre style="background: #000000; color: white;"> <span style="color: #7f0055; font-weight: bold;">public</span> <span style="color: #7f0055; font-weight: bold;">class</span> argsStream  
+ {  
+     <span style="color: #7f0055; font-weight: bold;">public</span> <span style="color: #7f0055; font-weight: bold;">static</span> <span style="color: #7f0055; font-weight: bold;">void</span> main(<span style="color: #7f0055; font-weight: bold;">String</span> args[])  
+     {  
+        <span style="color: #7f0055; font-weight: bold;">for</span>(<span style="color: #7f0055; font-weight: bold;">int</span> i=0;i<args.length;i++) {="" <span="" style="color: #7f0055; font-weight: bold;">System.out.println(args[i]);  }  
+    }  
+} </args.length;i++)></pre>
+
+<div><br><br><div>要測試時，請用命令提示字元，輸入java argsStream</div>
+
+<div>當你按下Enter會發現程式沒有作用<br><br></div>
+
+<div>接著請你再輸入一次，但是這一次，請輸入 java argsStream Iamnotcool</div>
+
+<div>按下Enter後</div>
+
+<div><br><br><pre style="background: black; color: white;">C:\User\Desktop&gt;java argsStream iamnotcool   </pre><br><br></div>
+
+<div>就會出現你所輸入的字串!!!</div>
+
+<div>所以知道為什麼了吧!</div>
+
+<p></p></div><p></p>
+<p><a href="http://veckcode.blogspot.com/2011/04/java.html#more" target="_blank" rel="external">閱讀更多 »</a></p>
+</div><!-- comment system--><div class="container"><hr><div id="disqus_thread"></div><script type="text/javascript">
+var disqus_shortname = 'vecktw';
+var disqus_identifier = '2011/04/26/~Java~ 提示字符讀取輸入/';
+var disqus_title = '~Java~ 提示字符讀取輸入';
+var disqus_url = 'http://fbukevin.github.io/Veck/2011/04/26/~Java~ 提示字符讀取輸入/';
+(function() {
+   var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+   dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+   (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">Blog comments powered by <span class="logo-disqus">Disqus</span></a></div></article><footer id="footer"><div class="container"><div class="bar"><div class="social"><a href="mailto:fbukevin@gmail.com" target="_blank"><i class="fa fa-envelope-o"></i></a><a href="http://twitter.com/VeckHsiao" target="_blank"><i class="fa fa-twitter"></i></a><a href="https://github.com/fbukevin" target="_blank"><i class="fa fa-github"></i></a><a href="/atom.xml" target="_blank"><i class="fa fa-rss"></i></a></div><div class="footer">© 2016 <a href="/" rel="nofollow">Veck's Blog</a>. Powered by <a rel="nofollow" target="_blank" href="https://hexo.io">Hexo</a>. Theme <a target="_blank" href="https://github.com/lotabout/very-simple">very-simple</a>.</div></div></div></footer><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.css"><script src="//cdn.bootcss.com/jquery/2.0.3/jquery.min.js"></script><script src="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.pack.js"></script><script>$(document).ready(function() {
+    $(".fancybox").fancybox();
+});</script></body></html>

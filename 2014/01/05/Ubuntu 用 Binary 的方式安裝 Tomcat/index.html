@@ -1,0 +1,34 @@
+<!DOCTYPE html><html><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description"><title>Ubuntu 用 Binary 的方式安裝 Tomcat | Veck's Blog</title><link rel="stylesheet" type="text/css" href="/Veck//css/normalize.css"><link rel="stylesheet" type="text/css" href="/Veck//css/highlight.css"><link rel="stylesheet" type="text/css" href="/Veck//css/very-simple.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/font-awesome/4.5.0/css/font-awesome.min.css"><link rel="Shortcut Icon" type="image/x-icon" href="/Veck/favicon.ico"></head><body><!-- include the sidebar--><!-- include ./includes/sidebar.jade--><!-- Blog title and subtitle--><header><div class="container header"><a id="logo" href="/Veck/." class="title">Veck's Blog</a><span class="subtitle"></span><label id="toggle-menu" for="menu" onclick><i class="fa fa-bars"></i></label></div></header><!-- use checkbox hack for toggle nav-bar on small screens--><input id="menu" type="checkbox"><!-- Navigation Links--><nav id="nav"><div class="container"><a href="/Veck" class="sidebar-nav-item">Home</a><a href="/Veck/archives" class="sidebar-nav-item">Archives</a></div></nav><div id="header-margin-bar"></div><!-- gallery that comes before the header--><div class="wrapper"><div class="container post-header"><h1>Ubuntu 用 Binary 的方式安裝 Tomcat</h1></div></div><div class="wrapper"><div class="container meta"><div class="post-time">2014-01-05</div></div></div><article><div class="container post"><div class="MsoNormal"><span lang="EN-US" style="font-family: &quot;Century Schoolbook L&quot;,&quot;serif&quot;; mso-fareast-font-family: &quot;Century Schoolbook L&quot;;">1.</span> <span style="font-family: &quot;Century Schoolbook L&quot;,&quot;serif&quot;; mso-fareast-font-family: &quot;Century Schoolbook L&quot;;">到 <span lang="EN-US">Apache Tomcat</span>官網下載<span lang="EN-US">apache-tomcat-8.0.0-RC10-tar.gz</span></span></div>
+
+<div class="MsoNormal"><span lang="EN-US" style="font-family: &quot;Century Schoolbook L&quot;,&quot;serif&quot;; mso-fareast-font-family: &quot;Century Schoolbook L&quot;;"><br></span></div>
+
+<div class="MsoNormal"><span lang="EN-US" style="font-family: &quot;Century Schoolbook L&quot;,&quot;serif&quot;; mso-fareast-font-family: &quot;Century Schoolbook L&quot;;">2.</span> <span style="font-family: &quot;Century Schoolbook L&quot;,&quot;serif&quot;; mso-fareast-font-family: &quot;Century Schoolbook L&quot;;">解壓縮後放到 <span lang="EN-US">/opt</span>、<span lang="EN-US">/usr/local</span> 或 家目錄下<span lang="EN-US"></span></span></div>
+
+<div class="MsoNormal"><span lang="EN-US" style="font-family: &quot;Century Schoolbook L&quot;,&quot;serif&quot;; mso-fareast-font-family: &quot;Century Schoolbook L&quot;;"><br></span></div>
+
+<div class="MsoNormal"><span lang="EN-US" style="font-family: &quot;Century Schoolbook L&quot;,&quot;serif&quot;; mso-fareast-font-family: &quot;Century Schoolbook L&quot;;">3.</span> <span style="font-family: &quot;Century Schoolbook L&quot;,&quot;serif&quot;; mso-fareast-font-family: &quot;Century Schoolbook L&quot;;">編輯 <span lang="EN-US">~/.bashrc</span>，加入：<span lang="EN-US"></span></span></div>
+
+<div class="MsoNormal"><span lang="EN-US" style="font-family: &quot;Century Schoolbook L&quot;,&quot;serif&quot;; mso-fareast-font-family: &quot;Century Schoolbook L&quot;;">        export TOMCAT_HOME=”[2</span> <span style="font-family: &quot;Century Schoolbook L&quot;,&quot;serif&quot;; mso-fareast-font-family: &quot;Century Schoolbook L&quot;;">的路徑<span lang="EN-US">]”</span></span></div>
+
+<div class="MsoNormal"><span lang="EN-US" style="font-family: &quot;Century Schoolbook L&quot;,&quot;serif&quot;; mso-fareast-font-family: &quot;Century Schoolbook L&quot;;">        export PATH=”$PATH:$TOMCAT_HOME/bin”</span></div>
+
+<div class="MsoNormal"><span lang="EN-US" style="font-family: &quot;Century Schoolbook L&quot;,&quot;serif&quot;; mso-fareast-font-family: &quot;Century Schoolbook L&quot;;">        export CLASSPATH=”$TOMCAT_HOME/lib/jsp-api.jar:$TOMCAT_HOME/lib/servlet-api.jar:$CLASSPATH”</span></div>
+
+<div class="MsoNormal"><span lang="EN-US" style="font-family: 'Century Schoolbook L', serif;">        ( </span><span style="font-family: 'Century Schoolbook L', serif;">或是在 <span lang="EN-US">bin</span> 中執行 <span lang="EN-US">setclasspath.sh )</span></span></div>
+
+<p><a href="http://veckcode.blogspot.com/2014/01/ubuntu-binary-tomcat.html#more" target="_blank" rel="external">閱讀更多 »</a></p>
+</div><!-- comment system--><div class="container"><hr><div id="disqus_thread"></div><script type="text/javascript">
+var disqus_shortname = 'vecktw';
+var disqus_identifier = '2014/01/05/Ubuntu 用 Binary 的方式安裝 Tomcat/';
+var disqus_title = 'Ubuntu 用 Binary 的方式安裝 Tomcat';
+var disqus_url = 'http://fbukevin.github.io/Veck/2014/01/05/Ubuntu 用 Binary 的方式安裝 Tomcat/';
+(function() {
+   var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+   dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+   (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">Blog comments powered by <span class="logo-disqus">Disqus</span></a></div></article><footer id="footer"><div class="container"><div class="bar"><div class="social"><a href="mailto:fbukevin@gmail.com" target="_blank"><i class="fa fa-envelope-o"></i></a><a href="http://twitter.com/VeckHsiao" target="_blank"><i class="fa fa-twitter"></i></a><a href="https://github.com/fbukevin" target="_blank"><i class="fa fa-github"></i></a><a href="/atom.xml" target="_blank"><i class="fa fa-rss"></i></a></div><div class="footer">© 2016 <a href="/" rel="nofollow">Veck's Blog</a>. Powered by <a rel="nofollow" target="_blank" href="https://hexo.io">Hexo</a>. Theme <a target="_blank" href="https://github.com/lotabout/very-simple">very-simple</a>.</div></div></div></footer><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.css"><script src="//cdn.bootcss.com/jquery/2.0.3/jquery.min.js"></script><script src="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.pack.js"></script><script>$(document).ready(function() {
+    $(".fancybox").fancybox();
+});</script></body></html>

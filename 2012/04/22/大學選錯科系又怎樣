@@ -1,0 +1,24 @@
+<!DOCTYPE html><html><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description"><title>大學選錯科系又怎樣? - 從資工與資管探討 | Veck's Blog</title><link rel="stylesheet" type="text/css" href="/Veck//css/normalize.css"><link rel="stylesheet" type="text/css" href="/Veck//css/highlight.css"><link rel="stylesheet" type="text/css" href="/Veck//css/very-simple.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/font-awesome/4.5.0/css/font-awesome.min.css"><link rel="Shortcut Icon" type="image/x-icon" href="/Veck/favicon.ico"></head><body><!-- include the sidebar--><!-- include ./includes/sidebar.jade--><!-- Blog title and subtitle--><header><div class="container header"><a id="logo" href="/Veck/." class="title">Veck's Blog</a><span class="subtitle"></span><label id="toggle-menu" for="menu" onclick><i class="fa fa-bars"></i></label></div></header><!-- use checkbox hack for toggle nav-bar on small screens--><input id="menu" type="checkbox"><!-- Navigation Links--><nav id="nav"><div class="container"><a href="/Veck" class="sidebar-nav-item">Home</a><a href="/Veck/archives" class="sidebar-nav-item">Archives</a></div></nav><div id="header-margin-bar"></div><!-- gallery that comes before the header--><div class="wrapper"><div class="container post-header"><h1>大學選錯科系又怎樣? - 從資工與資管探討</h1></div></div><div class="wrapper"><div class="container meta"><div class="post-time">2012-04-22</div></div></div><article><div class="container post"><div class="MsoNormal" style="text-indent: 24.0pt;"><span style="font-family: 新細明體, serif;">一口氣完成了兩個程式作業，接著是編譯器的作業期中考，在這告一段落的時候，洗澡時有感而發，睡前偷閒來發一下新文。</span></div>
+
+<div class="MsoNormal" style="text-indent: 24.0pt;"><span style="font-family: 新細明體, serif;">昨天才跟高手學弟討論資管系的定位與未來，他在他的部落格發了篇<a href="http://blog.lieeray.com/2012/why-go-to-dept-mis/" target="_blank" rel="external"><span style="color: orange;">談論資管系的文章</span></a>，我認為值得許多資訊領域的夥伴一起來省思，也很適合想進入資工、資管的高中生們有一個初步的認知，而大學的教授們，更應該由此文章去好好檢視各個學校的資管系是什麼</span><span lang="EN-US">?</span></div>
+
+<div class="MsoNormal" style="text-indent: 24.0pt;"><span style="font-family: 新細明體, serif;">一直以來，我對於我們學校資管系定位不明確感到很遺憾，不若中山資管系，學界聲稱為國內第一</span><span lang="EN-US">(?)</span><span style="font-family: 新細明體, serif;">，警大資管主打資訊安全，交大資管多為資訊系統，有些學校偏管理、有些學校偏工程、有些學校重視統計與質性研究。</span></div>
+
+<div class="MsoNormal" style="text-indent: 24.0pt;"><span style="font-family: 新細明體, serif;">後來聽到一位已在軟體業闖蕩，大學同為資管系畢業，研究所進修資工所的前輩告訴我他自己的觀點，認為理想的修業規畫應該是<strong><span style="color: #3d85c6;">大學念資工學習專業技術，研究所進修資管所學習管理或軟體應用與開發</span></strong>。</span></div>
+
+<p><a href="http://veckcode.blogspot.com/2012/04/blog-post.html#more" target="_blank" rel="external">閱讀更多 »</a></p>
+</div><!-- comment system--><div class="container"><hr><div id="disqus_thread"></div><script type="text/javascript">
+var disqus_shortname = 'vecktw';
+var disqus_identifier = '2012/04/22/大學選錯科系又怎樣? - 從資工與資管探討/';
+var disqus_title = '大學選錯科系又怎樣? - 從資工與資管探討';
+var disqus_url = 'http://fbukevin.github.io/Veck/2012/04/22/大學選錯科系又怎樣? - 從資工與資管探討/';
+(function() {
+   var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+   dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+   (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">Blog comments powered by <span class="logo-disqus">Disqus</span></a></div></article><footer id="footer"><div class="container"><div class="bar"><div class="social"><a href="mailto:fbukevin@gmail.com" target="_blank"><i class="fa fa-envelope-o"></i></a><a href="http://twitter.com/VeckHsiao" target="_blank"><i class="fa fa-twitter"></i></a><a href="https://github.com/fbukevin" target="_blank"><i class="fa fa-github"></i></a><a href="/atom.xml" target="_blank"><i class="fa fa-rss"></i></a></div><div class="footer">© 2016 <a href="/" rel="nofollow">Veck's Blog</a>. Powered by <a rel="nofollow" target="_blank" href="https://hexo.io">Hexo</a>. Theme <a target="_blank" href="https://github.com/lotabout/very-simple">very-simple</a>.</div></div></div></footer><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.css"><script src="//cdn.bootcss.com/jquery/2.0.3/jquery.min.js"></script><script src="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.pack.js"></script><script>$(document).ready(function() {
+    $(".fancybox").fancybox();
+});</script></body></html>
