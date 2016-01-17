@@ -8,7 +8,7 @@ categories: [LXC, Mint]
 我安裝的 Linux Mint 版本是 16 MATE
 
 在使用 ```apt-get install lxc``` 安裝好 LXC 以後
-
+<!--more-->
 按照網路教學就要直接建立一個新的 VM
 
 所以我用 ```lxc-create -t ubuntu -n test-lxc```

@@ -9,7 +9,7 @@ TaffyDB 是一個輕量級及 Open Source 的 JavaScript Database
 
 它的專案內容很小，主要的 library 只有一個 taffy.js，所以它的操作應該都是在瀏覽器執行的程式記憶體中，沒有寫入到檔案系統
 ![螢幕快照 2014-05-29 下午8.53.39.png](http://user-image.logdown.io/user/3330/blog/3407/post/202080/AyMG7ElrRKmmLMIr33PQ_%E8%9E%A2%E5%B9%95%E5%BF%AB%E7%85%A7%202014-05-29%20%E4%B8%8B%E5%8D%888.53.39.png)
-
+<!--more-->
 Taffy 是 ORM 實作的一種，它也有提供 extension 讓網頁程式可以介接 MySQL 等資料庫，像 mongoDB 那樣
 
 在 HTML 中使用 TaffyDB，首先要引入 taffy.js：

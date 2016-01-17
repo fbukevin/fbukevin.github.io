@@ -8,6 +8,8 @@ categories:
 
 看到很多用 command line 安裝的程式，都會有類似 "#####"、"..." 或是 "[===]" 的 progress bar，所以想說來研究一下怎麼在 C 的程式實現這個進度條的顯示，程式不長，直接貼上來解說。
 
+<!--more-->
+
 ```
 #include<stdio.h>
 

@@ -8,7 +8,7 @@ categories:
 翻譯自原文：http://codingjunkie.net/cooccurrence/
 
 本文是《Data-Intensive Text Processing with MapReduce》提到的 MapReduce 演算法的系列文章的延續。這次我們會使用語料庫建立一個單字共現矩陣。
-
+<!--more-->
 所謂共現矩陣可以看成是對某件特定事件的追蹤，並給予一段時間或空間窗口(windows，就像作業系統中的排程那樣)，然後記錄還有其他哪些事件也發生了。本文中，我們的『事件(events)』都是文本中個別的『詞(words)』，而我們要追蹤看看(對於某個目標詞)其他哪些詞也在我們設定的窗口條件中出現，我們設定的窗口條件是相對於目標詞彙的位置，例如來看這句話：『The quick brown fox jumped over the lazy dog』，窗口值設為 2，則『jumped』的共現詞是『brown, fox, over, the』。
 
 一個共現矩陣可以應用在很多其他需要找出『當某個事件發生，其他事件似乎也會同時發生』的領域，為了要建構我們的文本共現矩陣，我們需要實作 《Data-Intensive Test Processing with MapReduce》 第三章的 Pairs 和 Stripes 演算法，配合 MapReduce。本文用來建立我們的共現矩陣的文本資料來自於古騰保計畫的[William Shakespear](http://www.gutenberg.org/ebooks/100)。

@@ -9,7 +9,7 @@ categories:
 * 翻譯改寫自：http://mrjob.readthedocs.org/en/latest/guides/quickstart.html#writing-your-first-job
 
 用 Python 來寫 Hadoop 的 MapReduce 程式
-
+<!--more-->
 * 安裝：`pip install mrjob`
 
 * 一個官網最簡單的 word_count.py 範例：

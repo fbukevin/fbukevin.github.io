@@ -5,7 +5,7 @@ date: 2015-10-28 23:26
 comments: true
 categories: 
 ---
-#PyMongo 簡單查詢
+# PyMongo 簡單查詢
 
 ```python
 >>> import pymongo
@@ -16,10 +16,10 @@ categories:
 >>> collection.find_one()
 {u'content': u'http://benchmarkjs.com/', u'_id': ObjectId('5629de95d488910889000001'), u'__v': 0}
 ```
-
+<!--more-->
 reference: [https://api.mongodb.org/python/current/tutorial.html](https://api.mongodb.org/python/current/tutorial.html)
 
-#mongojs 簡單查詢
+# mongojs 簡單查詢
 
 ```javascript
 var mongojs = require('mongojs');
@@ -32,7 +32,7 @@ db.waits.find(function(err, docs){
 
 refence: [http://mafintosh.github.io/mongojs/](http://mafintosh.github.io/mongojs/)
 
-#Ruby Mongo 簡單查詢
+# Ruby Mongo 簡單查詢
 
 ```ruby
 irb(main):004:0> require "mongo"

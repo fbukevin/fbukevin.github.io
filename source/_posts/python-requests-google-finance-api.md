@@ -8,7 +8,7 @@ categories:
 本文是要介紹如何使用 *Python* 的 `request` 模組來呼叫 Google Finance API 並解析取得的股價內容。
 
 有關 requests 模組的介紹，請參考：[http://docs.python-requests.org/en/latest/user/quickstart/](http://docs.python-requests.org/en/latest/user/quickstart/)
-
+<!--more-->
 首先當然就是要安裝 request 模組啦！
 
 `pip install requests`
@@ -72,3 +72,6 @@ Decimal('138.00')
 
 
 補充一下，`requests.get()` 帶的第二個參數，用 `params` 和 `data` 是不同的項目喔，如果用 `data`，會得到 `Bad request`。
+
+
+然後要小心，不要一次發太多個 request，不然會被封鎖....

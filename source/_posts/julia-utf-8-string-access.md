@@ -8,6 +8,7 @@ categories: [julia]
 我現在有個需求，要讀取目錄下所有的檔案列表，然後拷貝檔名的部分就好，不要副檔名
 可以直接這樣：`f = readdir()`，如此會回傳一個 `Array{Union(ASCIIString,UTF8String),1}`
 接著我們可以存取陣列來取的特定檔案名稱：
+<!--more-->
 ```shell
 julia> println(f[1])
 julia> f[1]

@@ -9,7 +9,7 @@ object class 不能夠跨檔案 new，可能原因是 object 是 singleton, 這�
 ex. 
 	File A：`object SampleClass{ ... }`
   File B：`val sample = new SampleClass()`	=> error: cannot resolve symbol SampleClass
- 
+ <!--more-->
 但是可以直接存取使用：
 ex.
 	File A：`object SampleClass { def foo() = { ... } )`

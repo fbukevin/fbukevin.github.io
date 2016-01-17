@@ -22,7 +22,8 @@ categories:
      }
    }
  }
-``` 
+```
+<!--more--> 
  `<Obejct, Text, Text, IntWritable>` 分別對應到 KEYIN, VALUEIN, KEYOUT, VALUEOUT
 而在 mapper 函數中使用到的部份：
 * public void map(Object key, Text value, Context context) 的頭兩個參數就是符合 KEYIN 和 VALUEIN 的部分

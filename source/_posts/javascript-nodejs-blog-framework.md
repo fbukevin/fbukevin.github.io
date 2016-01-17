@@ -12,7 +12,7 @@ http://hexo.io/
 簡單建立專案、基本設定、套用主題、產生靜態檔案和佈署設定這邊不說，我針對佈署到個人站台做說明
 
 1. 建立好專案和寫了些 post 之後，使用 `hexo generate` 或 `hexo g` 產生靜態檔案，會放在 public 這個資料夾下，當我們使用 `hexo deploy` 的時候，其實是把 public 的內容傳上 GitHub 或 Heroku 等空間(更正確來說是上傳 .deploy 的內容)，因此我們同樣只需要把 public 的東西放到站台上就好了
-
+<!--more-->
 例如我在：`http://fancy.cs.nccu.edu.tw` 伺服器中的 Apache 根目錄中建立了 `project/vexo` 這個目錄，我打算把專案放在這裡，因此我用 FTP 傳送到這個目錄下
 ![螢幕快照 2014-08-08 下午9.28.20.png](http://user-image.logdown.io/user/3330/blog/3407/post/218116/TFTHfj5CRGasXCDRKqsk_%E8%9E%A2%E5%B9%95%E5%BF%AB%E7%85%A7%202014-08-08%20%E4%B8%8B%E5%8D%889.28.20.png)
 

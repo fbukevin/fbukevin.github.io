@@ -10,7 +10,7 @@ categories:
 查看一下資訊
 韌體版本是 Flatfish_20140112 的(末兩碼我忘了)
 作業系統是 1.x.x.x 版本
-
+<!--more-->
 要升級 OS 
 首先要照 `https://wiki.mozilla.org/FirefoxOS/TCP/Flashing_the_Flatfish_bootloader` 先刷 bootloader
 我再 Mac OS X 10.10 上：

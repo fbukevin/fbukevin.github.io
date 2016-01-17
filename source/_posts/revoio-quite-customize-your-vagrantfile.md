@@ -8,7 +8,7 @@ categories: [ruby, vagrant, Virtualization, docker, Revo]
 
 ![螢幕快照 2014-10-30 上午5.10.39.png](http://user-image.logdown.io/user/3330/blog/3407/post/240407/Ce9kFn2HSVWJfjy9eiPQ_%E8%9E%A2%E5%B9%95%E5%BF%AB%E7%85%A7%202014-10-30%20%E4%B8%8A%E5%8D%885.10.39.png)
 [Rove.io](http://rove.io/) 這個網站可以讓你客製化你要的環境，然後幫你產生 Vagrantfile 和 Cheffile (需要另外預先安裝好 library-chef：`gem install library-chef`)，下載後解壓縮進入資料夾，輸入 `curl -L http://rove.io/ | bash`，就會自動下載 box 並安裝好你客製化的軟體 (應該跟 Docker 一樣是堆疊方式)，`vagrant ssh` 就可以連入測試了
-
+<!--more-->
 ![1.jpg](http://user-image.logdown.io/user/3330/blog/3407/post/240407/yZzhbyuXQTa1mBlR1eMD_1.jpg)
 ![2.jpg](http://user-image.logdown.io/user/3330/blog/3407/post/240407/LXCMMzLUQxKgRYHlNLFo_2.jpg)
 

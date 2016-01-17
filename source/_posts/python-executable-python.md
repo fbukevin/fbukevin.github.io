@@ -6,7 +6,7 @@ comments: true
 categories: 
 ---
 繼 node.js 後，我也想讓 Python 的程式碼可以不需要輸入 "python" 就可以執行，找到大部分的作法，這是在 UNIX/Linux 和 Mac 上的說明
-
+<!--more-->
 1. 寫個簡單的 exe.py
 ```python
 #!/usr/bin/env python

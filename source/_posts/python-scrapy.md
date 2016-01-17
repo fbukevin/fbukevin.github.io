@@ -10,7 +10,7 @@ Reference: [Scrapy Documentation](http://doc.scrapy.org/en/latest/)
 Installation: ```pip install scrapy ```
 
 Create Project: ```scrapy startproject  [project name]```
-
+<!--more-->
 Project Directory Tree:
 ````
 tutorial/

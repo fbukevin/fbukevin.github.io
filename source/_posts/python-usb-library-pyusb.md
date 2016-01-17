@@ -12,7 +12,7 @@ GitHub: https://github.com/walac/pyusb/
 ```
 $ sudo apt-get install libusb-1.0-0
 ```
-
+<!--more-->
 然後下載 library，解壓縮以後，進入資料夾，輸入 `sudo python setup install`，就完成安裝了
 
 簡單的測試 USB 連線，你需要先知道各個 USB 裝置的 `Vendor ID` 和 `Product ID`，可以用 `lsusb` 來查看：

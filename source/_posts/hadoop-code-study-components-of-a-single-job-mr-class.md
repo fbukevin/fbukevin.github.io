@@ -17,7 +17,7 @@ import org.apache.hadoop.io.*;
 import org.apache.hadoop.mapreduce.*;			//it's "mapred" before
 import org.apache.hadoop.util.*;
 ```
-
+<!--more-->
 Methods Defined
 ===
 ```

@@ -6,20 +6,20 @@ comments: true
 categories: 
 ---
 
-#Install
+# Install
 1. `npm install karma --save-dev` (official instruction, --save-dev will register in dependency package)
 2. Karma 用 `npm install -g` 安裝後沒辦法直接輸入使用，要用路徑去執行，但是我改用 nvm 安裝 node.js 所以導致路徑很冗長，所以官網的安裝方式建議是直接針對你要進行測試的專案作個別安裝，這樣路徑也會比較短，我有在我的 .bashrc 中加入`alias karma='./node_modules/karma/bin/karma'` 
-
-#Intro
+<!--more-->
+# Intro
 karma 主要用來驅動測試，但還可以設定使用的 test framework (test runner: mocha, jasime,...etc.)、測試起始路徑 basePath(如果有設定的話，這個路徑會被加到 files list 中，然後在啟動的瀏覽器中加到 javascript 屬性 src 中作為 prefix)、設定要使用的瀏覽器、哪些檔案要被載入以便存取使用、哪些檔案只觀察變化用、哪些檔案要被排除、瀏覽器啟動時要用 port、預處理器...等等
 
-#Usage
+# Usage
 1. 建立 config 檔案：`karma init <name>.config.js`
 
 ![init.png](http://user-image.logdown.io/user/3330/blog/3407/post/248538/B1ph4BcQSxCb5A7RubJj_init.png)
 
 
-#####my.config.js
+##### my.config.js
 ```
 // Karma configuration
 // Generated on Wed Jan 07 2015 16:18:19 GMT+0800 (CST)
@@ -91,8 +91,8 @@ module.exports = function(config) {
 2.啟動 karma 來進行測試工作：`karma start <name>.config.js`
 
 
-#karma-mocha-chai-sinon
-##Notice
+# karma-mocha-chai-sinon
+## Notice
 karma 啟動瀏覽器來執行測試，會找不到 node.js 的 require()，它好像是用 RequireJS 來做為引入 module 的方法
 
 #####stack-overflow
@@ -125,7 +125,7 @@ Chrome 39.0.2171 (Mac OS X 10.10.1): Executed 1 of 1 (1 FAILED) ERROR (0.014 sec
 ```
 OK！解決了找不到 require 和 sinon 沒有載入的問題，剩下 assert 
 
-##karma-chai
+## karma-chai
 node.js 原本的 assert module 還是要 require 才能用，想起在學 chai 的時候，chai 的官網有說 chai 也有實現 traditional style assert，因此 assert 可以用 karma-chai 的 chai 來實現了
 
 1. `npm install karma-chai`
@@ -168,7 +168,7 @@ describe("karma-mocha-chai-sino", function(){
 
 如此一來，就解決 karma 是 browser-based 的問題了！
 
-##Refernce
+## Refernce
 * [karma plugins](http://karma-runner.github.io/0.12/dev/plugins.html)
 * [karma-mocha](https://github.com/karma-runner/karma-mocha)
 * [karma-sinon](https://github.com/yanoosh/karma-sinon)

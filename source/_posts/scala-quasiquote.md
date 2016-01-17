@@ -19,6 +19,7 @@ scala> val s1 = "$Tau"
 scala> val s2 = s"$Tau"
      s2: String = 6.283185307179586
 ```
+<!--more-->
 所以 string 加上 s 是指要以 string interpreter 來處理這個字串
 
 String in Quasiquote

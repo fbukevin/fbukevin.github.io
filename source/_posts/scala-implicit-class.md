@@ -6,6 +6,7 @@ comments: true
 categories: 
 ---
 簡單來說，加上 `implicit` 關鍵字的 class，在有效範圍內(scope)內，會自動建立一個 implicit primary constructor，拿[官方文件](http://docs.scala-lang.org/overviews/core/implicit-classes.html)的例子加以說明(為了方便對照區塊，排版做的調整)：
+<!--more-->
 ```
 object Helpers 
 {

@@ -5,10 +5,10 @@ date: 2015-12-25 10:13
 comments: true
 categories: 
 ---
-#MySQL 簡單查詢範例
+# MySQL 簡單查詢範例
 
-##node.js
-
+## node.js
+<!--more-->
 ```javascript
    var mysql = require('mysql');
    var connection = mysql.createConnection({

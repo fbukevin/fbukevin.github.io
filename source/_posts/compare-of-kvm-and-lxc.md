@@ -10,7 +10,7 @@ categories: [LXC, KVM, XEN, Container]
 ```
 TVM 和 其他虛擬化技術 的最主要差異是主系統的資源共享
 ```
-
+<!--more-->
 - TVM 這是完整一個系統，這裡的系統包含了所有軟體模擬出來的硬體設備，因此他的執行效能最差，但是能夠完整模擬出一個不同於主系統的環境
 ![螢幕快照 2014-05-20 下午6.02.35.png](http://user-image.logdown.io/user/3330/blog/3407/post/200566/ZyW2Z6keRD648EdlNBXU_%E8%9E%A2%E5%B9%95%E5%BF%AB%E7%85%A7%202014-05-20%20%E4%B8%8B%E5%8D%886.02.35.png)
 

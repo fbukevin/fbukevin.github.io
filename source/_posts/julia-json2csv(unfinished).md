@@ -11,7 +11,7 @@ Ruby 還好一點，但是讀取中文編碼的檔名就有問題了(像我 Wind
 
 julia> readcsv("") # 預設是 Unicode，就沒有 python 和 ruby 的編碼問題，讀取檔名為中文也可以
 julia> writedlm("j.csv", a, ',')  # 這其實就是 writecsv("j.csv", a)，但 delim 必為 ','
-
+<!--more-->
 發現不要用 .csv，直接用 .txt 然後用 ' ' 隔開，在 excel 中載入時選擇空白分隔就好了
 
 ![json.jl.JPG](http://user-image.logdown.io/user/3330/blog/3407/post/277291/MFribhlSR8u9yxJZfAi2_json.jl.JPG)

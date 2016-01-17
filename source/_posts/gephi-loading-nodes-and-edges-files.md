@@ -14,7 +14,7 @@ categories:
 一樣在第一行加上 source,target,type，這是為了符合 Gephi 載入格式
 其中 source 與 target 對應到 node.csv 的 id
 type 有兩種，分別是 Directed (預設) 和 Undirected
-
+<!--more-->
 2. 以 New Project 開啟 Gephi
 3. 切換到 『Data Laboratory』，選擇『Import Spreadsheet』
 ![3.png](http://user-image.logdown.io/user/3330/blog/3407/post/207356/N45c2iStT2SrQRSTRGAJ_3.png)

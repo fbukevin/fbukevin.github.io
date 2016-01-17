@@ -6,7 +6,7 @@ comments: true
 categories: 
 ---
 因為台灣中研院的中文斷詞工具[CKIP](http://ckipsvr.iis.sinica.edu.tw/)好像從 2012 年以後就沒再更新，而我申請介接的帳號一直收不到信，所以嘗試使用了之前偶然得知中國大陸中科院的漢語分詞工具 [ICTCLAS](http://ictclas.org/)，不過這個網址的版本最後更新也只到2011年，而且在線演示一直沒辦法呈現結果，最後進一步搜尋到 张华平 博士于 2014 年的版本(好像從2013年開始維護)：[ICTCLAS NLPIR](http://ictclas.nlpir.org/)
-
+<!--more-->
 2014/06/09 更新：就在我發完以後，過了兩天就突然無法啟動，看了 error log，寫說是『Not valid license or your license expired! Please feel free to contact pipy_zhang@msn.com!』，上網查了論壇討論，似乎這個新版本有三個月的使用期限，而六月出正式這個時候....
 1. http://www.bigdatabbs.com/forum.php?mod=viewthread&tid=5309
 2. http://www.bigdatabbs.com/forum.php?mod=viewthread&tid=5226

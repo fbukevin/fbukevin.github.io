@@ -10,7 +10,7 @@ categories:
 於是我找到了 m2e (maven to eclipse) 的安裝網址：http://download.eclipse.org/technology/m2e/releases/
 到了 Eclipse 的 Help/Install New Software 的地方，將網址填入 Work with 後按下 Enter
 就可以找到 m2e 的安裝套件
-
+<!--more-->
 但是就在 next 之後，Eclipse 去檢查 dependency 發現有個沒有安裝：
 ```
 Missing requirement: Maven Integration for Eclipse 1.5.0.20140606-0033 (org.eclipse.m2e.core 1.5.0.20140606-0033) requires 'bundle com.google.guava [14.0.1,16.0.0)' but it could not be found

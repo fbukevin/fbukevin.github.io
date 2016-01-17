@@ -8,7 +8,7 @@ categories: [LXC, KVM, Mint, docker]
 解決了在 Mint 上無法找到 Template 的問題，接著建立好一個 VM，就準備要啟動它了！
 
 但是就在期待中輸入  ```lxc-start -n test-lxc -d```		( -d : launch as daemon)
-
+<!--more-->
 竟然出現了：
 ```
 lxc-start: command get_init_pid failed to receive response

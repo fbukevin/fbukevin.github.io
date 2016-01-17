@@ -9,6 +9,7 @@ Source Code: https://github.com/isnowfy/python-websocket
 Tutorial: http://www.isnowfy.com/python-websocket-server/
 
 Project 中的 `index.html` 就扮演著 Client 的角色，用瀏覽器執行後，他會發 request 給 server，其中主要建立 WebSocket 連線的 JavaScript 片段如下：
+<!--more-->
 ```
   function openConnection() {
       conn = new WebSocket('ws://localhost:7000/');   // 建立連線

@@ -6,7 +6,7 @@ comments: true
 categories: 
 ---
 mocha, chai 和 sinon，我覺得最難的是 sinon 了，因為 mocha 只是驅動，chai 是 assert ，你給他結果值就好，sinon 考慮的是物件的『行為』，最麻煩的就是如果呼叫一個函數或建立一個物件，結果會有副作用(開檔、寫檔、修改資料庫、傳送網路資料等)，又不是像 try...catch... 會幫你 rollback 的話，你就得自己來處理，因此本篇想測試 sinon 的物件是否提供 rollback 或類似的測試方法。
-
+<!--more-->
 複習一下概念：
 * spy 是 監視，所以還是會 invoke function
 * stub 是 隔離，不 invoke function，把 function 替換成 stub 物件或自定義物件函式

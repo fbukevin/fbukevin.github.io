@@ -6,13 +6,13 @@ comments: true
 categories: 
 ---
 
-#Install
+# Install
 1. `npm install chai`, bundle with package
 2. 官網補充：dependency and mocha
 ![dep.png](http://user-image.logdown.io/user/3330/blog/3407/post/248476/Cijx7PR1RSe5PT34tPZe_dep.png)
 
-
-#Intro
+<!--more-->
+# Intro
 在 mocha 中，我們有這樣一段程式：
 ```
 describe('Array', function(){    
@@ -32,8 +32,8 @@ This provides the classic assert-dot notation, similiar to that packaged with no
 This assert module, however, provides several additional tests and is browser compatible.
 ```
  
-#Usage
-##Assert
+# Usage
+## Assert
 ```
  var assert = require('chai').assert
   , foo = 'bar'
@@ -86,7 +86,7 @@ describe("try chai with mocha", function(){
       at processImmediate [as _immediateCallback] (timers.js:354:15)
 ```
 
-##Expect
+## Expect
 BDD(behavior driven development) 的開發模式產生了兩種常用的測試方法：`expect` 和 `should`
 
 (以下省略 mocha 部分程式碼)
@@ -101,7 +101,7 @@ expect(foo).to.have.length(3);
 expect(beverages).to.have.property('tea').with.length(3);
 ```
 
-##Should
+## Should
 `should` 跟 `expect` 基本上一樣，差別在於方法的實作上，expect 是做成 global function，而 should 是 class property，也就是物件可以用 property 的方式呼叫 expect 的測試案例
 
 還有一點就是，`expect` 引用是用 `require('chai').expect`，但 `should` 是用 `require('chai').should()`
@@ -118,7 +118,7 @@ foo.should.have.length(3);
 beverages.should.have.property('tea').with.length(3);
 ```
 
-#Plugin
+# Plugin
 Chai 可以透過下面的方法來取用外部工具
 ```
 chai.use(_chai, util){

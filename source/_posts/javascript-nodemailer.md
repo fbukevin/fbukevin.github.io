@@ -12,7 +12,7 @@ categories: [javascript, nodejs]
 # 安裝套件
 
 `npm install nodemailer`
-
+<!--more-->
 # 寫程式
 
 ```javascript

@@ -9,7 +9,7 @@ categories:
 `generator function` 是在一個 function 中使用了 `yield` 這個關鍵字來回傳函數結果
 但與一般 function 不同的在於，yield 回傳以後，不會就結束 function，而是暫停函數的處理狀態
 直到你呼叫 .next() 這個 function，就會再次執行 function
-
+<!--more-->
 ```
 yield = return + pause
 ```

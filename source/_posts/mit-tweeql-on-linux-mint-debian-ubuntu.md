@@ -7,6 +7,7 @@ categories: [Twitter, tweeql, twitinfo, tweet]
 ---
 
 ![1.jpg](http://user-image.logdown.io/user/3330/blog/3407/post/138429/tPqBcTKaTROi4UYO1CXf_1.jpg)[TweeQL](https://github.com/marcua/tweeql) 是 MIT 實驗室實作的一個 SQL-like 查詢語言，讓你可以用類似 SQL 的語法來使用 Twitter API 做推文的查詢，例如：
+<!--more-->
 ```
 SELECT text 
 FROM twitter 

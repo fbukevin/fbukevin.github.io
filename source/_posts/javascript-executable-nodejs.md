@@ -19,6 +19,7 @@ categories:
      }
 }
 ```
+<!--more-->
 如果你有多個執行檔，bin 這裡可以多放幾個，名稱即指令，值為檔案路徑
 
 2. 建立 lib/ 和 lib/filesearhc.js

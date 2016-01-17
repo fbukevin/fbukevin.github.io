@@ -5,11 +5,12 @@ date: 2015-01-07 15:51
 comments: true
 categories: 
 ---
-#Install 
+# Install 
+
 * `npm install sinon`
 * 相依於專案
-
-#Intro
+<!--more-->
+# Intro
 Sinon 主要是用來作 unit test 上測試案例實體的區隔，像是 mock object 這樣的應用，也就是建立測試會用到的實體(例如裝置、呼叫到的函數)，如此一來測試時就可以斬斷相依性，單獨測試某個部分
 
 Sinon 有三大物件：spy、stub、mock，分別是 test double 中的三種替身方法：Test Spy、Test Stub、Mock Object
@@ -59,9 +60,9 @@ mock.verify(); 	// 檢查現在的 math 是否與其條件
 mock.restore(); // 復原物件
 ```
 
-#Usage
-##同一測試三種版本
-###Spies
+# Usage
+## 同一測試三種版本
+### Spies
 ```
 1 // Function under test
 2 function once(fn) {
@@ -86,7 +87,7 @@ mock.restore(); // 復原物件
 ```
 這樣寫的目的，就是在 line 17 先呼叫一次 once，傳入的 spy 物件在 once 中被使用，因此可以在後面 line 19 去查看 once 是否有被呼叫過(在此 spy 被使用過等效於 once 被呼叫)
 
-###Stubs
+### Stubs
 ```
 1 // Function under test
 2 function once(fn) {
@@ -109,7 +110,7 @@ mock.restore(); // 復原物件
 ```
 這樣寫就是用 stub 替換掉實際要傳入 once() 的物件，並且設定 stub 總是 return 42
 
-###Mocks
+### Mocks
 ```
 1 // Function under test
 2 function once(fn) {
@@ -138,7 +139,7 @@ mock.restore(); // 復原物件
 
 跟 stub 不同的是，我們可以在最後 line 22 的地方去驗證這個 mock object 是否真的照著預期的執行
 
-##Use with Mocha and Chai
+## Use with Mocha and Chai
 跟 mocha 和 chai 一起用的方法如下範例：
 ```
 /* describe 與 it 即 mocha 方法 */

@@ -9,7 +9,7 @@ categories: [Matlab, r, data, julia]
 我的需求是要開源如 R、簡潔如 Python
 剛好我在非資訊領域做科學分析的朋友說 Matlab 很容易寫(他以建構矩陣為例子)
 找來找去，大概就是 `Julia` 了
-
+<!--more-->
 [http://julialang.org/](http://julialang.org/)
 ![j.JPG](http://user-image.logdown.io/user/3330/blog/3407/post/277068/BWSV4K8nR3GfIs3nZUVK_j.JPG)
 

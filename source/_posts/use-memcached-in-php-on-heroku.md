@@ -11,6 +11,8 @@ categories: [php, heroku, memcached]
 
 要選用 Memcached 這樣服務，要到 [Add-on](https://addons.heroku.com/) 的頁面來設定
 
+<!--more-->
+
 ![擷取.JPG](http://user-image.logdown.io/user/3330/blog/3407/post/146015/O2bRZ4xqSxSbnR8G1YYz_%E6%93%B7%E5%8F%96.JPG)
 
 請選擇 `MemCachier` 這個項目，進去以後往下拉可以看到中間有一個區塊讓你選擇要採用多少大小的 Memcached
