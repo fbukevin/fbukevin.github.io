@@ -16,3 +16,8 @@
 * [Blog](http://vect.tw)
 
 ## Project
+
+* [Boo-it](http://justinsanity.github.io/boo-it/): an instant message app with HTML, CSS, JavaScript
+* [Realtie Stock Price and Exchange Rate Demo](http://fbukevin.github.io/stock/)
+* [Software Engineering Course Project](http://dorabemon.github.io/)
+* [Energy Flow Optimization for Wind Farm- A Stochastic Dynamic Programming Approach](http://fbukevin.github.io/SDP/)
