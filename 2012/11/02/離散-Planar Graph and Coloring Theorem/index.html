@@ -1,19 +1,282 @@
-<!DOCTYPE html><html><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description"><title>離散 Planar Graph and Coloring Theorem | Veck's Blog</title><link rel="stylesheet" type="text/css" href="/Veck//css/normalize.css"><link rel="stylesheet" type="text/css" href="/Veck//css/highlight.css"><link rel="stylesheet" type="text/css" href="/Veck//css/very-simple.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/font-awesome/4.5.0/css/font-awesome.min.css"><link rel="Shortcut Icon" type="image/x-icon" href="/Veck/favicon.ico"></head><body><!-- include the sidebar--><!-- include ./includes/sidebar.jade--><!-- Blog title and subtitle--><header><div class="container header"><a id="logo" href="/Veck/." class="title">Veck's Blog</a><span class="subtitle"></span><label id="toggle-menu" for="menu" onclick><i class="fa fa-bars"></i></label></div></header><!-- use checkbox hack for toggle nav-bar on small screens--><input id="menu" type="checkbox"><!-- Navigation Links--><nav id="nav"><div class="container"><a href="/Veck" class="sidebar-nav-item">Home</a><a href="/Veck/archives" class="sidebar-nav-item">Archives</a><a href="/Veck/about" class="sidebar-nav-item">About</a></div></nav><div id="header-margin-bar"></div><!-- gallery that comes before the header--><div class="wrapper"><div class="container post-header"><h1>離散 Planar Graph and Coloring Theorem</h1></div></div><div class="wrapper"><div class="container meta"><div class="post-time">2012-11-02</div><div class="post-tags"><a class="post-tag-link" href="/Veck/tags/Discrete-Mathematic/">Discrete Mathematic</a></div></div></div><article><div class="container post"><p><strong>Problem 1:</strong> Show that the graph is not planar, and find a subgraph homeomorphic to <span style="font-size: xx-small;">K3,3</span>.  </p>
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>離散 Planar Graph and Coloring Theorem | Veck&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Problem 1: Show that the graph is not planar, and find a subgraph homeomorphic to K3,3.  
+
+
+NOTE 1 : Although there is no  Δ (Triangle), we should not only check e  ≤ 2 v - 4, but also check e ≤ [ k /">
+<meta property="og:type" content="article">
+<meta property="og:title" content="離散 Planar Graph and Coloring Theorem">
+<meta property="og:url" content="http://fbukevin.github.io/Veck/2012/11/02/離散-Planar Graph and Coloring Theorem/index.html">
+<meta property="og:site_name" content="Veck's Blog">
+<meta property="og:description" content="Problem 1: Show that the graph is not planar, and find a subgraph homeomorphic to K3,3.  
+
+
+NOTE 1 : Although there is no  Δ (Triangle), we should not only check e  ≤ 2 v - 4, but also check e ≤ [ k /">
+<meta property="og:image" content="http://4.bp.blogspot.com/-QcoMql7G_H8/UJM00OgFz-I/AAAAAAAACUA/ejNpcKuGw90/s320/1.png">
+<meta property="og:updated_time" content="2016-01-17T15:17:57.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="離散 Planar Graph and Coloring Theorem">
+<meta name="twitter:description" content="Problem 1: Show that the graph is not planar, and find a subgraph homeomorphic to K3,3.  
+
+
+NOTE 1 : Although there is no  Δ (Triangle), we should not only check e  ≤ 2 v - 4, but also check e ≤ [ k /">
+<meta name="twitter:creator" content="@VeckHsiao">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <!-- <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,600' rel='stylesheet' type='text/css'> -->
+  <!-- <link href="//fonts.googleapis.com/css?family=Source+Code+Pro:400,700" rel="stylesheet" type="text/css"> -->
+  <link href="//fonts.useso.com/css?family=Source+Code+Pro:400,700" rel="stylesheet" type="text/css">
+  <link href='//fonts.useso.com/css?family=Open+Sans:300,600' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="/Veck/css/style.css" type="text/css">
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-44048995-5', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+</head>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="header-outer" class="outer">
+    <a href="/" class="logo">Veck&#39;s Blog</a>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/Veck">Home</a>
+        
+          <a class="main-nav-link" href="/Veck/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/Veck/about">About</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        <div id="search-form-wrap">
+          <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://fbukevin.github.io/Veck"></form>
+        </div>
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+        
+        
+      </nav>
+    </div>
+  </div>
+</header>
+      <nav id="mobile-nav" class="off">
+  
+    <a href="/Veck" class="mobile-nav-link">Home</a>
+  
+    <a href="/Veck/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/Veck/about" class="mobile-nav-link">About</a>
+  
+  <div id="search-form-wrap-mobile">
+    <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://fbukevin.github.io/Veck"></form>
+  </div>
+</nav>
+      <div class="outer">
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/Veck/categories/LXC/">LXC</a><span class="category-list-count">3</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/Veck/categories/LXC/KVM/">KVM</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/Veck/categories/LXC/KVM/Mint/">Mint</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/Veck/categories/LXC/KVM/Mint/docker/">docker</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/Veck/categories/LXC/KVM/XEN/">XEN</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/Veck/categories/LXC/KVM/XEN/Container/">Container</a><span class="category-list-count">1</span></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/Veck/categories/LXC/Mint/">Mint</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/Veck/categories/Matlab/">Matlab</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/Veck/categories/Matlab/r/">r</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/Veck/categories/Matlab/r/data/">data</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/Veck/categories/Matlab/r/data/julia/">julia</a><span class="category-list-count">1</span></li></ul></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/Veck/categories/Twitter/">Twitter</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/Veck/categories/Twitter/tweeql/">tweeql</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/Veck/categories/Twitter/tweeql/twitinfo/">twitinfo</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/Veck/categories/Twitter/tweeql/twitinfo/tweet/">tweet</a><span class="category-list-count">1</span></li></ul></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/Veck/categories/javascript/">javascript</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/Veck/categories/javascript/nodejs/">nodejs</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/Veck/categories/julia/">julia</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/Veck/categories/php/">php</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/Veck/categories/php/heroku/">heroku</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/Veck/categories/php/heroku/memcached/">memcached</a><span class="category-list-count">1</span></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/Veck/categories/ruby/">ruby</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/Veck/categories/ruby/vagrant/">vagrant</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/Veck/categories/ruby/vagrant/Virtualization/">Virtualization</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/Veck/categories/ruby/vagrant/Virtualization/docker/">docker</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/Veck/categories/ruby/vagrant/Virtualization/docker/Revo/">Revo</a><span class="category-list-count">1</span></li></ul></li></ul></li></ul></li></ul></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/Veck/archives/2016/01/">January 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/Veck/archives/2015/12/">December 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/Veck/archives/2015/10/">October 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/Veck/archives/2015/09/">September 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/Veck/archives/2015/05/">May 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/Veck/archives/2015/01/">January 2015</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/Veck/archives/2014/12/">December 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/Veck/archives/2014/11/">November 2014</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/Veck/archives/2014/10/">October 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/Veck/archives/2014/09/">September 2014</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/Veck/archives/2014/08/">August 2014</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/Veck/archives/2014/06/">June 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/Veck/archives/2014/05/">May 2014</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/Veck/archives/2014/02/">February 2014</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/Veck/archives/2014/01/">January 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/Veck/archives/2013/12/">December 2013</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/Veck/archives/2013/11/">November 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/Veck/archives/2013/10/">October 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/Veck/archives/2013/09/">September 2013</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/Veck/archives/2013/07/">July 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/Veck/archives/2013/06/">June 2013</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/Veck/archives/2013/05/">May 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/Veck/archives/2013/04/">April 2013</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/Veck/archives/2012/11/">November 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/Veck/archives/2012/07/">July 2012</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/Veck/archives/2012/06/">June 2012</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/Veck/archives/2012/05/">May 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/Veck/archives/2012/04/">April 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/Veck/archives/2012/03/">March 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/Veck/archives/2012/02/">February 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/Veck/archives/2011/12/">December 2011</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/Veck/archives/2011/11/">November 2011</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/Veck/archives/2011/10/">October 2011</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/Veck/archives/2011/09/">September 2011</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/Veck/archives/2011/07/">July 2011</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/Veck/archives/2011/04/">April 2011</a><span class="archive-list-count">2</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recents</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/Veck/2016/01/17/debug-tool-note/">常用 debug 工具筆記</a>
+          </li>
+        
+          <li>
+            <a href="/Veck/2015/12/25/npm-nodejs-mysql-simple-query-example/">[npm] Node.js MySQL 簡單查詢範例</a>
+          </li>
+        
+          <li>
+            <a href="/Veck/2015/10/29/python-requests-google-finance-api/">[Python] Requests + Google Finance API</a>
+          </li>
+        
+          <li>
+            <a href="/Veck/2015/10/28/mongodb-nodejs-and-python-and-ruby-driver/">[mongoDB] Nodejs、Python 和 Ruby Driver</a>
+          </li>
+        
+          <li>
+            <a href="/Veck/2015/09/11/javascript-nodemailer/">[JavaScript] nodemailer</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/Veck/tags/API/">API</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/Veck/tags/Algorithm/">Algorithm</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/Veck/tags/Apache/">Apache</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/Veck/tags/C-、ASP-NET/">C#、ASP.NET</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/Veck/tags/C-C/">C/C++</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/Veck/tags/Computer-Science/">Computer Science</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/Veck/tags/Discrete-Mathematic/">Discrete Mathematic</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/Veck/tags/Git/">Git</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/Veck/tags/Java/">Java</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/Veck/tags/Linear-Algebra/">Linear Algebra</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/Veck/tags/Lucene/">Lucene</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/Veck/tags/MIPS/">MIPS</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/Veck/tags/Modulization/">Modulization</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/Veck/tags/MySQL/">MySQL</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/Veck/tags/Network/">Network</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/Veck/tags/Network-Management/">Network Management</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/Veck/tags/Operating-System/">Operating System</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/Veck/tags/PHP/">PHP</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/Veck/tags/Python/">Python</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/Veck/tags/REST/">REST</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/Veck/tags/Software/">Software</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/Veck/tags/System-Program/">System Program</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/Veck/tags/Twitter/">Twitter</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/Veck/tags/VB/">VB</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/Veck/tags/stream/">stream</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/Veck/tags/API/" style="font-size: 12px;">API</a> <a href="/Veck/tags/Algorithm/" style="font-size: 10px;">Algorithm</a> <a href="/Veck/tags/Apache/" style="font-size: 10px;">Apache</a> <a href="/Veck/tags/C-、ASP-NET/" style="font-size: 18px;">C#、ASP.NET</a> <a href="/Veck/tags/C-C/" style="font-size: 18px;">C/C++</a> <a href="/Veck/tags/Computer-Science/" style="font-size: 20px;">Computer Science</a> <a href="/Veck/tags/Discrete-Mathematic/" style="font-size: 12px;">Discrete Mathematic</a> <a href="/Veck/tags/Git/" style="font-size: 10px;">Git</a> <a href="/Veck/tags/Java/" style="font-size: 16px;">Java</a> <a href="/Veck/tags/Linear-Algebra/" style="font-size: 10px;">Linear Algebra</a> <a href="/Veck/tags/Lucene/" style="font-size: 10px;">Lucene</a> <a href="/Veck/tags/MIPS/" style="font-size: 10px;">MIPS</a> <a href="/Veck/tags/Modulization/" style="font-size: 10px;">Modulization</a> <a href="/Veck/tags/MySQL/" style="font-size: 10px;">MySQL</a> <a href="/Veck/tags/Network/" style="font-size: 16px;">Network</a> <a href="/Veck/tags/Network-Management/" style="font-size: 16px;">Network Management</a> <a href="/Veck/tags/Operating-System/" style="font-size: 12px;">Operating System</a> <a href="/Veck/tags/PHP/" style="font-size: 12px;">PHP</a> <a href="/Veck/tags/Python/" style="font-size: 10px;">Python</a> <a href="/Veck/tags/REST/" style="font-size: 12px;">REST</a> <a href="/Veck/tags/Software/" style="font-size: 18px;">Software</a> <a href="/Veck/tags/System-Program/" style="font-size: 10px;">System Program</a> <a href="/Veck/tags/Twitter/" style="font-size: 14px;">Twitter</a> <a href="/Veck/tags/VB/" style="font-size: 10px;">VB</a> <a href="/Veck/tags/stream/" style="font-size: 10px;">stream</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">links</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="http://hexo.io">Hexo</a>
+          </li>
+        
+          <li>
+            <a href="https://github.com/fbukevin">GitHub</a>
+          </li>
+        
+          <li>
+            <a href="http://linkedin.com/in/veckhsiao">LinkedIn</a>
+          </li>
+        
+          <li>
+            <a href="fbukevin@gmail.com">Mail</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+        <section id="main"><article id="post-離散-Planar Graph and Coloring Theorem" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/Veck/2012/11/02/離散-Planar Graph and Coloring Theorem/" class="article-date">
+  <time datetime="2012-11-02T04:20:00.000Z" itemprop="datePublished">2012-11-02</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      離散 Planar Graph and Coloring Theorem
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><strong>Problem 1:</strong> Show that the graph is not planar, and find a subgraph homeomorphic to <span style="font-size: xx-small;">K3,3</span>.  </p>
 <div class="separator" style="clear: both; text-align: center;"><a href="http://4.bp.blogspot.com/-QcoMql7G_H8/UJM00OgFz-I/AAAAAAAACUA/ejNpcKuGw90/s1600/1.png" target="_blank" rel="external"><img src="http://4.bp.blogspot.com/-QcoMql7G_H8/UJM00OgFz-I/AAAAAAAACUA/ejNpcKuGw90/s320/1.png" alt=""></a></div>
 
 <p>NOTE 1 : Although there is no <span style="background-color: white; color: #222222; font-family: arial, sans-serif; line-height: 16px;"> </span><span style="background-color: white; color: #222222; font-family: arial, sans-serif; line-height: 16px;">Δ (Triangle), we should not only check e </span><span style="background-color: white; font-family: inherit;"><span style="line-height: 22.066667556762695px; text-align: center;"> </span><span style="line-height: 22.066667556762695px; text-align: center;">≤ 2 v - 4, but also check e </span></span><span style="background-color: white; line-height: 22.066667556762695px; text-align: center;"><span style="font-family: inherit;">≤ [ k / (k-2) ] * (v - 2).</span></span><br><a href="http://veckcode.blogspot.com/2012/11/planar-graph-and-coloring-theorem.html#more" target="_blank" rel="external">閱讀更多 »</a></p>
-</div><!-- comment system--><div class="container"><hr><div id="disqus_thread"></div><script type="text/javascript">
-var disqus_shortname = 'vecktw';
-var disqus_identifier = '2012/11/02/離散-Planar Graph and Coloring Theorem/';
-var disqus_title = '離散 Planar Graph and Coloring Theorem';
-var disqus_url = 'http://fbukevin.github.io/Veck/2012/11/02/離散-Planar Graph and Coloring Theorem/';
-(function() {
-   var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-   dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-   (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-})();
-</script>
-<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-<a href="http://disqus.com" class="dsq-brlink">Blog comments powered by <span class="logo-disqus">Disqus</span></a></div></article><footer id="footer"><div class="container"><div class="bar"><div class="social"><a href="mailto:fbukevin@gmail.com" target="_blank"><i class="fa fa-envelope-o"></i></a><a href="http://twitter.com/VeckHsiao" target="_blank"><i class="fa fa-twitter"></i></a><a href="https://github.com/fbukevin" target="_blank"><i class="fa fa-github"></i></a><a href="/atom.xml" target="_blank"><i class="fa fa-rss"></i></a></div><div class="footer">© 2016 <a href="/" rel="nofollow">Veck's Blog</a>. Powered by <a rel="nofollow" target="_blank" href="https://hexo.io">Hexo</a>. Theme <a target="_blank" href="https://github.com/lotabout/very-simple">very-simple</a>.</div></div></div></footer><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.css"><script src="//cdn.bootcss.com/jquery/2.0.3/jquery.min.js"></script><script src="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.pack.js"></script><script>$(document).ready(function() {
-    $(".fancybox").fancybox();
-});</script></body></html>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://fbukevin.github.io/Veck/2012/11/02/離散-Planar Graph and Coloring Theorem/" data-id="ciktitx9g0002nxsu8d8jnyi2" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/Veck/tags/Discrete-Mathematic/">Discrete Mathematic</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/Veck/2013/04/20/Shell 內建命令 (Shell Built-in Command)/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Shell 內建命令 (Shell Built-in Command)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/Veck/2012/11/01/離散-Euler Circuit and Hamiltonian Cycle Prove/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">離散 Euler Circuit and Hamiltonian Cycle Prove</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      <a href="/" class="logo">Veck&#39;s Blog</a>
+      &copy; 2016 Veck Hsiao<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+
+<script src="/Veck/js/jquery.min.js" type="text/javascript"></script>
+<script src="/Veck/js/jquery.scrollLoading.js" type="text/javascript"></script>
+
+
+  <link rel="stylesheet" href="/Veck/fancybox/jquery.fancybox.css" type="text/css">
+  <script src="/Veck/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
+
+
+<script src="/Veck/js/script.js" type="text/javascript"></script>
+
+  </div>
+</body>
+</html>
