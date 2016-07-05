@@ -23,6 +23,7 @@
 ## Project
 
 * [Moil](https://moil.herokuapp.com/): a mobile database
+* [平仮名時計](https://fbukevin.github.io/hiraganatokei/): a web clock in Japanese.
 * [Boo-it](http://justinsanity.github.io/boo-it/): an instant message app with HTML, CSS, JavaScript
 * [Realtie Stock Price and Exchange Rate Demo](http://fbukevin.github.io/stock/)
 * [Software Engineering Class Project](http://dorabemon.github.io/)
