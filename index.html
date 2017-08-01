@@ -1,157 +1,166 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">		
+	</head>
+	<body>
+	  <div id="app">
+	    <el-card :body-style="{ padding: '0px', 'text-align': 'center' }">
+	      <img src="profile.jpg" class="image">
+	      <div style="padding: 14px;">
+	        <h1>Veck Hsiao</h1>
+	      </div>			      
+	      <el-tag>System Software</el-tag>
+				<el-tag type="gray">Linux</el-tag>
+				<el-tag type="primary">Cloud Computing</el-tag>
+				<el-tag type="warning">Blockchain</el-tag>
+				<el-tag type="success">Server Engineering</el-tag>
+				<el-tag type="warning">Amazon Web Service</el-tag>
+				<el-tag type="primary">C/C++</el-tag>
+				<el-tag type="success">Node.js</el-tag>
+				<el-tag>Ruby on Rails</el-tag>
+				<el-tag type="danger">Android/iOS/Web App</el-tag>
+	      <h2 id="Contact"><a href="#Contact" class="headerlink" title="Contact"></a>Contact Info</h2>
+	      <ul id="contact">
+					<li v-for="data in contactData">
+						{{ data.item }} - <a :href="data.href" target="_blank" rel="external">{{ data.value }}</a>
+					</li>
+				</ul>
+	    </el-card>
 
-<!--
-	veck.tw 還是用 fbukevin.github.io/Veck
-	但是只做一頁
-	然後用 vue.js 做 SPA
-	v-for 來列出我的作品集
-	ＤＯＮＥ！
--->
+			
+			<h1 id="Experience">
+				<a href="#Experience" class="headerlink" title="Experience"></a>Experience
+			</h1>
+			<ol>
 
-<head>
+				<!-- 露天拍賣 -->
+				<li>
+					Web Engineer in <a href="http://www.ruten.com.tw/" target="_blank" rel="external">Ruten</a>
+					<el-button @click="ruten = true">Reten</el-button>
+			    <el-dialog v-model="ruten" title="Ruten, a PChome and eBay JV company (September, 2015 – May, 2016) ">	
+			    	<img src="ruten.gif" class="sub-image"><br>				    	
+						<ul>
+							<li>Maintain backend server programs. </li>
+							<li>Collaborate with frontend engineer. </li>
+							<li>Manipulate MySQL and PL/SQL database software.</li>
+						</ul>			    
+			    </el-dialog>
+				</li>
+
+				<!-- Justinsanity -->
+				<li>
+					Co-founder of <a href="http://justinsanity.github.io/" target="_blank" rel="external">Justinsanity</a>
+			    <el-button @click="justinsanity = true">Justinsanity</el-button>
+			    <el-dialog v-model="justinsanity" title="Justinsanity (since 2013)">			    	
+			    	<img src="justinsanity.jpg" class="js-image"><br>
+			    	<p>We are fellow favor in Computer Science and software technology. We make products and do technology research.</p>
+			      <el-table :data="jsProject" style="width: 100%">
+				      <el-table-column prop="project" label="Project"></el-table-column>
+				      <el-table-column prop="url" label="Website"></el-table-column>
+				    </el-table>
+			    </el-dialog>					
+				</li>
+
+				<!-- WiHeart -->
+				<li>
+					Co-founder of <a href="https://wiheartio.github.io/" target="_blank" rel="external">WiHeart</a>
+					<el-button @click="wiheart = true">WiHeart</el-button>
+			    <el-dialog v-model="wiheart" title="WiHeart 瓦得能源有限公司 (August, 2016 – May, 2017) ">
+			    	<img src="wiheart.png" class="wiheart-image"><br>
+			    	<h2>WiHeart warms your heart</h2>
+			    	<p>
+						WiHeart Technology is a startup company dedicated on challenging various new topics. We started from management science and information technology, attempt to research and develop various feasible innovative topics.
+						</p>
+						<p>
+						WiHeart upholds the mission "WiHeart warms your heart", providing people comfortable product experience to solve many difficulties in daily life. 
+						</p>
+						<ul>
+							<li>Developed both iOS and Android version app 
+					    </li>
+							<li>Developed app backend server (Node.js with MongoDB)</li>
+							<li>Developed <a href="https://wiheartio.github.io" target="_blank">official website</a></li>
+							<li>Maintain system operation</li>
+							<li>Company Management</li>
+						</ul>
+						<br>
+			      <el-table :data="wiheartProject" style="width: 100%">
+				      <el-table-column prop="project" label="Project"></el-table-column>
+				      <el-table-column prop="url" label="Website"></el-table-column>
+				    </el-table>						
+			    </el-dialog>
+				</li>
+
+				<!-- 山角行 -->
+				<li>
+					Web developer of <a href="http://www.xn--rhto43ho7a.com/" target="_blank" rel="external">Xshogi</a>
+					<el-button @click="xshogi = true">Xshogi</el-button>
+			    <el-dialog v-model="xshogi" title="Xshogi 山角行日本將棋專賣店">
+			    	<img src="xshogi.jpg" class="xshogi-image"><br>
+			      -	Use Ruby on Rails to build up the official business website<br>
+						-	Use Amazon web services to build some functions of the website<br>
+						-	Use Heroku to host the website<br>
+						-	Use Postgres database to store our data<br>
+			    </el-dialog>
+				</li>
+
+				<!-- 政大專任助理 -->
+				<li>				
+					Web service maintainer in National Chengchi University
+					<el-button @click="nccu = true">NCCU</el-button>
+			    <el-dialog v-model="nccu" title="National Chengchi University - Flood Fire (March, 2017, - July, 2017)">
+			    	<h2><a href="https://sites.google.com/a/newliteracies.co.cc/floodfiredata/">Flood Fire</a></h2><br>
+			    	-	Use Elasticsearch and Postgres to build up information retrieval system<br>
+						-	Maintain the system server which is an Ubuntu 14.04 distribution Linux<br>
+						-	Using Git to do version control and manage a GitHub account for this institution<br>
+						-	Create a web interface for using this system
+			    </el-dialog>
+				</li>				
+			</ol>	
+
+			<h1 id="Old_Blog"><a href="#Old_Blog" class="headerlink" title="Blog"></a>Blog</h1>
+
+			<ul>
+				<li>
+					<a href="http://veckcode.blogspot.tw/" target="_blank" rel="external">Program City in Blogger</a>(2012, Summer - 2014, Spring)
+				</li>
+				<li>
+					<a href="http://veck.logdown.com/" target="_blank" rel="external">Program City in Logdown</a>(2013, Fall - 2015, Spring)
+				</li>
+			</ul>
+	  </div>
+		<br><br>
+	</body>
 	<script type="text/javascript" src="https://unpkg.com/vue@2.2.6"></script>
-  <style>
-    body {
-      text-align: center;
-    }
-
-    ul {
-      list-style-type: none;
-    }
-  </style>
-</head>
-<body>
-
-	<section id="main">
-		<article id="page-undefined" class="article article-type-page" itemscope="" itemprop="blogPost">
-		  <div class="article-inner">
-		    <div class="article-entry" itemprop="articleBody">
-
-			    <h1 id="Veck_Hsiao"><a href="#Veck_Hsiao" class="headerlink" title="Veck Hsiao"></a>Veck Hsiao</h1><p><img alt="profile" class="scrollLoading" src="profile.jpg"></p>
-
-					<h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2>
-
-					<ol>
-						<li>
-							Web Engineer in <a href="http://www.ruten.com.tw/" target="_blank" rel="external">Ruten</a> (a PChome and eBay JV company)
-						</li>
-						<li>
-							Co-funder of <a href="http://justinsanity.github.io" target="_blank" rel="external">Justinsanity</a>
-						</li>
-					</ol>
-
-					<h2 id="Contact"><a href="#Contact" class="headerlink" title="Contact"></a>Contact</h2>
-
-					<ul>
-						<li>
-							<a href="mailto:fbukevin@gmail.com" target="_blank" rel="external">fbukevin@gmail.com</a>
-						</li>
-						<li>
-							<a href="https://github.com/fbukevin" target="_blank" rel="external">GitHub</a>
-						</li>
-						<li>
-							<a href="http://linkedin.com/in/veckhsiao" target="_blank" rel="external">LinkedIn</a>
-						</li>
-						<li>
-							<a href="http://vect.tw" target="_blank" rel="external">Blog</a>
-						</li>
-					</ul>
-
-					<h1 id="Old_Blog"><a href="#Old_Blog" class="headerlink" title="Old Blog"></a>Old Blog</h1>
-
-					<ul>
-						<li>
-							<a href="http://veckcode.blogspot.tw/" target="_blank" rel="external">Program City in Blogger</a>(2012, Summer - 2014, Spring)
-						</li>
-						<li>
-							<a href="http://veck.logdown.com/" target="_blank" rel="external">Program City in Logdown</a>(2013, Fall - 2015, Spring)
-						</li>
-					</ul>
-
-					<h2 id="Project">
-						<a href="#Project" class="headerlink" title="Project"></a>Project
-					</h2>
-
-					<ul>
-						<li>
-							<a href="https://moil.herokuapp.com/" target="_blank" rel="external">Moil</a>: a mobile database
-						</li>
-						<li>
-							<a href="https://fbukevin.github.io/hiraganatokei/">平仮名時計</a>: a web clock in Japanese.
-						</li>
-						<li>
-							<a href="http://justinsanity.github.io/boo-it/" target="_blank" rel="external">Boo-it</a>: an instant message app with HTML, CSS, JavaScript
-						</li>
-						<li>
-							<a href="http://fbukevin.github.io/stock/">Realtie Stock Price and Exchange Rate Demo</a>
-						</li>
-						<li>
-							<a href="http://dorabemon.github.io/" target="_blank" rel="external">Software Engineering Class Project</a>
-						</li>
-						<li>
-							<a href="http://fbukevin.github.io/SDP/">Energy Flow Optimization for Wind Farm- A Stochastic Dynamic Programming Approach</a>
-						</li>
-						<li>
-							<a href="http://fbukevin.github.io/weic_d3js">Introduction to D3.js</a>: a presentation of D3.js (slide made with d3.js itself)
-						</li>
-						<li>
-							<a href="http://fbukevin.github.io/unistroke">$1 Unistroke Recognizer</a>:  2013 Human Computer Interaction class project
-						</li>
-						<li>
-							<a href="https://www.npmjs.com/package/file-template" target="_blank" rel="external">file-template</a>: an npm project, a file generator for Node.js
-						</li>
-					</ul>
-
-					<h2 id="Open_Source_Contribution">
-						<a href="#Open_Source_Contribution" class="headerlink" title="Open Source Contribution"></a>Open Source Contribution
-					</h2>
-
-					<ul>
-						<li>
-							<a href="https://github.com/atom/electron/graphs/contributors" target="_blank" rel="external">atom/electron</a>: traditional Chinese version translation of documentation
-						</li>
-						<li>
-							<a href="https://github.com/Mozilla-b2g/jstat/jstat/contributors" target="_blank" rel="external">jstat/jstat</a>: create new functions
-						</li>
-						<li>
-							<a href="https://github.com/Mozilla-b2g/gaia/graphs/contributors" target="_blank" rel="external">Mozilla-b2g/gaia</a>: debug (records are on Bugzilla)
-						</li>
-						<li>
-							<a href="https://github.com/laravel-taiwan/docs/graphs/contributors" target="_blank" rel="external">laravel-taiwan/docs</a>: traditional Chinese version translation of documentation
-						</li>
-						<li>
-							<a href="https://github.com/tomusdrw/gradleps/graphs/contributors" target="_blank" rel="external">tomusdrw/gradleps</a>: fixed shebang to more generic
-						</li>
-						<li>
-							<a href="https://github.com/marcua/tweeql/graphs/contributors" target="_blank" rel="external">marcua/tweeql</a>: twitter tweets crawler, fixed bug to usable for up-to-date API verison
-						</li>
-						<li>
-							<a href="https://github.com/gasolin/qrcode_scanner/graphs/contributors" target="_blank" rel="external">gasolin/qrcode_scanner</a>: Firefox OS version QR code scanner, add some functions
-						</li>
-						<li>
-							<a href="https://github.com/weitsai/iHelp-android/graphs/contributors" target="_blank" rel="external">weitsai/iHelp-android</a>: an app to call for emergency for hearing impaired
-						</li>
-					</ul>
-		    </div>
-		  </div>
-		</article>
-	</section>
-
-	<div>
-		<ul id="production">
-		  <li v-for="item in items">
-		    {{ item.name }}
-		  </li>
-		</ul>
-	</div>
-	<script>
-		var example1 = new Vue({
-		  el: '#production',
-		  data: {
-		    items: [
-		      {name: 'Foo', url: '#' },
-		      {name: 'Bar', url: '#'}
-		    ]
-		  }
-		})
-	</script>
-</body>
+	<!-- 引入样式 -->
+	<link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-default/index.css">
+	<link rel="stylesheet" href="index.css">
+	<!-- 引入组件库 -->
+	<script src="https://unpkg.com/element-ui/lib/index.js"></script>	  
+  <script>
+    new Vue({
+      el: '#app',
+      data: {
+      	ruten: false,
+      	justinsanity: false,
+      	wiheart: false,
+      	xshogi: false,
+      	nccu: false,
+      	contactData: [
+      		{ item: "Email", value: "fbukevin@gmail.com", href: "mailto:fbukevin@gmail.com"},
+      		{ item: "GitHub", value: "@fbukevin", href: "https://github.com/fbukevin" },
+      		{ item: "LinkedIn", value: "veckhsiao", href: "http://linkedin.com/in/veckhsiao" }
+      	],
+      	jsProject: [
+      		{ project: 'Boo it!', url: 'https://justinsanity.github.io/boo-it/' }, 
+          { project: 'Moil', url: 'http://veck.im/Moil/' }
+        ],
+      	wiheartProject: [
+      		{ project: 'SDP', url: 'https://wiheartio.github.io/SDP/' }, 
+          { project: 'X-1', url: 'https://wiheartio.github.io/x-1/' },
+          { project: 'Fast Power', url: 'https://wiheartio.github.io/FastPower/' }
+        ],        
+    	}
+    })
+  </script>		
+</html>

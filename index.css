@@ -1,0 +1,78 @@
+
+body {
+  background-color: #8492A6;
+  font-family: "Helvetica Neue",Helvetica,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","微软雅黑",Arial,sans-serif;
+}
+
+a {
+  text-decoration: none;
+  color: #F7BA2A;
+}
+
+#contact a {
+  color: #1F2D3D;
+}
+
+ul#contact {
+  /*list-style-type: none;*/
+  text-align: left;
+}
+
+#app {
+  width: 30%;
+  margin-left: auto;
+  margin-right: auto;  
+}
+
+.time {
+  font-size: 13px;
+  color: #999;
+}
+
+.bottom {
+  margin-top: 13px;
+  line-height: 12px;
+}
+
+.button {
+  padding: 0;
+  float: right;
+}
+
+.image {
+  width: 300px;
+  height: 288px;
+  display: block;
+}
+
+.js-image {
+  width: 170px;
+  height: 176px;
+}
+
+.wiheart-image {
+  width: 100px;
+  height: 89px;
+}
+
+.xshogi-image {
+  width: 300px;
+}
+
+
+.clearfix:before,
+.clearfix:after {
+    display: table;
+    content: "";
+}
+
+.clearfix:after {
+    clear: both
+}
+
+.el-card {
+  width: 300px;
+  margin-right: auto;
+  margin-left: auto;
+  /*background-color: #C0CCDA;*/
+}
