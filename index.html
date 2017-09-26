@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
 	<head>
@@ -13,9 +14,7 @@
 	      <el-tag>System Software</el-tag>
 				<el-tag type="gray">Linux</el-tag>
 				<el-tag type="primary">Cloud Computing</el-tag>
-				<el-tag type="warning">Blockchain</el-tag>
 				<el-tag type="success">Server Engineering</el-tag>
-				<el-tag type="warning">Amazon Web Service</el-tag>
 				<el-tag type="primary">C/C++</el-tag>
 				<el-tag type="success">Node.js</el-tag>
 				<el-tag>Ruby on Rails</el-tag>
@@ -108,14 +107,34 @@
 				<li>				
 					Web service maintainer in National Chengchi University
 					<el-button @click="nccu = true">NCCU</el-button>
-			    <el-dialog v-model="nccu" title="National Chengchi University - Flood Fire (March, 2017, - July, 2017)">
+			    <el-dialog v-model="nccu" title="National Chengchi University - Flood Fire (March, 2017 - July, 2017)">
 			    	<h2><a href="https://sites.google.com/a/newliteracies.co.cc/floodfiredata/">Flood Fire</a></h2><br>
 			    	-	Use Elasticsearch and Postgres to build up information retrieval system<br>
 						-	Maintain the system server which is an Ubuntu 14.04 distribution Linux<br>
 						-	Using Git to do version control and manage a GitHub account for this institution<br>
 						-	Create a web interface for using this system
 			    </el-dialog>
-				</li>				
+				</li>
+
+				<!-- FundersToken -->
+				<li>				
+					Frontend Engineer in FundersToken
+					<el-button @click="fstk = true">FundersToken</el-button>
+			    <el-dialog v-model="fstk" title="FundersToken">
+			    	<h2><a href="https://diyti.fstk.io/">FundersToken DIY-TI</a></h2><br>
+			    	- Frontend development of funcational website<br>
+			    	- Integrate Ethereum blockchain backend server
+			    </el-dialog>
+				</li>
+
+				<!-- AWS -->
+				<li>				
+					Cloud Support Engineer in Amazon Web Service
+					<el-button @click="aws = true">Amazon Web Service</el-button>
+			    <el-dialog v-model="aws" title="Amzon Web Service - Cloud Supprt Engineer (September, 2017 -)">
+			    	- Premium Technical Support of deployment.
+			    </el-dialog>
+				</li>
 			</ol>	
 
 			<h1 id="Old_Blog"><a href="#Old_Blog" class="headerlink" title="Blog"></a>Blog</h1>
@@ -146,6 +165,8 @@
       	wiheart: false,
       	xshogi: false,
       	nccu: false,
+      	fstk: false,
+      	aws: false,
       	contactData: [
       		{ item: "Email", value: "fbukevin@gmail.com", href: "mailto:fbukevin@gmail.com"},
       		{ item: "GitHub", value: "@fbukevin", href: "https://github.com/fbukevin" },
