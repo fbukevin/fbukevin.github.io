@@ -59,6 +59,10 @@ ul#contact {
   width: 300px;
 }
 
+.fstk-image {
+  width: 100px;
+  height: 100px;
+}
 
 .clearfix:before,
 .clearfix:after {
