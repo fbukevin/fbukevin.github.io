@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Rails Puma + Nginx 的組合 | Your awesome title</title>
+<meta name="generator" content="Jekyll v4.3.3" />
+<meta property="og:title" content="Rails Puma + Nginx 的組合" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Rails Puma + Nginx 的組合 首先要認識一下兩者分別是什麼東西： Puma 是一個專為 Rails 設計的高併發 web serverNginx 是一個廣泛使用的 reverse proxy 這個時候可以去查一下什麼事 reverse proxy，就可以發現一張圖說明了兩者之間的關係 (Source: wikipedia) 所謂的反向代理，是在 server-side 根據 client-side 的 request，向後端的 web server 取得資源，然後再將這些資源 response 給 client-side 另外所謂的前向代理，通常是在 client-side 的軟體，例如瀏覽器會代替 client web page (program)去向CDN請求資源 使用後端代理伺服器的好處是，假設你有很多個 web server，都統一要由單一入口給 client-side 存取，則可以把存取的工作交給 reverse proxy，例如： Web Server: Home Page Web ServerForum Web ServerWiki Web Server 然後你的客戶會連線到 www.my.domain.com，此時應該存取 Home Page Web Server，但當他連線到 www.my.domain.com/forum 時，應該要存取 Forum Web Server，可是如果把你的網域綁定到 Home Page Web Server，就無法另外連線到不同伺服器了，因此可以改用反向代理伺服器，把網域綁定到這台機器上，當反向代理判斷是要存取 Home Page，就會由他向那台伺服器請求資源，而要存取 Forum 時，就另外再向論壇的伺服器請求資源 另外，反向代理伺服器還有一些對於網站應用程式來說有很大幫助的功能，例如 load balancing、auto-scaling、failover 等 load balancing 會在流量大增的時候進行分流的動作，例如你有多台 forum web server，平時每天流量上萬，為了確保伺服器能夠穩定運作，不會因為短時間的存取量太大導致伺服器處理不及而癱瘓，就可以設定將一部分的存取流量導向 standby 的那台伺服器 auto-scaling 則是可以為你正在服務的伺服器自動依據目前的流量或運算量，最大化可以分配的資源，簡單來說，你有一台伺服器的記憶體有 32GB，分配給網頁伺服器的使用量只有 2GB，如果你的網頁服務需要大量運算(例如線上資料處理或機器學習)，很有可能短時間內就把 2GB用完了，因此你可以設定當監測到記憶體快要用罄，系統會自動配置更多的記憶體來應付突發的運算量 failover 則是為了免除網站服務最擔心的事 — 中斷服務(downtime)，你的伺服器很有可能被 DDoS 攻擊，或是程式有 bug，使用者不小心觸發導致伺服器掛了，這個時候假如你有一台 standby 的伺服器，有設定好 failover 功能，則會在監控到主要伺服器中斷服務的時候，立刻將存取要求導向那台 standby 的伺服器，縮短 downtime 的時間 說到 DDoS 攻擊，load balancing 或其他相關功能也可以在監控到瞬間變大的流量時，自動將(不正常)流量導向其他地方，就有專門的業者，是提供流量接收的服務，讓一些容易被 DDoS 攻擊的網站服務公司將流量導像他們的伺服器，這個功能的設定也可以在反向代理完成" />
+<meta property="og:description" content="Rails Puma + Nginx 的組合 首先要認識一下兩者分別是什麼東西： Puma 是一個專為 Rails 設計的高併發 web serverNginx 是一個廣泛使用的 reverse proxy 這個時候可以去查一下什麼事 reverse proxy，就可以發現一張圖說明了兩者之間的關係 (Source: wikipedia) 所謂的反向代理，是在 server-side 根據 client-side 的 request，向後端的 web server 取得資源，然後再將這些資源 response 給 client-side 另外所謂的前向代理，通常是在 client-side 的軟體，例如瀏覽器會代替 client web page (program)去向CDN請求資源 使用後端代理伺服器的好處是，假設你有很多個 web server，都統一要由單一入口給 client-side 存取，則可以把存取的工作交給 reverse proxy，例如： Web Server: Home Page Web ServerForum Web ServerWiki Web Server 然後你的客戶會連線到 www.my.domain.com，此時應該存取 Home Page Web Server，但當他連線到 www.my.domain.com/forum 時，應該要存取 Forum Web Server，可是如果把你的網域綁定到 Home Page Web Server，就無法另外連線到不同伺服器了，因此可以改用反向代理伺服器，把網域綁定到這台機器上，當反向代理判斷是要存取 Home Page，就會由他向那台伺服器請求資源，而要存取 Forum 時，就另外再向論壇的伺服器請求資源 另外，反向代理伺服器還有一些對於網站應用程式來說有很大幫助的功能，例如 load balancing、auto-scaling、failover 等 load balancing 會在流量大增的時候進行分流的動作，例如你有多台 forum web server，平時每天流量上萬，為了確保伺服器能夠穩定運作，不會因為短時間的存取量太大導致伺服器處理不及而癱瘓，就可以設定將一部分的存取流量導向 standby 的那台伺服器 auto-scaling 則是可以為你正在服務的伺服器自動依據目前的流量或運算量，最大化可以分配的資源，簡單來說，你有一台伺服器的記憶體有 32GB，分配給網頁伺服器的使用量只有 2GB，如果你的網頁服務需要大量運算(例如線上資料處理或機器學習)，很有可能短時間內就把 2GB用完了，因此你可以設定當監測到記憶體快要用罄，系統會自動配置更多的記憶體來應付突發的運算量 failover 則是為了免除網站服務最擔心的事 — 中斷服務(downtime)，你的伺服器很有可能被 DDoS 攻擊，或是程式有 bug，使用者不小心觸發導致伺服器掛了，這個時候假如你有一台 standby 的伺服器，有設定好 failover 功能，則會在監控到主要伺服器中斷服務的時候，立刻將存取要求導向那台 standby 的伺服器，縮短 downtime 的時間 說到 DDoS 攻擊，load balancing 或其他相關功能也可以在監控到瞬間變大的流量時，自動將(不正常)流量導向其他地方，就有專門的業者，是提供流量接收的服務，讓一些容易被 DDoS 攻擊的網站服務公司將流量導像他們的伺服器，這個功能的設定也可以在反向代理完成" />
+<link rel="canonical" href="http://localhost:4000/2018/01/18/rails-puma-nginx.html" />
+<meta property="og:url" content="http://localhost:4000/2018/01/18/rails-puma-nginx.html" />
+<meta property="og:site_name" content="Your awesome title" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2018-01-18T00:00:00+08:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Rails Puma + Nginx 的組合" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2018-01-18T00:00:00+08:00","datePublished":"2018-01-18T00:00:00+08:00","description":"Rails Puma + Nginx 的組合 首先要認識一下兩者分別是什麼東西： Puma 是一個專為 Rails 設計的高併發 web serverNginx 是一個廣泛使用的 reverse proxy 這個時候可以去查一下什麼事 reverse proxy，就可以發現一張圖說明了兩者之間的關係 (Source: wikipedia) 所謂的反向代理，是在 server-side 根據 client-side 的 request，向後端的 web server 取得資源，然後再將這些資源 response 給 client-side 另外所謂的前向代理，通常是在 client-side 的軟體，例如瀏覽器會代替 client web page (program)去向CDN請求資源 使用後端代理伺服器的好處是，假設你有很多個 web server，都統一要由單一入口給 client-side 存取，則可以把存取的工作交給 reverse proxy，例如： Web Server: Home Page Web ServerForum Web ServerWiki Web Server 然後你的客戶會連線到 www.my.domain.com，此時應該存取 Home Page Web Server，但當他連線到 www.my.domain.com/forum 時，應該要存取 Forum Web Server，可是如果把你的網域綁定到 Home Page Web Server，就無法另外連線到不同伺服器了，因此可以改用反向代理伺服器，把網域綁定到這台機器上，當反向代理判斷是要存取 Home Page，就會由他向那台伺服器請求資源，而要存取 Forum 時，就另外再向論壇的伺服器請求資源 另外，反向代理伺服器還有一些對於網站應用程式來說有很大幫助的功能，例如 load balancing、auto-scaling、failover 等 load balancing 會在流量大增的時候進行分流的動作，例如你有多台 forum web server，平時每天流量上萬，為了確保伺服器能夠穩定運作，不會因為短時間的存取量太大導致伺服器處理不及而癱瘓，就可以設定將一部分的存取流量導向 standby 的那台伺服器 auto-scaling 則是可以為你正在服務的伺服器自動依據目前的流量或運算量，最大化可以分配的資源，簡單來說，你有一台伺服器的記憶體有 32GB，分配給網頁伺服器的使用量只有 2GB，如果你的網頁服務需要大量運算(例如線上資料處理或機器學習)，很有可能短時間內就把 2GB用完了，因此你可以設定當監測到記憶體快要用罄，系統會自動配置更多的記憶體來應付突發的運算量 failover 則是為了免除網站服務最擔心的事 — 中斷服務(downtime)，你的伺服器很有可能被 DDoS 攻擊，或是程式有 bug，使用者不小心觸發導致伺服器掛了，這個時候假如你有一台 standby 的伺服器，有設定好 failover 功能，則會在監控到主要伺服器中斷服務的時候，立刻將存取要求導向那台 standby 的伺服器，縮短 downtime 的時間 說到 DDoS 攻擊，load balancing 或其他相關功能也可以在監控到瞬間變大的流量時，自動將(不正常)流量導向其他地方，就有專門的業者，是提供流量接收的服務，讓一些容易被 DDoS 攻擊的網站服務公司將流量導像他們的伺服器，這個功能的設定也可以在反向代理完成","headline":"Rails Puma + Nginx 的組合","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/2018/01/18/rails-puma-nginx.html"},"url":"http://localhost:4000/2018/01/18/rails-puma-nginx.html"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="Your awesome title" /></head>
+<body><header class="site-header" role="banner">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">Your awesome title</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/about/">About</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Rails Puma + Nginx 的組合</h1>
+    <p class="post-meta">
+      <time class="dt-published" datetime="2018-01-18T00:00:00+08:00" itemprop="datePublished">Jan 18, 2018
+      </time></p>
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <p>Rails Puma + Nginx 的組合</p><p>首先要認識一下兩者分別是什麼東西：</p><ul><li>Puma 是一個專為 Rails 設計的高併發 <strong>web server</strong></li><li>Nginx 是一個廣泛使用的 <strong>reverse proxy</strong></li></ul><p>這個時候可以去查一下什麼事 reverse proxy，就可以發現一張圖說明了兩者之間的關係</p><figure><img alt="" src="https://cdn-images-1.medium.com/max/592/1*oITN1VUOhzhcoltdxUh9_g.png" /><figcaption>(Source: wikipedia)</figcaption></figure><p>所謂的反向代理，是在 server-side 根據 client-side 的 request，向後端的 web server 取得資源，然後再將這些資源 response 給 client-side</p><p>另外所謂的前向代理，通常是在 client-side 的軟體，例如瀏覽器會代替 client web page (program)去向CDN請求資源</p><p>使用後端代理伺服器的好處是，假設你有很多個 web server，都統一要由單一入口給 client-side 存取，則可以把存取的工作交給 reverse proxy，例如：</p><p>Web Server:</p><ul><li>Home Page Web Server</li><li>Forum Web Server</li><li>Wiki Web Server</li></ul><p>然後你的客戶會連線到 www.my.domain.com，此時應該存取 Home Page Web Server，但當他連線到 www.my.domain.com/forum 時，應該要存取 Forum Web Server，可是如果把你的網域綁定到 Home Page Web Server，就無法另外連線到不同伺服器了，因此可以改用反向代理伺服器，把網域綁定到這台機器上，當反向代理判斷是要存取 Home Page，就會由他向那台伺服器請求資源，而要存取 Forum 時，就另外再向論壇的伺服器請求資源</p><p>另外，反向代理伺服器還有一些對於網站應用程式來說有很大幫助的功能，例如 <a href="https://en.wikipedia.org/wiki/Load_balancing_(computing)">load balancing</a>、<a href="https://en.wikipedia.org/wiki/Autoscaling">auto-scaling</a>、<a href="https://en.wikipedia.org/wiki/Failover">failover</a> 等</p><p>load balancing 會在流量大增的時候進行分流的動作，例如你有多台 forum web server，平時每天流量上萬，為了確保伺服器能夠穩定運作，不會因為短時間的存取量太大導致伺服器處理不及而癱瘓，就可以設定將一部分的存取流量導向 standby 的那台伺服器</p><p>auto-scaling 則是可以為你正在服務的伺服器自動依據目前的流量或運算量，最大化可以分配的資源，簡單來說，你有一台伺服器的記憶體有 32GB，分配給網頁伺服器的使用量只有 2GB，如果你的網頁服務需要大量運算(例如線上資料處理或機器學習)，很有可能短時間內就把 2GB用完了，因此你可以設定當監測到記憶體快要用罄，系統會自動配置更多的記憶體來應付突發的運算量</p><p>failover 則是為了免除網站服務最擔心的事 — 中斷服務(downtime)，你的伺服器很有可能被 DDoS 攻擊，或是程式有 bug，使用者不小心觸發導致伺服器掛了，這個時候假如你有一台 standby 的伺服器，有設定好 failover 功能，則會在監控到主要伺服器中斷服務的時候，立刻將存取要求導向那台 standby 的伺服器，縮短 downtime 的時間</p><p>說到 DDoS 攻擊，load balancing 或其他相關功能也可以在監控到瞬間變大的流量時，自動將(不正常)流量導向其他地方，就有專門的業者，是提供流量接收的服務，讓一些容易被 DDoS 攻擊的網站服務公司將流量導像他們的伺服器，這個功能的設定也可以在反向代理完成</p><img src="https://medium.com/_/stat?event=post.clientViewed&referrerSource=full_rss&postId=6351c5d4712e" width="1" height="1" alt="">
+
+  </div><a class="u-url" href="/2018/01/18/rails-puma-nginx.html" hidden></a>
+</article>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">Your awesome title</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">Your awesome title</li><li><a class="u-email" href="mailto:your-email@example.com">your-email@example.com</a></li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/jekyll"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg> <span class="username">jekyll</span></a></li><li><a href="https://www.twitter.com/jekyllrb"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#twitter"></use></svg> <span class="username">jekyllrb</span></a></li></ul>
+</div>
+
+      <div class="footer-col footer-col-3">
+        <p>Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>

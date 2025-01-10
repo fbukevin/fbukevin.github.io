@@ -1,0 +1,6 @@
+---
+layout: post
+title: "[AWS Elastic Beanstalk] 各平台 Proxy Server List"
+---
+
+<p>完整關於各個平台和版本採用的 Proxy Server 可以在[這裡](<a href="https://docs.aws.amazon.com/zh_cn/elasticbeanstalk/latest/dg/platform-history.html">https://docs.aws.amazon.com/zh_cn/elasticbeanstalk/latest/dg/platform-history.html</a>)找到：</p><h3>Nginx</h3><p>- Nodejs*<br>- Go<br>- Single Container Docker<br>- Java SE<br>- Ruby (看版本使用的 application servrer 可能是 puma 或 passenger，前者居多)</p><h3>Apache</h3><p>- Node.js*<br>- Tomcat<br>- Python<br>- PHP</p><h4>Node.js</h4><p>Node.js 預設是採用 nginx 作為 proxy server，但是官網[文件](<a href="https://docs.aws.amazon.com/zh_cn/elasticbeanstalk/latest/dg/create_deploy_nodejs.container.html">https://docs.aws.amazon.com/zh_cn/elasticbeanstalk/latest/dg/create_deploy_nodejs.container.html</a>)有提到可以利用 Ebextension 來設定改用 Apache 作為反向代理伺服器<br>**.ebextensions/node-settings.config**</p><pre>option_settings:<br>  aws:elasticbeanstalk:container:nodejs: <br>    NodeCommand: “npm start”<br>    ProxyServer: apache<br>    GzipCompression: true<br>  aws:elasticbeanstalk:container:nodejs:staticfiles:<br>    /images: myimages</pre><h3>IIS</h3><p>- Windows Server 上的 .NET</p><img src="https://medium.com/_/stat?event=post.clientViewed&referrerSource=full_rss&postId=3b26879d094" width="1" height="1" alt="">
