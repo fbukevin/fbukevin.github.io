@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>GitHub Copilot on Visual Studio Code | Welcome to Veck&#39;s Program City</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="因為寫了一段 for-loop，覺得有點醜，所以想試試看請 AI 幫我改，雖然已經有安裝 Codeium，但想說 GitHub 的 code base 多，想試試看 GitHub Copilot，個人使用一個月 10 美金也還好，就訂閱下去了。訂閱好後，我想在 Visual Studio Code 中使用，除了要安裝 GitHub Copilot 的套件，接著還要登入 GitHub 帳號，然後點選 VSCode 左邊的「聊天」選項。聊天依據提示，可以直接在檔案中使用內嵌聊天，我先把想請 AI 修改的地方反白，然後就會跳出聊天視窗，沒有跳出來的話，也可以點選旁邊出現的橘色燈泡選擇。輸入希望修改的方式(e.g. 優化)執行輸入的 prompt 後，就會開始動作，修正/建議過程中會一步一步變動，感覺很像在看教學。原本的邏輯 (左) 建議修改後的新邏輯(右)建議的修改完成後，按下「接受」，就可以套用。套用建議修改的邏輯個人心得是覺得蠻厲害的，但就如同 Copilot 自己說的，畢竟是 AI，很可能出錯，建議還是要做驗證跑跑看。">
+    <meta name="generator" content="Hugo 0.139.4">
+    
+    
+    
+      <meta name="robots" content="noindex, nofollow">
+    
+    
+
+    
+<link rel="stylesheet" href="/ananke/css/main.min.css" >
+
+
+
+    
+
+    
+      
+
+    
+
+    
+
+    
+      <link rel="canonical" href="http://localhost:1313/posts/2024-07-12-github-copilot-on-visual-studio-code/">
+    
+
+    <meta property="og:url" content="http://localhost:1313/posts/2024-07-12-github-copilot-on-visual-studio-code/">
+  <meta property="og:site_name" content="Welcome to Veck&#39;s Program City">
+  <meta property="og:title" content="GitHub Copilot on Visual Studio Code">
+  <meta property="og:description" content="因為寫了一段 for-loop，覺得有點醜，所以想試試看請 AI 幫我改，雖然已經有安裝 Codeium，但想說 GitHub 的 code base 多，想試試看 GitHub Copilot，個人使用一個月 10 美金也還好，就訂閱下去了。
+訂閱好後，我想在 Visual Studio Code 中使用，除了要安裝 GitHub Copilot 的套件，接著還要登入 GitHub 帳號，然後點選 VSCode 左邊的「聊天」選項。
+聊天依據提示，可以直接在檔案中使用內嵌聊天，我先把想請 AI 修改的地方反白，然後就會跳出聊天視窗，沒有跳出來的話，也可以點選旁邊出現的橘色燈泡選擇。
+輸入希望修改的方式(e.g. 優化)執行輸入的 prompt 後，就會開始動作，修正/建議過程中會一步一步變動，感覺很像在看教學。
+原本的邏輯 (左) 建議修改後的新邏輯(右)建議的修改完成後，按下「接受」，就可以套用。
+套用建議修改的邏輯個人心得是覺得蠻厲害的，但就如同 Copilot 自己說的，畢竟是 AI，很可能出錯，建議還是要做驗證跑跑看。">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+
+  <meta itemprop="name" content="GitHub Copilot on Visual Studio Code">
+  <meta itemprop="description" content="因為寫了一段 for-loop，覺得有點醜，所以想試試看請 AI 幫我改，雖然已經有安裝 Codeium，但想說 GitHub 的 code base 多，想試試看 GitHub Copilot，個人使用一個月 10 美金也還好，就訂閱下去了。
+訂閱好後，我想在 Visual Studio Code 中使用，除了要安裝 GitHub Copilot 的套件，接著還要登入 GitHub 帳號，然後點選 VSCode 左邊的「聊天」選項。
+聊天依據提示，可以直接在檔案中使用內嵌聊天，我先把想請 AI 修改的地方反白，然後就會跳出聊天視窗，沒有跳出來的話，也可以點選旁邊出現的橘色燈泡選擇。
+輸入希望修改的方式(e.g. 優化)執行輸入的 prompt 後，就會開始動作，修正/建議過程中會一步一步變動，感覺很像在看教學。
+原本的邏輯 (左) 建議修改後的新邏輯(右)建議的修改完成後，按下「接受」，就可以套用。
+套用建議修改的邏輯個人心得是覺得蠻厲害的，但就如同 Copilot 自己說的，畢竟是 AI，很可能出錯，建議還是要做驗證跑跑看。">
+  <meta itemprop="wordCount" content="40">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="GitHub Copilot on Visual Studio Code">
+  <meta name="twitter:description" content="因為寫了一段 for-loop，覺得有點醜，所以想試試看請 AI 幫我改，雖然已經有安裝 Codeium，但想說 GitHub 的 code base 多，想試試看 GitHub Copilot，個人使用一個月 10 美金也還好，就訂閱下去了。
+訂閱好後，我想在 Visual Studio Code 中使用，除了要安裝 GitHub Copilot 的套件，接著還要登入 GitHub 帳號，然後點選 VSCode 左邊的「聊天」選項。
+聊天依據提示，可以直接在檔案中使用內嵌聊天，我先把想請 AI 修改的地方反白，然後就會跳出聊天視窗，沒有跳出來的話，也可以點選旁邊出現的橘色燈泡選擇。
+輸入希望修改的方式(e.g. 優化)執行輸入的 prompt 後，就會開始動作，修正/建議過程中會一步一步變動，感覺很像在看教學。
+原本的邏輯 (左) 建議修改後的新邏輯(右)建議的修改完成後，按下「接受」，就可以套用。
+套用建議修改的邏輯個人心得是覺得蠻厲害的，但就如同 Copilot 自己說的，畢竟是 AI，很可能出錯，建議還是要做驗證跑跑看。">
+
+	
+  </head><body class="ma0 avenir bg-near-white development">
+
+    
+   
+  
+
+  <header>
+    <div class="bg-black">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l justify-between items-center center">
+    <a href="/" class="f3 fw2 hover-white no-underline white-90 dib">
+      
+        Welcome to Veck&#39;s Program City
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+      <div class="ananke-socials"></div>
+
+    </div>
+  </div>
+</nav>
+
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  <article class="flex-l flex-wrap justify-between mw8 center ph3">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked ttu">
+          
+        Posts
+      </aside><div id="sharing" class="mt3 ananke-socials"></div>
+<h1 class="f1 athelas mt3 mb1">GitHub Copilot on Visual Studio Code</h1>
+      
+      
+      
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy serif f4 nested-links mid-gray pr4-l w-two-thirds-l">
+<p>因為寫了一段 for-loop，覺得有點醜，所以想試試看請 AI 幫我改，雖然已經有安裝 Codeium，但想說 GitHub 的 code base 多，想試試看 GitHub Copilot，個人使用一個月 10 美金也還好，就訂閱下去了。</p><p>訂閱好後，我想在 Visual Studio Code 中使用，除了要安裝 GitHub Copilot 的套件，接著還要登入 GitHub 帳號，然後點選 VSCode 左邊的「聊天」選項。</p><figure><img alt="" src="https://cdn-images-1.medium.com/max/55/1*NrE6wRVPd1LD8JA4GjKB2w.png" /><figcaption>聊天</figcaption></figure><p>依據提示，可以直接在檔案中使用內嵌聊天，我先把想請 AI 修改的地方反白，然後就會跳出聊天視窗，沒有跳出來的話，也可以點選旁邊出現的橘色燈泡選擇。</p><figure><img alt="" src="https://cdn-images-1.medium.com/max/1024/1*6BukZAu7NDtMNfXzqT8B6w.png" /><figcaption>輸入希望修改的方式(e.g. 優化)</figcaption></figure><p>執行輸入的 prompt 後，就會開始動作，修正/建議過程中會一步一步變動，感覺很像在看教學。</p><figure><img alt="" src="https://cdn-images-1.medium.com/max/1024/1*p2Zk7NOWXSHz0U1rVcrFGw.png" /><figcaption>原本的邏輯 (左) 建議修改後的新邏輯(右)</figcaption></figure><p>建議的修改完成後，按下「接受」，就可以套用。</p><figure><img alt="" src="https://cdn-images-1.medium.com/max/1024/1*6bhtl53n9BAAfX6bx4qS_A.png" /><figcaption>套用建議修改的邏輯</figcaption></figure><p>個人心得是覺得蠻厲害的，但就如同 Copilot 自己說的，畢竟是 AI，很可能出錯，建議還是要做驗證跑跑看。</p><img src="https://medium.com/_/stat?event=post.clientViewed&referrerSource=full_rss&postId=6808b2404ea6" width="1" height="1" alt="">
+<ul class="pa0">
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3" href="http://localhost:1313/" >
+    &copy;  Welcome to Veck's Program City 2025 
+  </a>
+    <div><div class="ananke-socials"></div>
+</div>
+  </div>
+</footer>
+
+  </body>
+</html>

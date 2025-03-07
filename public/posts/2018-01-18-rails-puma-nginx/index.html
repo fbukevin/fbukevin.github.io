@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>Rails Puma &#43; Nginx 的組合 | Welcome to Veck&#39;s Program City</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="Rails Puma &#43; Nginx 的組合首先要認識一下兩者分別是什麼東西：Puma 是一個專為 Rails 設計的高併發 web serverNginx 是一個廣泛使用的 reverse proxy這個時候可以去查一下什麼事 reverse proxy，就可以發現一張圖說明了兩者之間的關係(Source: wikipedia)所謂的反向代理，是在 server-side 根據 client-side 的 request，向後端的 web server 取得資源，然後再將這些資源 response 給 client-side另外所謂的前向代理，通常是在 client-side 的軟體，例如瀏覽器會代替 client web page (program)去向CDN請求資源使用後端代理伺服器的好處是，假設你有很多個 web server，都統一要由單一入口給 client-side 存取，則可以把存取的工作交給 reverse proxy，例如：Web Server:Home Page Web ServerForum Web ServerWiki Web Server然後你的客戶會連線到 www.my.domain.com，此時應該存取 Home Page Web Server，但當他連線到 www.my.domain.com/forum 時，應該要存取 Forum Web Server，可是如果把你的網域綁定到 Home Page Web Server，就無法另外連線到不同伺服器了，因此可以改用反向代理伺服器，把網域綁定到這台機器上，當反向代理判斷是要存取 Home Page，就會由他向那台伺服器請求資源，而要存取 Forum 時，就另外再向論壇的伺服器請求資源">
+    <meta name="generator" content="Hugo 0.139.4">
+    
+    
+    
+      <meta name="robots" content="noindex, nofollow">
+    
+    
+
+    
+<link rel="stylesheet" href="/ananke/css/main.min.css" >
+
+
+
+    
+
+    
+      
+
+    
+
+    
+
+    
+      <link rel="canonical" href="http://localhost:1313/posts/2018-01-18-rails-puma-nginx/">
+    
+
+    <meta property="og:url" content="http://localhost:1313/posts/2018-01-18-rails-puma-nginx/">
+  <meta property="og:site_name" content="Welcome to Veck&#39;s Program City">
+  <meta property="og:title" content="Rails Puma &#43; Nginx 的組合">
+  <meta property="og:description" content="Rails Puma &#43; Nginx 的組合
+首先要認識一下兩者分別是什麼東西：
+Puma 是一個專為 Rails 設計的高併發 web serverNginx 是一個廣泛使用的 reverse proxy這個時候可以去查一下什麼事 reverse proxy，就可以發現一張圖說明了兩者之間的關係
+(Source: wikipedia)所謂的反向代理，是在 server-side 根據 client-side 的 request，向後端的 web server 取得資源，然後再將這些資源 response 給 client-side
+另外所謂的前向代理，通常是在 client-side 的軟體，例如瀏覽器會代替 client web page (program)去向CDN請求資源
+使用後端代理伺服器的好處是，假設你有很多個 web server，都統一要由單一入口給 client-side 存取，則可以把存取的工作交給 reverse proxy，例如：
+Web Server:
+Home Page Web ServerForum Web ServerWiki Web Server然後你的客戶會連線到 www.my.domain.com，此時應該存取 Home Page Web Server，但當他連線到 www.my.domain.com/forum 時，應該要存取 Forum Web Server，可是如果把你的網域綁定到 Home Page Web Server，就無法另外連線到不同伺服器了，因此可以改用反向代理伺服器，把網域綁定到這台機器上，當反向代理判斷是要存取 Home Page，就會由他向那台伺服器請求資源，而要存取 Forum 時，就另外再向論壇的伺服器請求資源">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+
+  <meta itemprop="name" content="Rails Puma &#43; Nginx 的組合">
+  <meta itemprop="description" content="Rails Puma &#43; Nginx 的組合
+首先要認識一下兩者分別是什麼東西：
+Puma 是一個專為 Rails 設計的高併發 web serverNginx 是一個廣泛使用的 reverse proxy這個時候可以去查一下什麼事 reverse proxy，就可以發現一張圖說明了兩者之間的關係
+(Source: wikipedia)所謂的反向代理，是在 server-side 根據 client-side 的 request，向後端的 web server 取得資源，然後再將這些資源 response 給 client-side
+另外所謂的前向代理，通常是在 client-side 的軟體，例如瀏覽器會代替 client web page (program)去向CDN請求資源
+使用後端代理伺服器的好處是，假設你有很多個 web server，都統一要由單一入口給 client-side 存取，則可以把存取的工作交給 reverse proxy，例如：
+Web Server:
+Home Page Web ServerForum Web ServerWiki Web Server然後你的客戶會連線到 www.my.domain.com，此時應該存取 Home Page Web Server，但當他連線到 www.my.domain.com/forum 時，應該要存取 Forum Web Server，可是如果把你的網域綁定到 Home Page Web Server，就無法另外連線到不同伺服器了，因此可以改用反向代理伺服器，把網域綁定到這台機器上，當反向代理判斷是要存取 Home Page，就會由他向那台伺服器請求資源，而要存取 Forum 時，就另外再向論壇的伺服器請求資源">
+  <meta itemprop="wordCount" content="111">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Rails Puma &#43; Nginx 的組合">
+  <meta name="twitter:description" content="Rails Puma &#43; Nginx 的組合
+首先要認識一下兩者分別是什麼東西：
+Puma 是一個專為 Rails 設計的高併發 web serverNginx 是一個廣泛使用的 reverse proxy這個時候可以去查一下什麼事 reverse proxy，就可以發現一張圖說明了兩者之間的關係
+(Source: wikipedia)所謂的反向代理，是在 server-side 根據 client-side 的 request，向後端的 web server 取得資源，然後再將這些資源 response 給 client-side
+另外所謂的前向代理，通常是在 client-side 的軟體，例如瀏覽器會代替 client web page (program)去向CDN請求資源
+使用後端代理伺服器的好處是，假設你有很多個 web server，都統一要由單一入口給 client-side 存取，則可以把存取的工作交給 reverse proxy，例如：
+Web Server:
+Home Page Web ServerForum Web ServerWiki Web Server然後你的客戶會連線到 www.my.domain.com，此時應該存取 Home Page Web Server，但當他連線到 www.my.domain.com/forum 時，應該要存取 Forum Web Server，可是如果把你的網域綁定到 Home Page Web Server，就無法另外連線到不同伺服器了，因此可以改用反向代理伺服器，把網域綁定到這台機器上，當反向代理判斷是要存取 Home Page，就會由他向那台伺服器請求資源，而要存取 Forum 時，就另外再向論壇的伺服器請求資源">
+
+	
+  </head><body class="ma0 avenir bg-near-white development">
+
+    
+   
+  
+
+  <header>
+    <div class="bg-black">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l justify-between items-center center">
+    <a href="/" class="f3 fw2 hover-white no-underline white-90 dib">
+      
+        Welcome to Veck&#39;s Program City
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+      <div class="ananke-socials"></div>
+
+    </div>
+  </div>
+</nav>
+
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  <article class="flex-l flex-wrap justify-between mw8 center ph3">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked ttu">
+          
+        Posts
+      </aside><div id="sharing" class="mt3 ananke-socials"></div>
+<h1 class="f1 athelas mt3 mb1">Rails Puma &#43; Nginx 的組合</h1>
+      
+      
+      
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy serif f4 nested-links mid-gray pr4-l w-two-thirds-l">
+<p>Rails Puma + Nginx 的組合</p><p>首先要認識一下兩者分別是什麼東西：</p><ul><li>Puma 是一個專為 Rails 設計的高併發 <strong>web server</strong></li><li>Nginx 是一個廣泛使用的 <strong>reverse proxy</strong></li></ul><p>這個時候可以去查一下什麼事 reverse proxy，就可以發現一張圖說明了兩者之間的關係</p><figure><img alt="" src="https://cdn-images-1.medium.com/max/592/1*oITN1VUOhzhcoltdxUh9_g.png" /><figcaption>(Source: wikipedia)</figcaption></figure><p>所謂的反向代理，是在 server-side 根據 client-side 的 request，向後端的 web server 取得資源，然後再將這些資源 response 給 client-side</p><p>另外所謂的前向代理，通常是在 client-side 的軟體，例如瀏覽器會代替 client web page (program)去向CDN請求資源</p><p>使用後端代理伺服器的好處是，假設你有很多個 web server，都統一要由單一入口給 client-side 存取，則可以把存取的工作交給 reverse proxy，例如：</p><p>Web Server:</p><ul><li>Home Page Web Server</li><li>Forum Web Server</li><li>Wiki Web Server</li></ul><p>然後你的客戶會連線到 www.my.domain.com，此時應該存取 Home Page Web Server，但當他連線到 www.my.domain.com/forum 時，應該要存取 Forum Web Server，可是如果把你的網域綁定到 Home Page Web Server，就無法另外連線到不同伺服器了，因此可以改用反向代理伺服器，把網域綁定到這台機器上，當反向代理判斷是要存取 Home Page，就會由他向那台伺服器請求資源，而要存取 Forum 時，就另外再向論壇的伺服器請求資源</p><p>另外，反向代理伺服器還有一些對於網站應用程式來說有很大幫助的功能，例如 <a href="https://en.wikipedia.org/wiki/Load_balancing_(computing)">load balancing</a>、<a href="https://en.wikipedia.org/wiki/Autoscaling">auto-scaling</a>、<a href="https://en.wikipedia.org/wiki/Failover">failover</a> 等</p><p>load balancing 會在流量大增的時候進行分流的動作，例如你有多台 forum web server，平時每天流量上萬，為了確保伺服器能夠穩定運作，不會因為短時間的存取量太大導致伺服器處理不及而癱瘓，就可以設定將一部分的存取流量導向 standby 的那台伺服器</p><p>auto-scaling 則是可以為你正在服務的伺服器自動依據目前的流量或運算量，最大化可以分配的資源，簡單來說，你有一台伺服器的記憶體有 32GB，分配給網頁伺服器的使用量只有 2GB，如果你的網頁服務需要大量運算(例如線上資料處理或機器學習)，很有可能短時間內就把 2GB用完了，因此你可以設定當監測到記憶體快要用罄，系統會自動配置更多的記憶體來應付突發的運算量</p><p>failover 則是為了免除網站服務最擔心的事 — 中斷服務(downtime)，你的伺服器很有可能被 DDoS 攻擊，或是程式有 bug，使用者不小心觸發導致伺服器掛了，這個時候假如你有一台 standby 的伺服器，有設定好 failover 功能，則會在監控到主要伺服器中斷服務的時候，立刻將存取要求導向那台 standby 的伺服器，縮短 downtime 的時間</p><p>說到 DDoS 攻擊，load balancing 或其他相關功能也可以在監控到瞬間變大的流量時，自動將(不正常)流量導向其他地方，就有專門的業者，是提供流量接收的服務，讓一些容易被 DDoS 攻擊的網站服務公司將流量導像他們的伺服器，這個功能的設定也可以在反向代理完成</p><img src="https://medium.com/_/stat?event=post.clientViewed&referrerSource=full_rss&postId=6351c5d4712e" width="1" height="1" alt="">
+<ul class="pa0">
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3" href="http://localhost:1313/" >
+    &copy;  Welcome to Veck's Program City 2025 
+  </a>
+    <div><div class="ananke-socials"></div>
+</div>
+  </div>
+</footer>
+
+  </body>
+</html>

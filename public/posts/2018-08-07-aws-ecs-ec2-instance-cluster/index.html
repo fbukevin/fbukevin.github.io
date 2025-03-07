@@ -1,6 +1,158 @@
----
-layout: post
-title: "[AWS ECS] 將建立的 EC2 instance 加入指定的 Cluster"
----
+<!DOCTYPE html>
+<html lang="en-us">
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>[AWS ECS] 將建立的 EC2 instance 加入指定的 Cluster | Welcome to Veck&#39;s Program City</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="要使用 ECS，需要先有 Cluster，然後才在 Cluster 中建立 Containers，在 Container 中才去開 task 運行服務Create Cluster先到 ECS 的介面，選擇 Cluster 去建立一個新的 Cluster，Cluster name 輸入完以後可以直接建立不填寫其他項目的話勾選 Create an empty cluster如此會建立一個不含任何 container instance 的 cluster如果建立的不是 empty cluster，則預設會建立個 EC2 instance 到這個 cluster可以發現後面也是用到 CloudFormation 來建構基礎架構Launch Container Instance into clusterhttp://docs.aws.amazon.com/AmazonECS/latest/developerguide/launch_container_instance.html這裡我們直接到 EC2 console 去建立一個 instance，其中在 Step 3: Configure Instance Details 的地方：1. 在 IAM 選 ecsInstanceRole2. 在下面的 Advanced Details 設定 User data">
+    <meta name="generator" content="Hugo 0.139.4">
+    
+    
+    
+      <meta name="robots" content="noindex, nofollow">
+    
+    
 
+    
+<link rel="stylesheet" href="/ananke/css/main.min.css" >
+
+
+
+    
+
+    
+      
+
+    
+
+    
+
+    
+      <link rel="canonical" href="http://localhost:1313/posts/2018-08-07-aws-ecs-ec2-instance-cluster/">
+    
+
+    <meta property="og:url" content="http://localhost:1313/posts/2018-08-07-aws-ecs-ec2-instance-cluster/">
+  <meta property="og:site_name" content="Welcome to Veck&#39;s Program City">
+  <meta property="og:title" content="[AWS ECS] 將建立的 EC2 instance 加入指定的 Cluster">
+  <meta property="og:description" content="要使用 ECS，需要先有 Cluster，然後才在 Cluster 中建立 Containers，在 Container 中才去開 task 運行服務
+Create Cluster先到 ECS 的介面，選擇 Cluster 去建立一個新的 Cluster，Cluster name 輸入完以後可以直接建立
+不填寫其他項目的話勾選 Create an empty cluster
+如此會建立一個不含任何 container instance 的 cluster
+如果建立的不是 empty cluster，則預設會建立個 EC2 instance 到這個 cluster
+可以發現後面也是用到 CloudFormation 來建構基礎架構
+Launch Container Instance into clusterhttp://docs.aws.amazon.com/AmazonECS/latest/developerguide/launch_container_instance.html
+這裡我們直接到 EC2 console 去建立一個 instance，其中在 Step 3: Configure Instance Details 的地方：
+1. 在 IAM 選 ecsInstanceRole
+2. 在下面的 Advanced Details 設定 User data">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+
+  <meta itemprop="name" content="[AWS ECS] 將建立的 EC2 instance 加入指定的 Cluster">
+  <meta itemprop="description" content="要使用 ECS，需要先有 Cluster，然後才在 Cluster 中建立 Containers，在 Container 中才去開 task 運行服務
+Create Cluster先到 ECS 的介面，選擇 Cluster 去建立一個新的 Cluster，Cluster name 輸入完以後可以直接建立
+不填寫其他項目的話勾選 Create an empty cluster
+如此會建立一個不含任何 container instance 的 cluster
+如果建立的不是 empty cluster，則預設會建立個 EC2 instance 到這個 cluster
+可以發現後面也是用到 CloudFormation 來建構基礎架構
+Launch Container Instance into clusterhttp://docs.aws.amazon.com/AmazonECS/latest/developerguide/launch_container_instance.html
+這裡我們直接到 EC2 console 去建立一個 instance，其中在 Step 3: Configure Instance Details 的地方：
+1. 在 IAM 選 ecsInstanceRole
+2. 在下面的 Advanced Details 設定 User data">
+  <meta itemprop="wordCount" content="585">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="[AWS ECS] 將建立的 EC2 instance 加入指定的 Cluster">
+  <meta name="twitter:description" content="要使用 ECS，需要先有 Cluster，然後才在 Cluster 中建立 Containers，在 Container 中才去開 task 運行服務
+Create Cluster先到 ECS 的介面，選擇 Cluster 去建立一個新的 Cluster，Cluster name 輸入完以後可以直接建立
+不填寫其他項目的話勾選 Create an empty cluster
+如此會建立一個不含任何 container instance 的 cluster
+如果建立的不是 empty cluster，則預設會建立個 EC2 instance 到這個 cluster
+可以發現後面也是用到 CloudFormation 來建構基礎架構
+Launch Container Instance into clusterhttp://docs.aws.amazon.com/AmazonECS/latest/developerguide/launch_container_instance.html
+這裡我們直接到 EC2 console 去建立一個 instance，其中在 Step 3: Configure Instance Details 的地方：
+1. 在 IAM 選 ecsInstanceRole
+2. 在下面的 Advanced Details 設定 User data">
+
+	
+  </head><body class="ma0 avenir bg-near-white development">
+
+    
+   
+  
+
+  <header>
+    <div class="bg-black">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l justify-between items-center center">
+    <a href="/" class="f3 fw2 hover-white no-underline white-90 dib">
+      
+        Welcome to Veck&#39;s Program City
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+      <div class="ananke-socials"></div>
+
+    </div>
+  </div>
+</nav>
+
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  <article class="flex-l flex-wrap justify-between mw8 center ph3">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked ttu">
+          
+        Posts
+      </aside><div id="sharing" class="mt3 ananke-socials"></div>
+<h1 class="f1 athelas mt3 mb1">[AWS ECS] 將建立的 EC2 instance 加入指定的 Cluster</h1>
+      
+      
+      
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy serif f4 nested-links mid-gray pr4-l w-two-thirds-l">
 <p>要使用 ECS，需要先有 Cluster，然後才在 Cluster 中建立 Containers，在 Container 中才去開 task 運行服務</p><h3><strong>Create Cluster</strong></h3><p>先到 ECS 的介面，選擇 Cluster 去建立一個新的 Cluster，Cluster name 輸入完以後可以直接建立</p><p>不填寫其他項目的話勾選 Create an empty cluster</p><figure><img alt="" src="https://cdn-images-1.medium.com/max/1024/1*XhTr6YUrwfo5qUrlKfRdMw.png" /></figure><p>如此會建立一個不含任何 container instance 的 cluster</p><figure><img alt="" src="https://cdn-images-1.medium.com/max/1024/1*jhlCRNpwN07E3lau8XgxaA.png" /></figure><p>如果建立的不是 empty cluster，則預設會建立個 EC2 instance 到這個 cluster</p><figure><img alt="" src="https://cdn-images-1.medium.com/max/1024/1*Uw-UYNLy_vts6u1jByPqLw.png" /></figure><p>可以發現後面也是用到 CloudFormation 來建構基礎架構</p><figure><img alt="" src="https://cdn-images-1.medium.com/max/1024/1*6YLQrrnSi9eBOS23c3N-dQ.png" /></figure><h3>Launch Container Instance into cluster</h3><p><a href="http://docs.aws.amazon.com/AmazonECS/latest/developerguide/launch_container_instance.html">http://docs.aws.amazon.com/AmazonECS/latest/developerguide/launch_container_instance.html</a></p><p>這裡我們直接到 EC2 console 去建立一個 instance，其中在 Step 3: Configure Instance Details 的地方：</p><p>1. 在 IAM 選 ecsInstanceRole</p><p>2. 在下面的 Advanced Details 設定 User data</p><pre>#!/bin/bash<br>echo ECS_CLUSTER=[CLUSTER_NAME] &gt;&gt; /etc/ecs/ecs.config # 不可以寫成 ecs_config 喔！</pre><p>這邊只要一個地方寫錯，就會自動變成開到 default cluster (原本沒有 default cluster 就會自動建立一個)，而不是我們自己開的 cluster</p><figure><img alt="" src="https://cdn-images-1.medium.com/max/998/1*sbxYx6XCCSc7fWmgApX7KA.png" /></figure><ul><li>Windows 的話是：</li></ul><pre>shell<br>&lt;powershell&gt;<br>Import-Module ECSTools<br>Initialize-ECSAgent -Cluster ‘[CLUSTER_NAME]’ -EnableTaskIAMRole<br>&lt;/powershell&gt;</pre><p>接著就一路 launch</p><h4>NOTICE 1</h4><p>etc/ecs/ecs.confog 這是 Optimized Linux 已經開好的檔案[由安裝 ecs-init 建立)，使用別的 AMI 建立的 instance 沒有這個檔案，所以如果是其他 AMI 得話這步驟可以跳過，啟動 instance 後在 `sudo start ecs`[1] 之前再自己去建立並且填入資料</p><h4>NOTICE 2</h4><p>正常來說應該這樣就會在 Cluster 那邊見到有一個 Registered Container instances 了，但是卻沒有</p><figure><img alt="" src="https://cdn-images-1.medium.com/max/1024/1*HhbPnkZmUjN5RZFgse0UUA.png" /></figure><p>Troubleshooting 的方式我們可以先 ssh 進去這個 instance</p><p>照理來說應該已經註冊了</p><p>我們去看 /var/log/ecs/ecs-init.log</p><pre>bash<br>[ec2-user@ip-172–31–20–243 ~]$ cat /var/log/ecs/ecs-init.log<br>2017–11–21T09:07:12Z [INFO] Starting Amazon EC2 Container Service Agent<br>2017–11–21T09:07:14Z [INFO] Agent exited with code 1<br>2017–11–21T09:07:14Z [INFO] Container name: /ecs-agent<br>2017–11–21T09:07:14Z [INFO] Removing existing agent container ID: 3c5290616ea532736f2d8d02465b223a0d148eea4741b3453b7381f3ff563f26<br>2017–11–21T09:07:14Z [INFO] Starting Amazon EC2 Container Service Agent<br>2017–11–21T09:07:15Z [INFO] Agent exited with code 1<br>2017–11–21T09:07:15Z [INFO] Container name: /ecs-agent<br>2017–11–21T09:07:15Z [INFO] Removing existing agent container ID: 2f946d1903237e5380387032faef443e6a649e11f1066e7bceb7257420321949<br>2017–11–21T09:07:15Z [INFO] Starting Amazon EC2 Container Service Agent<br>2017–11–21T09:07:15Z [INFO] Agent exited with code 1<br>2017–11–21T09:07:15Z [INFO] Container name: /ecs-agent<br>2017–11–21T09:07:15Z [INFO] Removing existing agent container ID: 7d68f5125d14e73b820ce1eeef48f933c564e6ced416512ce7728ee61154ce2c<br>2017–11–21T09:07:15Z [INFO] Starting Amazon EC2 Container Service Agent<br>2017–11–21T09:07:16Z [INFO] Agent exited with code 1<br>2017–11–21T09:07:16Z [INFO] Container name: /ecs-agent<br>2017–11–21T09:07:16Z [INFO] Removing existing agent container ID: 8f69f81fa411317e28864da8a536b031cc2cc1bfbc6936400eb8e8b44abed603<br>2017–11–21T09:07:16Z [INFO] Starting Amazon EC2 Container Service Agent<br>.<br>.<br>.<br></pre><p>可以發現一直是以 code 1 結束 (return 0 才是正常結束)，接著我們去看 agent log：</p><pre>$ [ec2-user@ip-172–31–20–243 ~]$ cat /var/log/ecs/ecs-agent.log.2017–11–21–09<br>For verbose messaging see aws.Config.CredentialsChainVerboseErrors<br>2017–11–21T09:11:50Z [INFO] Registering Instance with ECS<br>2017–11–21T09:11:50Z [ERROR] Could not register: NoCredentialProviders: no valid providers in chain. Deprecated.<br>For verbose messaging see aws.Config.CredentialsChainVerboseErrors<br>2017–11–21T09:11:50Z [CRITICAL] Could not create cluster: NoCredentialProviders: no valid providers in chain. Deprecated.<br>For verbose messaging see aws.Config.CredentialsChainVerboseErrors<br>2017–11–21T09:11:50Z [ERROR] Error registering: NoCredentialProviders: no valid providers in chain. Deprecated.<br>For verbose messaging see aws.Config.CredentialsChainVerboseErrors<br>2017–11–21T09:11:51Z [INFO] Loading configuration<br>2017–11–21T09:11:51Z [INFO] Loading state! module=”statemanager”<br>2017–11–21T09:11:51Z [INFO] Event stream ContainerChange start listening…<br>2017–11–21T09:11:51Z [WARN] Error getting valid credentials (AKID ): NoCredentialProviders: no valid providers in chain. Deprecated.<br>For verbose messaging see aws.Config.CredentialsChainVerboseErrors<br>2017–11–21T09:11:51Z [INFO] Registering Instance with ECS<br>2017–11–21T09:11:51Z [ERROR] Could not register: NoCredentialProviders: no valid providers in chain. Deprecated.<br>For verbose messaging see aws.Config.CredentialsChainVerboseErrors<br>2017–11–21T09:11:51Z [CRITICAL] Could not create cluster: NoCredentialProviders: no valid providers in chain. Deprecated.<br>For verbose messaging see aws.Config.CredentialsChainVerboseErrors<br>2017–11–21T09:11:51Z [ERROR] Error registering: NoCredentialProviders: no valid providers in chain. Deprecated.<br>For verbose messaging see aws.Config.CredentialsChainVerboseErrors<br>.<br>.<br>.</pre><p>一直都是 CredntialsChainVerboseErrors，就知道是權限沒有給，要到 EC2 去 Attach IAM Role `ecsInstancerole`</p><figure><img alt="" src="https://cdn-images-1.medium.com/max/1024/1*v2xmKp0u6DrSS8S_HJNZdw.png" /></figure><figure><img alt="" src="https://cdn-images-1.medium.com/max/1024/1*Kyony99_5VF8gcImjmPwnQ.png" /></figure><p>attach 後 cluster 那邊馬上就會更新了</p><figure><img alt="" src="https://cdn-images-1.medium.com/max/1024/1*L-0EB-2KwXB2GHbb9n18ug.png" /></figure><h4>NOTICE 3</h4><p>如果是用一般的 AMI 起的 EC2 instance，到了 attach IAM role 完還是會沒有出現在 ECS cluster 中，這就是為什麼推薦使用 ECS optimized AMI 的原因</p><p>EC2 instance 要成為 Container instance 跑在 ECS 能管得到的 cluster 上，需要再 instance 中安裝 ECS agent，因為這個 AMI 已經安裝好 ECS agent，這樣你就不需要自己安裝 agent 了</p><p>**Use non-ECS optimized Amazon Linux AMI 起 Instance 加入 Cluster 完整步驟**</p><p>參考 Install ECS agent (both Amazon Linux or non-Amazon Linux) — <a href="https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-agent-install.html">https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-agent-install.html</a></p><p>1. 以一般方式起 Instance<br>2. 到 EC2 console 將 ecsInstanceRole 這個 IAM policy attach 到這個 instance<br>3. 連線進入這個 EC2 instance<br>4. sudo yum install -y ecs-init<br>5. touch /etc/ecs/ecs.config，然後 vim /etc/ecs/ecs.config 並且填入 ECS_CLUSTER=&lt;指定的 cluster name&gt;<br>6. sudo service docker start<br>7. sudo start ecs</p><h4>NOTICE 4</h4><p>Windows 的 EC2 instance 註冊到 Cluster 需要一段時間 (5~10 min)</p><h4>ecsInstanceRole IAM Role</h4><pre>{<br> “Version”: “2012–10–17”,<br> “Statement”: [<br> {<br> “Effect”: “Allow”,<br> “Action”: [<br> “ecs:CreateCluster”,<br> “ecs:DeregisterContainerInstance”,<br> “ecs:DiscoverPollEndpoint”,<br> “ecs:Poll”,<br> “ecs:RegisterContainerInstance”,<br> “ecs:StartTelemetrySession”,<br> “ecs:Submit*”,<br> “ecr:GetAuthorizationToken”,<br> “ecr:BatchCheckLayerAvailability”,<br> “ecr:GetDownloadUrlForLayer”,<br> “ecr:BatchGetImage”,<br> “logs:CreateLogStream”,<br> “logs:PutLogEvents”<br> ],<br> “Resource”: “*”<br> }<br> ]<br>}</pre><img src="https://medium.com/_/stat?event=post.clientViewed&referrerSource=full_rss&postId=a947d950c208" width="1" height="1" alt="">
+<ul class="pa0">
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3" href="http://localhost:1313/" >
+    &copy;  Welcome to Veck's Program City 2025 
+  </a>
+    <div><div class="ananke-socials"></div>
+</div>
+  </div>
+</footer>
+
+  </body>
+</html>
