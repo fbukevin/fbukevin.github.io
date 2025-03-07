@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en-us">
-  <head>
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=80&amp;path=livereload" data-no-instant defer></script>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     
@@ -11,12 +11,12 @@
     
     
     
-      <meta name="robots" content="index, follow">
+      <meta name="robots" content="noindex, nofollow">
     
     
 
     
-<link rel="stylesheet" href="/ananke/css/main.min.d05fb5f317fcf33b3a52936399bdf6f47dc776516e1692e412ec7d76f4a5faa2.css" >
+<link rel="stylesheet" href="/ananke/css/main.min.css" >
 
 
 
@@ -35,10 +35,10 @@
     
 
     
-      <link rel="canonical" href="http://veck.im/">
+      <link rel="canonical" href="http://localhost:80/">
     
 
-    <meta property="og:url" content="http://veck.im/">
+    <meta property="og:url" content="http://localhost:80/">
   <meta property="og:site_name" content="Welcome to Veck&#39;s Program City">
   <meta property="og:title" content="Welcome to Veck&#39;s Program City">
   <meta property="og:locale" content="en_us">
@@ -50,10 +50,8 @@
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Welcome to Veck&#39;s Program City">
 
-      
-    
 	
-  </head><body class="ma0 avenir bg-near-white production">
+  </head><body class="ma0 avenir bg-near-white development">
 
     
 
@@ -124,6 +122,36 @@
       
       <div class="blah w-100">
         <h1 class="f3 fw1 athelas mt0 lh-title">
+          <a href="/posts/2025-03-07-datadog-agent-test/" class="color-inherit dim link">
+            Datadog Agent Test
+            </a>
+        </h1>
+        <div class="f6 f5-l lh-copy nested-copy-line-height nested-links">
+          <ol>
+<li>安裝 Datadog Agent on macOS: <a href="https://docs.datadoghq.com/agent/basic_agent_usage/osx/">https://docs.datadoghq.com/agent/basic_agent_usage/osx/</a></li>
+<li>安裝 Datadog dogshell on macOS: <a href="https://docs.datadoghq.com/developers/guide/dogshell/">https://docs.datadoghq.com/developers/guide/dogshell/</a></li>
+</ol>
+<p>安裝好以後確認一下 dogshell 有正常運作</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>datadog-agent status
+</span></span></code></pre></div><p><img src="/images/screenshot_20250206140009.png" alt=""></p>
+        </div>
+          <a href="/posts/2025-03-07-datadog-agent-test/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">閱讀更多...</a>
+        
+      </div>
+    </div>
+  </div>
+</article>
+
+            </div>
+          
+            <div class="relative w-100 mb4">
+              
+<article class="bb b--black-10">
+  <div class="db pv4 ph3 ph0-l no-underline dark-gray">
+    <div class="flex flex-column flex-row-ns">
+      
+      <div class="blah w-100">
+        <h1 class="f3 fw1 athelas mt0 lh-title">
           <a href="/posts/2025-01-10-mend-cli/" class="color-inherit dim link">
             安裝 Mend CLI
             </a>
@@ -170,36 +198,18 @@
 
             </div>
           
-            <div class="relative w-100 mb4">
-              
-<article class="bb b--black-10">
-  <div class="db pv4 ph3 ph0-l no-underline dark-gray">
-    <div class="flex flex-column flex-row-ns">
-      
-      <div class="blah w-100">
-        <h1 class="f3 fw1 athelas mt0 lh-title">
-          <a href="/posts/2018-08-07-openstack-devstack-aws-ec2-linux-openstack/" class="color-inherit dim link">
-            [OpenStack] 透過 DevStack 在 AWS EC2 Linux 上安裝 OpenStack
-            </a>
-        </h1>
-        <div class="f6 f5-l lh-copy nested-copy-line-height nested-links">
-          <ol><li>Create a EC2 instance and login</li><li>Create a stack user</li></ol><pre>$ sudo useradd -s /bin/bash -d /opt/stack -m stack<br>$ echo “stack ALL=(ALL) NOPASSWD: ALL” | sudo tee /etc/sudoers.d/stack<br>$ sudo su — stack</pre><p>3. Download DevStack</p><pre>git clone https://git.openstack.org/openstack-dev/devstack</pre><p>4. create a local.conf in project</p><pre>cd devstack<br>vim local.conf</pre><p>然後</p><pre>[[local|localrc]]<br>ADMIN_PASSWORD=secret<br>DATABASE_PASSWORD=$ADMIN_PASSWORD<br>RABBIT_PASSWORD=$ADMIN_PASSWORD<br>SERVICE_PASSWORD=$ADMIN_PASSWORD</pre><p>5. start the install: ./stack.sh. This will take a 15–20 mins. Once the installation done, all is done.</p><pre>=========================<br>DevStack Component Timing<br> (times are in seconds) <br>=========================<br>run_process 15<br>test_with_retry 2<br>apt-get-update 12<br>pip_install 287<br>osc 112<br>wait_for_service 15<br>git_timed 193<br>dbsync 23<br>apt-get 265<br> — — — — — — — — — — — — -<br>Unaccounted time 341<br>=========================<br>Total runtime 1265</pre><pre>This is your host IP address: 172.31.21.104<br>This is your host IPv6 address: ::1<br>Horizon is now available at <a href="http://172.31.21.104/dashboard">http://172.31.21.104/dashboard</a><br>Keystone is serving at <a href="http://172.31.21.104/identity/">http://172.31.21.104/identity/</a><br>The default users are: admin and demo<br>The password: secret</pre><pre>WARNING: <br>Using lib/neutron-legacy is deprecated, and it will be removed in the future</pre><pre>Services are running under systemd unit files.<br>For more information see: <br><a href="https://docs.openstack.org/devstack/latest/systemd.html">https://docs.openstack.org/devstack/latest/systemd.html</a></pre><pre>DevStack Version: queens<br>Change: 28b4be186105888b72300d27166deb771857df06 Merge “Make stackenv file visible” 2018–01–03 23:19:46 +0000<br>OS Version: Ubuntu 16.04 xenial</pre><pre>2018–01–08 05:30:33.155 | stack.sh completed in 1265 seconds.</pre><p>最後完成的訊息就這樣，就算完成安裝了</p>
-        </div>
-          <a href="/posts/2018-08-07-openstack-devstack-aws-ec2-linux-openstack/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
-        
-      </div>
-    </div>
-  </div>
-</article>
-
-            </div>
-          
         </section>
 
         
         <section class="w-100">
           <h1 class="f3">More</h1>
           
+          
+            <h2 class="f5 fw4 mb4 dib mr3">
+              <a href="/posts/2018-08-07-openstack-devstack-aws-ec2-linux-openstack/" class="link black dim">
+                [OpenStack] 透過 DevStack 在 AWS EC2 Linux 上安裝 OpenStack
+              </a>
+            </h2>
           
             <h2 class="f5 fw4 mb4 dib mr3">
               <a href="/posts/2018-08-07-ruby-on-rails-rails-puma-nginx/" class="link black dim">
@@ -219,12 +229,6 @@
               </a>
             </h2>
           
-            <h2 class="f5 fw4 mb4 dib mr3">
-              <a href="/posts/2024-07-12-github-copilot-on-visual-studio-code/" class="link black dim">
-                GitHub Copilot on Visual Studio Code
-              </a>
-            </h2>
-          
 
           
           
@@ -240,7 +244,7 @@
     </main>
     <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
   <div class="flex justify-between">
-  <a class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3" href="http://veck.im/" >
+  <a class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3" href="http://localhost:80/" >
     &copy;  Welcome to Veck's Program City 2025 
   </a>
     <div><div class="ananke-socials"></div>

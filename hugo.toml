@@ -2,3 +2,11 @@ baseURL = 'http://veck.im/'
 languageCode = 'en-us'
 title = "Welcome to Veck's Program City"
 theme = 'ananke'
+
+[[module.mounts]]
+source = 'static'
+target = 'static'
+
+[[module.mounts]]
+source = 'images'
+target = 'static/images'
