@@ -119,6 +119,75 @@
   <div class="bg-white mb3 pa4 gray overflow-hidden">
     <span class="f6 db">Posts</span>
     <h1 class="f3 near-black">
+      <a href="/posts/2025-02-06-snyk-cli-test/" class="link black dim">
+        Snyk Cli Test
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      <p>安裝 Snyk CLI: <a href="https://docs.snyk.io/snyk-cli">https://docs.snyk.io/snyk-cli</a>
+<img src="/images/screenshot_20250206131633.png" alt=""></p>
+<p>Lần một scan dependencies:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>linh git:<span style="color:#f92672">(</span>develop<span style="color:#f92672">)</span> ✗ snyk test
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Testing /Users/fbukevin/Desktop/SanityRover/VNProject/linh...
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Tested <span style="color:#ae81ff">93</span> dependencies <span style="color:#66d9ef">for</span> known issues, found <span style="color:#ae81ff">7</span> issues, <span style="color:#ae81ff">378</span> vulnerable paths.
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Issues to fix by upgrading:
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  Upgrade rails@7.2.2 to rails@7.2.2.1 to fix
+</span></span><span style="display:flex;"><span>  ✗ Cross-site Scripting <span style="color:#f92672">(</span>XSS<span style="color:#f92672">)</span> <span style="color:#f92672">[</span>Low Severity<span style="color:#f92672">][</span>https://security.snyk.io/vuln/SNYK-RUBY-ACTIONPACK-8496389<span style="color:#f92672">]</span> in actionpack@7.2.2
+</span></span><span style="display:flex;"><span>    introduced by importmap-rails@2.0.3 &gt; actionpack@7.2.2 and <span style="color:#ae81ff">18</span> other path<span style="color:#f92672">(</span>s<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Issues with no direct upgrade or patch:
+</span></span><span style="display:flex;"><span>  ✗ Cross-site Scripting <span style="color:#f92672">(</span>XSS<span style="color:#f92672">)</span> <span style="color:#f92672">[</span>Low Severity<span style="color:#f92672">][</span>https://security.snyk.io/vuln/SNYK-RUBY-NOKOGIRI-8453714<span style="color:#f92672">]</span> in nokogiri@1.16.7-x86_64-linux
+</span></span><span style="display:flex;"><span>    introduced by capybara@3.40.0 &gt; nokogiri@1.16.7-x86_64-linux and <span style="color:#ae81ff">148</span> other path<span style="color:#f92672">(</span>s<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>  This issue was fixed in versions: 1.15.7, 1.16.8
+</span></span><span style="display:flex;"><span>  ✗ Cross-site Scripting <span style="color:#f92672">(</span>XSS<span style="color:#f92672">)</span> <span style="color:#f92672">[</span>Low Severity<span style="color:#f92672">][</span>https://security.snyk.io/vuln/SNYK-RUBY-RAILSHTMLSANITIZER-8447886<span style="color:#f92672">]</span> in rails-html-sanitizer@1.6.0
+</span></span><span style="display:flex;"><span>    introduced by jbuilder@2.13.0 &gt; actionview@7.2.2 &gt; rails-html-sanitizer@1.6.0 and <span style="color:#ae81ff">41</span> other path<span style="color:#f92672">(</span>s<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>  This issue was fixed in versions: 1.6.1
+</span></span><span style="display:flex;"><span>  ✗ Cross-site Scripting <span style="color:#f92672">(</span>XSS<span style="color:#f92672">)</span> <span style="color:#f92672">[</span>Low Severity<span style="color:#f92672">][</span>https://security.snyk.io/vuln/SNYK-RUBY-RAILSHTMLSANITIZER-8448218<span style="color:#f92672">]</span> in rails-html-sanitizer@1.6.0
+</span></span><span style="display:flex;"><span>    introduced by jbuilder@2.13.0 &gt; actionview@7.2.2 &gt; rails-html-sanitizer@1.6.0 and <span style="color:#ae81ff">41</span> other path<span style="color:#f92672">(</span>s<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>  This issue was fixed in versions: 1.6.1
+</span></span><span style="display:flex;"><span>  ✗ Cross-site Scripting <span style="color:#f92672">(</span>XSS<span style="color:#f92672">)</span> <span style="color:#f92672">[</span>Low Severity<span style="color:#f92672">][</span>https://security.snyk.io/vuln/SNYK-RUBY-RAILSHTMLSANITIZER-8448407<span style="color:#f92672">]</span> in rails-html-sanitizer@1.6.0
+</span></span><span style="display:flex;"><span>    introduced by jbuilder@2.13.0 &gt; actionview@7.2.2 &gt; rails-html-sanitizer@1.6.0 and <span style="color:#ae81ff">41</span> other path<span style="color:#f92672">(</span>s<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>  This issue was fixed in versions: 1.6.1
+</span></span><span style="display:flex;"><span>  ✗ Cross-site Scripting <span style="color:#f92672">(</span>XSS<span style="color:#f92672">)</span> <span style="color:#f92672">[</span>Low Severity<span style="color:#f92672">][</span>https://security.snyk.io/vuln/SNYK-RUBY-RAILSHTMLSANITIZER-8448516<span style="color:#f92672">]</span> in rails-html-sanitizer@1.6.0
+</span></span><span style="display:flex;"><span>    introduced by jbuilder@2.13.0 &gt; actionview@7.2.2 &gt; rails-html-sanitizer@1.6.0 and <span style="color:#ae81ff">41</span> other path<span style="color:#f92672">(</span>s<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>  This issue was fixed in versions: 1.6.1
+</span></span><span style="display:flex;"><span>  ✗ Cross-site Scripting <span style="color:#f92672">(</span>XSS<span style="color:#f92672">)</span> <span style="color:#f92672">[</span>Low Severity<span style="color:#f92672">][</span>https://security.snyk.io/vuln/SNYK-RUBY-RAILSHTMLSANITIZER-8454495<span style="color:#f92672">]</span> in rails-html-sanitizer@1.6.0
+</span></span><span style="display:flex;"><span>    introduced by jbuilder@2.13.0 &gt; actionview@7.2.2 &gt; rails-html-sanitizer@1.6.0 and <span style="color:#ae81ff">41</span> other path<span style="color:#f92672">(</span>s<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>  This issue was fixed in versions: 1.6.1
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Organization:      fbukevin-FPhSMNT7C9DhHAcUYLkoSx
+</span></span><span style="display:flex;"><span>Package manager:   rubygems
+</span></span><span style="display:flex;"><span>Target file:       Gemfile
+</span></span><span style="display:flex;"><span>Project name:      linh
+</span></span><span style="display:flex;"><span>Open source:       no
+</span></span><span style="display:flex;"><span>Project path:      /Users/fbukevin/Desktop/SanityRover/VNProject/linh
+</span></span><span style="display:flex;"><span>Licenses:          enabled
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Tip: Detected multiple supported manifests <span style="color:#f92672">(</span>1<span style="color:#f92672">)</span>, use --all-projects to scan all of them at once.
+</span></span></code></pre></div><p><img src="/images/screenshot_20250206132040.png" alt="">
+<img src="/images/screenshot_20250206132047.png" alt="">
+<img src="/images/screenshot_20250206132114.png" alt="">
+<img src="/images/screenshot_20250206132144.png" alt=""></p>
+    </div>
+    <a href="/posts/2025-02-06-snyk-cli-test/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+  </div>
+</div>
+
+        </div>
+      
+        <div class="relative w-100 w-30-l mb4 bg-white">
+          <div class="relative w-100 mb4 bg-white nested-copy-line-height">
+  <div class="bg-white mb3 pa4 gray overflow-hidden">
+    <span class="f6 db">Posts</span>
+    <h1 class="f3 near-black">
       <a href="/posts/2025-01-10-mend-cli/" class="link black dim">
         安裝 Mend CLI
       </a>
@@ -259,24 +328,6 @@
       <p>Rails Puma + Nginx 的組合</p><p>首先要認識一下兩者分別是什麼東西：</p><ul><li>Puma 是一個專為 Rails 設計的高併發 <strong>web server</strong></li><li>Nginx 是一個廣泛使用的 <strong>reverse proxy</strong></li></ul><p>這個時候可以去查一下什麼事 reverse proxy，就可以發現一張圖說明了兩者之間的關係</p><figure><img alt="" src="https://cdn-images-1.medium.com/max/592/1*oITN1VUOhzhcoltdxUh9_g.png" /><figcaption>(Source: wikipedia)</figcaption></figure><p>所謂的反向代理，是在 server-side 根據 client-side 的 request，向後端的 web server 取得資源，然後再將這些資源 response 給 client-side</p><p>另外所謂的前向代理，通常是在 client-side 的軟體，例如瀏覽器會代替 client web page (program)去向CDN請求資源</p><p>使用後端代理伺服器的好處是，假設你有很多個 web server，都統一要由單一入口給 client-side 存取，則可以把存取的工作交給 reverse proxy，例如：</p><p>Web Server:</p><ul><li>Home Page Web Server</li><li>Forum Web Server</li><li>Wiki Web Server</li></ul><p>然後你的客戶會連線到 www.my.domain.com，此時應該存取 Home Page Web Server，但當他連線到 www.my.domain.com/forum 時，應該要存取 Forum Web Server，可是如果把你的網域綁定到 Home Page Web Server，就無法另外連線到不同伺服器了，因此可以改用反向代理伺服器，把網域綁定到這台機器上，當反向代理判斷是要存取 Home Page，就會由他向那台伺服器請求資源，而要存取 Forum 時，就另外再向論壇的伺服器請求資源</p>
     </div>
     <a href="/posts/2018-01-18-rails-puma-nginx/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
-  </div>
-</div>
-
-        </div>
-      
-        <div class="relative w-100 w-30-l mb4 bg-white">
-          <div class="relative w-100 mb4 bg-white nested-copy-line-height">
-  <div class="bg-white mb3 pa4 gray overflow-hidden">
-    <span class="f6 db">Posts</span>
-    <h1 class="f3 near-black">
-      <a href="/posts/2021-03-17-iphone-macbook/" class="link black dim">
-        昨天出去跑步時發生兩耳只有一耳接得上，回來後電腦也是，而且會有左邊接上右邊就斷，反之亦然，藍芽關掉或是忘記此裝置後重新連線(閃白燈)都沒用，甚至發生左邊接上 iPhone 右邊接上 MacBook…
-      </a>
-    </h1>
-    <div class="nested-links f5 lh-copy nested-copy-line-height">
-      <p>昨天出去跑步時發生兩耳只有一耳接得上，回來後電腦也是，而且會有左邊接上右邊就斷，反之亦然，藍芽關掉或是忘記此裝置後重新連線(閃白燈)都沒用，甚至發生左邊接上 iPhone 右邊接上 MacBook 同時兩個不同音源的現象，而且假這先讓一邊接上裝置了，這邊會時不時出現中斷或雜音干擾，就好像裝置一直試圖在重新接上另一耳。</p><p>睡前想說放棄了，起床後再上網找一下資料，這次直接只看 Apple 官網的一份技術<a href="https://support.apple.com/zh-tw/HT209463">支援文件</a>，一樣四個步驟：</p><ol><li><strong>將 AirPods 放入充電盒</strong>：關上盒蓋。等待 30 秒，然後打開盒蓋。</li><li><strong>忘記此裝置設定</strong>：在 iPhone、iPad 或 iPod touch 上，前往「設定」&gt;「藍牙」，點一下 AirPods 旁的「i」圖像。然後點一下「忘記此裝置設定」，再點一下以確認。</li><li><strong>重置 AirPods</strong>：在盒蓋打開的情況下，按住充電盒背面的設定按鈕約 15 秒，直到狀態指示燈閃爍琥珀色。</li><li><strong>重新連線 AirPods</strong>：在盒蓋打開的情況下，將 AirPods 放在靠近裝置的地方。按照裝置螢幕上的步驟操作。</li></ol><p>仔細在研究一遍發現，看到第三步這裡說的重置所需的 15 秒</p><figure><img alt="" src="https://cdn-images-1.medium.com/max/862/1*QxW-UAM2epqJXA2E9Z6KKg.png" /></figure><p>跟第一步的 30 秒不同，稍早網路上找的其他平台資料很亂，有些只說靜置30秒再重新打開連接，有些說按 15 或 10 秒重置，這些資料都沒有說到兩個都要做，而且說按了15秒後會是<strong>琥珀色</strong>，我晚上試的時候有看到這個，但我只按了幾秒就變色，而且是變白色，我以為是我對顏色的認知錯誤，所以就直接重新連線裝置，結果還是失敗…。</p><p>這是我半信半疑，總之先照著步驟一靜置 30 秒後打開，接著忘記此裝置後，按著盒子按鈕超過 15 秒，一開始還是直接從綠色變白色</p><figure><img alt="" src="https://cdn-images-1.medium.com/max/1024/1*kZ4G8jnSS5RSN6hfSvHikw.jpeg" /></figure><figure><img alt="" src="https://cdn-images-1.medium.com/max/1024/1*8_U1udnxWWogOJJdt8XHiQ.jpeg" /></figure><p>但超過 15 秒後，果然出現近似橘色的琥珀色！</p><figure><img alt="" src="https://cdn-images-1.medium.com/max/1024/1*_Ufgoht2M-OFA51uhFpFBA.jpeg" /></figure><p>然後重新連線，先嘗試iPhone，果然就恢復兩耳都同時連接有聲音了！接著再暫時關閉 iPhone的藍芽(不關閉好像無法)，改去連接 MacBook (我按到出現白色就鬆開按鈕)也恢復了！</p><img src="https://medium.com/_/stat?event=post.clientViewed&referrerSource=full_rss&postId=97fc118c415f" width="1" height="1" alt="">
-    </div>
-    <a href="/posts/2021-03-17-iphone-macbook/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
   </div>
 </div>
 

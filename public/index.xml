@@ -16,6 +16,13 @@
       <description>&lt;ol&gt;&#xA;&lt;li&gt;安裝 Datadog Agent on macOS: &lt;a href=&#34;https://docs.datadoghq.com/agent/basic_agent_usage/osx/&#34;&gt;https://docs.datadoghq.com/agent/basic_agent_usage/osx/&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;安裝 Datadog dogshell on macOS: &lt;a href=&#34;https://docs.datadoghq.com/developers/guide/dogshell/&#34;&gt;https://docs.datadoghq.com/developers/guide/dogshell/&lt;/a&gt;&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;p&gt;安裝好以後確認一下 dogshell 有正常運作&lt;/p&gt;&#xA;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;datadog-agent status&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;http://localhost:80/images/screenshot_20250206140009.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;</description>
     </item>
     <item>
+      <title>Snyk Cli Test</title>
+      <link>http://localhost:80/posts/2025-02-06-snyk-cli-test/</link>
+      <pubDate>Thu, 06 Feb 2025 13:01:30 +0800</pubDate>
+      <guid>http://localhost:80/posts/2025-02-06-snyk-cli-test/</guid>
+      <description>&lt;p&gt;安裝 Snyk CLI: &lt;a href=&#34;https://docs.snyk.io/snyk-cli&#34;&gt;https://docs.snyk.io/snyk-cli&lt;/a&gt;&#xA;&lt;img src=&#34;http://localhost:80/images/screenshot_20250206131633.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;</description>
+    </item>
+    <item>
       <title>安裝 Mend CLI</title>
       <link>http://localhost:80/posts/2025-01-10-mend-cli/</link>
       <pubDate>Sat, 11 Jan 2025 04:10:27 +0800</pubDate>
