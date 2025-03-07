@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en-us">
-  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     
@@ -11,12 +11,12 @@
     
     
     
-      <meta name="robots" content="noindex, nofollow">
+      <meta name="robots" content="index, follow">
     
     
 
     
-<link rel="stylesheet" href="/ananke/css/main.min.css" >
+<link rel="stylesheet" href="/ananke/css/main.min.d05fb5f317fcf33b3a52936399bdf6f47dc776516e1692e412ec7d76f4a5faa2.css" >
 
 
 
@@ -35,23 +35,25 @@
     
 
     
-      <link rel="canonical" href="http://localhost:1313/">
+      <link rel="canonical" href="http://veck.im/">
     
 
-    <meta property="og:url" content="http://localhost:1313/">
+    <meta property="og:url" content="http://veck.im/">
   <meta property="og:site_name" content="Welcome to Veck&#39;s Program City">
   <meta property="og:title" content="Welcome to Veck&#39;s Program City">
   <meta property="og:locale" content="en_us">
   <meta property="og:type" content="website">
 
   <meta itemprop="name" content="Welcome to Veck&#39;s Program City">
-  <meta itemprop="datePublished" content="2025-01-11T04:10:27+08:00">
-  <meta itemprop="dateModified" content="2025-01-11T04:10:27+08:00">
+  <meta itemprop="datePublished" content="2025-03-07T12:18:52+08:00">
+  <meta itemprop="dateModified" content="2025-03-07T12:18:52+08:00">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Welcome to Veck&#39;s Program City">
 
+      
+    
 	
-  </head><body class="ma0 avenir bg-near-white development">
+  </head><body class="ma0 avenir bg-near-white production">
 
     
 
@@ -144,8 +146,91 @@
 
             </div>
           
+            <div class="relative w-100 mb4">
+              
+<article class="bb b--black-10">
+  <div class="db pv4 ph3 ph0-l no-underline dark-gray">
+    <div class="flex flex-column flex-row-ns">
+      
+      <div class="blah w-100">
+        <h1 class="f3 fw1 athelas mt0 lh-title">
+          <a href="/posts/2018-08-07-aws-elastic-beanstalk-proxy-server-list/" class="color-inherit dim link">
+            [AWS Elastic Beanstalk] 各平台 Proxy Server List
+            </a>
+        </h1>
+        <div class="f6 f5-l lh-copy nested-copy-line-height nested-links">
+          <p>完整關於各個平台和版本採用的 Proxy Server 可以在[這裡](<a href="https://docs.aws.amazon.com/zh_cn/elasticbeanstalk/latest/dg/platform-history.html">https://docs.aws.amazon.com/zh_cn/elasticbeanstalk/latest/dg/platform-history.html</a>)找到：</p><h3>Nginx</h3><p>- Nodejs*<br>- Go<br>- Single Container Docker<br>- Java SE<br>- Ruby (看版本使用的 application servrer 可能是 puma 或 passenger，前者居多)</p><h3>Apache</h3><p>- Node.js*<br>- Tomcat<br>- Python<br>- PHP</p><h4>Node.js</h4><p>Node.js 預設是採用 nginx 作為 proxy server，但是官網[文件](<a href="https://docs.aws.amazon.com/zh_cn/elasticbeanstalk/latest/dg/create_deploy_nodejs.container.html">https://docs.aws.amazon.com/zh_cn/elasticbeanstalk/latest/dg/create_deploy_nodejs.container.html</a>)有提到可以利用 Ebextension 來設定改用 Apache 作為反向代理伺服器<br>**.ebextensions/node-settings.config**</p><pre>option_settings:<br>  aws:elasticbeanstalk:container:nodejs: <br>    NodeCommand: “npm start”<br>    ProxyServer: apache<br>    GzipCompression: true<br>  aws:elasticbeanstalk:container:nodejs:staticfiles:<br>    /images: myimages</pre><h3>IIS</h3><p>- Windows Server 上的 .NET</p><img src="https://medium.com/_/stat?event=post.clientViewed&referrerSource=full_rss&postId=3b26879d094" width="1" height="1" alt="">
+        </div>
+          <a href="/posts/2018-08-07-aws-elastic-beanstalk-proxy-server-list/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+        
+      </div>
+    </div>
+  </div>
+</article>
+
+            </div>
+          
+            <div class="relative w-100 mb4">
+              
+<article class="bb b--black-10">
+  <div class="db pv4 ph3 ph0-l no-underline dark-gray">
+    <div class="flex flex-column flex-row-ns">
+      
+      <div class="blah w-100">
+        <h1 class="f3 fw1 athelas mt0 lh-title">
+          <a href="/posts/2018-08-07-openstack-devstack-aws-ec2-linux-openstack/" class="color-inherit dim link">
+            [OpenStack] 透過 DevStack 在 AWS EC2 Linux 上安裝 OpenStack
+            </a>
+        </h1>
+        <div class="f6 f5-l lh-copy nested-copy-line-height nested-links">
+          <ol><li>Create a EC2 instance and login</li><li>Create a stack user</li></ol><pre>$ sudo useradd -s /bin/bash -d /opt/stack -m stack<br>$ echo “stack ALL=(ALL) NOPASSWD: ALL” | sudo tee /etc/sudoers.d/stack<br>$ sudo su — stack</pre><p>3. Download DevStack</p><pre>git clone https://git.openstack.org/openstack-dev/devstack</pre><p>4. create a local.conf in project</p><pre>cd devstack<br>vim local.conf</pre><p>然後</p><pre>[[local|localrc]]<br>ADMIN_PASSWORD=secret<br>DATABASE_PASSWORD=$ADMIN_PASSWORD<br>RABBIT_PASSWORD=$ADMIN_PASSWORD<br>SERVICE_PASSWORD=$ADMIN_PASSWORD</pre><p>5. start the install: ./stack.sh. This will take a 15–20 mins. Once the installation done, all is done.</p><pre>=========================<br>DevStack Component Timing<br> (times are in seconds) <br>=========================<br>run_process 15<br>test_with_retry 2<br>apt-get-update 12<br>pip_install 287<br>osc 112<br>wait_for_service 15<br>git_timed 193<br>dbsync 23<br>apt-get 265<br> — — — — — — — — — — — — -<br>Unaccounted time 341<br>=========================<br>Total runtime 1265</pre><pre>This is your host IP address: 172.31.21.104<br>This is your host IPv6 address: ::1<br>Horizon is now available at <a href="http://172.31.21.104/dashboard">http://172.31.21.104/dashboard</a><br>Keystone is serving at <a href="http://172.31.21.104/identity/">http://172.31.21.104/identity/</a><br>The default users are: admin and demo<br>The password: secret</pre><pre>WARNING: <br>Using lib/neutron-legacy is deprecated, and it will be removed in the future</pre><pre>Services are running under systemd unit files.<br>For more information see: <br><a href="https://docs.openstack.org/devstack/latest/systemd.html">https://docs.openstack.org/devstack/latest/systemd.html</a></pre><pre>DevStack Version: queens<br>Change: 28b4be186105888b72300d27166deb771857df06 Merge “Make stackenv file visible” 2018–01–03 23:19:46 +0000<br>OS Version: Ubuntu 16.04 xenial</pre><pre>2018–01–08 05:30:33.155 | stack.sh completed in 1265 seconds.</pre><p>最後完成的訊息就這樣，就算完成安裝了</p>
+        </div>
+          <a href="/posts/2018-08-07-openstack-devstack-aws-ec2-linux-openstack/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+        
+      </div>
+    </div>
+  </div>
+</article>
+
+            </div>
+          
         </section>
 
+        
+        <section class="w-100">
+          <h1 class="f3">More</h1>
+          
+          
+            <h2 class="f5 fw4 mb4 dib mr3">
+              <a href="/posts/2018-08-07-ruby-on-rails-rails-puma-nginx/" class="link black dim">
+                [Ruby on Rails] Rails Puma &#43; Nginx 的組合
+              </a>
+            </h2>
+          
+            <h2 class="f5 fw4 mb4 dib mr3">
+              <a href="/posts/2023-12-20-apple-m1-podman/" class="link black dim">
+                Apple M1 上使用 Podman 遇到的問題
+              </a>
+            </h2>
+          
+            <h2 class="f5 fw4 mb4 dib mr3">
+              <a href="/posts/2022-05-18-apple-swift-evolution-guard/" class="link black dim">
+                apple/swift-evolution 上關於 guard 的有趣討論
+              </a>
+            </h2>
+          
+            <h2 class="f5 fw4 mb4 dib mr3">
+              <a href="/posts/2024-07-12-github-copilot-on-visual-studio-code/" class="link black dim">
+                GitHub Copilot on Visual Studio Code
+              </a>
+            </h2>
+          
+
+          
+          
+            <a href="/posts/" class="link db f6 pa2 br3 bg-mid-gray white dim w4 tc">All Posts</a>
+          
+          </section>
         
 
         </div>
@@ -155,7 +240,7 @@
     </main>
     <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
   <div class="flex justify-between">
-  <a class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3" href="http://localhost:1313/" >
+  <a class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3" href="http://veck.im/" >
     &copy;  Welcome to Veck's Program City 2025 
   </a>
     <div><div class="ananke-socials"></div>

@@ -2,17 +2,35 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>http://localhost:1313/posts/</loc>
+    <loc>http://veck.im/posts/</loc>
+    <lastmod>2025-03-07T12:18:52+08:00</lastmod>
+  </url><url>
+    <loc>http://veck.im/</loc>
+    <lastmod>2025-03-07T12:18:52+08:00</lastmod>
+  </url><url>
+    <loc>http://veck.im/posts/2025-01-10-mend-cli/</loc>
     <lastmod>2025-01-11T04:10:27+08:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/</loc>
-    <lastmod>2025-01-11T04:10:27+08:00</lastmod>
+    <loc>http://veck.im/posts/2018-08-07-aws-elastic-beanstalk-proxy-server-list/</loc>
   </url><url>
-    <loc>http://localhost:1313/posts/2025-01-10-mend-cli/</loc>
-    <lastmod>2025-01-11T04:10:27+08:00</lastmod>
+    <loc>http://veck.im/posts/2018-08-07-openstack-devstack-aws-ec2-linux-openstack/</loc>
   </url><url>
-    <loc>http://localhost:1313/categories/</loc>
+    <loc>http://veck.im/posts/2018-08-07-ruby-on-rails-rails-puma-nginx/</loc>
   </url><url>
-    <loc>http://localhost:1313/tags/</loc>
+    <loc>http://veck.im/posts/2023-12-20-apple-m1-podman/</loc>
+  </url><url>
+    <loc>http://veck.im/posts/2022-05-18-apple-swift-evolution-guard/</loc>
+  </url><url>
+    <loc>http://veck.im/categories/</loc>
+  </url><url>
+    <loc>http://veck.im/posts/2024-07-12-github-copilot-on-visual-studio-code/</loc>
+  </url><url>
+    <loc>http://veck.im/posts/2018-01-18-rails-puma-nginx/</loc>
+  </url><url>
+    <loc>http://veck.im/tags/</loc>
+  </url><url>
+    <loc>http://veck.im/posts/2021-03-17-iphone-macbook/</loc>
+  </url><url>
+    <loc>http://veck.im/posts/2017-10-03-s3/</loc>
   </url>
 </urlset>
