@@ -1,40 +1,140 @@
-<!DOCTYPE html>
-<html lang="en-us">
-  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=80&amp;path=livereload" data-no-instant defer></script>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    
-    <title>Apple M1 上使用 Podman 遇到的問題 | Welcome to Veck&#39;s Program City</title>
-    <meta name="viewport" content="width=device-width,minimum-scale=1">
-    <meta name="description" content="會發現這個問題其實是我在用 mongodb 的 atlas cli 做 local deployment 時，發現卡在這一步很久(hanging)，都沒有下面的 output 喔!然後才一路查到問題是在 podman，修正 podman 啟動的 vm 後，就可以成功 deploy atlas 了問題與解決啟動 vm 時一直遇到啟動不了的錯誤，vm 砍也砍不掉，一直卡在 currently starting作法：ps auxwww | grep podman 然後 kill 那個 process 強制重啟 podman (edited)9:242. 重啟後可以砍掉了，重新 podman machine init 後，可以建立，但是當要 podman machine start podman-machine-default 時，出現以下錯誤➜  podman machine start podman-machine-defaultStarting machine &quot;podman-machine-default&quot;Waiting for VM ...Error: qemu exited unexpectedly with exit code 1, stderr: qemu-system-aarch64: VCPU supports less PA bits (36) than requested by the memory map (40)這也是 M1 的問題！但是與其花幾萬塊更新 iMac 到 M3，還不如想辦法透過修改啟動設定或是改本機源碼解決問題雖然網路上的討論不多，但果然最後找到方法了要去修改這個檔案：">
-    <meta name="generator" content="Hugo 0.139.4">
-    
-    
-    
-      <meta name="robots" content="noindex, nofollow">
-    
-    
-
-    
-<link rel="stylesheet" href="/ananke/css/main.min.css" >
-
-
-
-    
-
+<!doctype html>
+<html
+  dir="ltr"
+  lang="en"
+  data-theme=""
+  
+    class="html theme--light"
+  
+><head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=80&amp;path=livereload" data-no-instant defer></script>
+  <meta charset="utf-8" />
+  <title>
     
       
+        Apple M1 上使用 Podman 遇到的問題 |
+      Veck
 
-    
+  </title>
 
+  <meta name="generator" content="Hugo 0.139.4"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <meta name="author" content="Veck" />
+  <meta
+    name="description"
+    content="Welcome to Program City!
+My name is Veck. A guy from Taiwan.
+"
+  />
+  
+  
     
+    
+    <link
+      rel="stylesheet"
+      href="/scss/main.min.8d4fad7e6916ad2e291e8d97ada157c70350d6d7150fea137e7243340967befb.css"
+      integrity="sha256-jU&#43;tfmkWrS4pHo2XraFXxwNQ1tcVD&#43;oTfnJDNAlnvvs="
+      crossorigin="anonymous"
+      type="text/css"
+    />
+  
 
-    
-      <link rel="canonical" href="http://localhost:80/posts/2023-12-20-apple-m1-podman/">
-    
+  
+  <link
+    rel="stylesheet"
+    href="/css/markupHighlight.min.73ccfdf28df555e11009c13c20ced067af3cb021504cba43644c705930428b00.css"
+    integrity="sha256-c8z98o31VeEQCcE8IM7QZ688sCFQTLpDZExwWTBCiwA="
+    crossorigin="anonymous"
+    type="text/css"
+  />
+  
+  
+  <link
+    rel="stylesheet"
+    href="/fontawesome/css/fontawesome.min.137b1cf3cea9a8adb7884343a9a5ddddf4280f59153f74dc782fb7f7bf0d0519.css"
+    integrity="sha256-E3sc886pqK23iENDqaXd3fQoD1kVP3TceC&#43;3978NBRk="
+    crossorigin="anonymous"
+    type="text/css"
+  />
+  
+  <link
+    rel="stylesheet"
+    href="/fontawesome/css/solid.min.e65dc5b48fb5f39b142360c57c3a215744c94e56c755c929cc3e88fe12aab4d3.css"
+    integrity="sha256-5l3FtI&#43;185sUI2DFfDohV0TJTlbHVckpzD6I/hKqtNM="
+    crossorigin="anonymous"
+    type="text/css"
+  />
+  
+  <link
+    rel="stylesheet"
+    href="/fontawesome/css/regular.min.6f4f16d58da1c82c0c3a3436e021a3d39b4742f741192c546e73e947eacfd92f.css"
+    integrity="sha256-b08W1Y2hyCwMOjQ24CGj05tHQvdBGSxUbnPpR&#43;rP2S8="
+    crossorigin="anonymous"
+    type="text/css"
+  />
+  
+  <link
+    rel="stylesheet"
+    href="/fontawesome/css/brands.min.e10425ad768bc98ff1fb272a0ac8420f9d1ba22f0612c08ff1010c95080ffe7e.css"
+    integrity="sha256-4QQlrXaLyY/x&#43;ycqCshCD50boi8GEsCP8QEMlQgP/n4="
+    crossorigin="anonymous"
+    type="text/css"
+  />
+  
+  <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
 
-    <meta property="og:url" content="http://localhost:80/posts/2023-12-20-apple-m1-podman/">
-  <meta property="og:site_name" content="Welcome to Veck&#39;s Program City">
+  <link rel="canonical" href="http://localhost:80/posts/2023-12-20-apple-m1-podman/" />
+
+  
+  
+  
+  
+  <script
+    type="text/javascript"
+    src="/js/anatole-header.min.f9132794301a01ff16550ed66763482bd848f62243d278f5e550229a158bfd32.js"
+    integrity="sha256-&#43;RMnlDAaAf8WVQ7WZ2NIK9hI9iJD0nj15VAimhWL/TI="
+    crossorigin="anonymous"
+  ></script>
+
+  
+    
+    
+    <script
+      type="text/javascript"
+      src="/js/anatole-theme-switcher.min.d6d329d93844b162e8bed1e915619625ca91687952177552b9b3e211014a2957.js"
+      integrity="sha256-1tMp2ThEsWLovtHpFWGWJcqRaHlSF3VSubPiEQFKKVc="
+      crossorigin="anonymous"
+    ></script>
+  
+
+  
+
+  
+
+
+  
+  
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Apple M1 上使用 Podman 遇到的問題">
+  <meta name="twitter:description" content="會發現這個問題其實是我在用 mongodb 的 atlas cli 做 local deployment 時，發現卡在這一步很久(hanging)，都沒有下面的 output 喔!
+然後才一路查到問題是在 podman，修正 podman 啟動的 vm 後，就可以成功 deploy atlas 了
+問題與解決
+啟動 vm 時一直遇到啟動不了的錯誤，vm 砍也砍不掉，一直卡在 currently starting作法：ps auxwww | grep podman 然後 kill 那個 process 強制重啟 podman (edited)
+9:24
+2. 重啟後可以砍掉了，重新 podman machine init 後，可以建立，但是當要 podman machine start podman-machine-default 時，出現以下錯誤
+➜ podman machine start podman-machine-default
+Starting machine &#34;podman-machine-default&#34;
+Waiting for VM ...
+Error: qemu exited unexpectedly with exit code 1, stderr: qemu-system-aarch64: VCPU supports less PA bits (36) than requested by the memory map (40)這也是 M1 的問題！但是與其花幾萬塊更新 iMac 到 M3，還不如想辦法透過修改啟動設定或是改本機源碼解決問題
+雖然網路上的討論不多，但果然最後找到方法了
+要去修改這個檔案：">
+
+
+
+  
+  <meta property="og:url" content="http://localhost:80/posts/2023-12-20-apple-m1-podman/">
+  <meta property="og:site_name" content="Program City">
   <meta property="og:title" content="Apple M1 上使用 Podman 遇到的問題">
   <meta property="og:description" content="會發現這個問題其實是我在用 mongodb 的 atlas cli 做 local deployment 時，發現卡在這一步很久(hanging)，都沒有下面的 output 喔!
 然後才一路查到問題是在 podman，修正 podman 啟動的 vm 後，就可以成功 deploy atlas 了
@@ -52,113 +152,269 @@ Error: qemu exited unexpectedly with exit code 1, stderr: qemu-system-aarch64: V
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
 
-  <meta itemprop="name" content="Apple M1 上使用 Podman 遇到的問題">
-  <meta itemprop="description" content="會發現這個問題其實是我在用 mongodb 的 atlas cli 做 local deployment 時，發現卡在這一步很久(hanging)，都沒有下面的 output 喔!
-然後才一路查到問題是在 podman，修正 podman 啟動的 vm 後，就可以成功 deploy atlas 了
-問題與解決
-啟動 vm 時一直遇到啟動不了的錯誤，vm 砍也砍不掉，一直卡在 currently starting作法：ps auxwww | grep podman 然後 kill 那個 process 強制重啟 podman (edited)
-9:24
-2. 重啟後可以砍掉了，重新 podman machine init 後，可以建立，但是當要 podman machine start podman-machine-default 時，出現以下錯誤
-➜ podman machine start podman-machine-default
-Starting machine &#34;podman-machine-default&#34;
-Waiting for VM ...
-Error: qemu exited unexpectedly with exit code 1, stderr: qemu-system-aarch64: VCPU supports less PA bits (36) than requested by the memory map (40)這也是 M1 的問題！但是與其花幾萬塊更新 iMac 到 M3，還不如想辦法透過修改啟動設定或是改本機源碼解決問題
-雖然網路上的討論不多，但果然最後找到方法了
-要去修改這個檔案：">
-  <meta itemprop="wordCount" content="103">
-  <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="Apple M1 上使用 Podman 遇到的問題">
-  <meta name="twitter:description" content="會發現這個問題其實是我在用 mongodb 的 atlas cli 做 local deployment 時，發現卡在這一步很久(hanging)，都沒有下面的 output 喔!
-然後才一路查到問題是在 podman，修正 podman 啟動的 vm 後，就可以成功 deploy atlas 了
-問題與解決
-啟動 vm 時一直遇到啟動不了的錯誤，vm 砍也砍不掉，一直卡在 currently starting作法：ps auxwww | grep podman 然後 kill 那個 process 強制重啟 podman (edited)
-9:24
-2. 重啟後可以砍掉了，重新 podman machine init 後，可以建立，但是當要 podman machine start podman-machine-default 時，出現以下錯誤
-➜ podman machine start podman-machine-default
-Starting machine &#34;podman-machine-default&#34;
-Waiting for VM ...
-Error: qemu exited unexpectedly with exit code 1, stderr: qemu-system-aarch64: VCPU supports less PA bits (36) than requested by the memory map (40)這也是 M1 的問題！但是與其花幾萬塊更新 iMac 到 M3，還不如想辦法透過修改啟動設定或是改本機源碼解決問題
-雖然網路上的討論不多，但果然最後找到方法了
-要去修改這個檔案：">
 
-	
-  </head><body class="ma0 avenir bg-near-white development">
 
-    
-   
   
-
-  <header>
-    <div class="bg-black">
-      <nav class="pv3 ph3 ph4-ns" role="navigation">
-  <div class="flex-l justify-between items-center center">
-    <a href="/" class="f3 fw2 hover-white no-underline white-90 dib">
-      
-        Welcome to Veck&#39;s Program City
-      
-    </a>
-    <div class="flex-l items-center">
-      
-
-      
-      <div class="ananke-socials"></div>
-
-    </div>
-  </div>
-</nav>
-
-    </div>
-  </header>
-
-
-
-    <main class="pb7" role="main">
-      
   
-  <article class="flex-l flex-wrap justify-between mw8 center ph3">
-    <header class="mt4 w-100">
-      <aside class="instapaper_ignoref b helvetica tracked ttu">
-          
-        Posts
-      </aside><div id="sharing" class="mt3 ananke-socials"></div>
-<h1 class="f1 athelas mt3 mb1">Apple M1 上使用 Podman 遇到的問題</h1>
+  
+  
+  <script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "articleSection": "posts",
+        "name": "Apple M1 上使用 Podman 遇到的問題",
+        "headline": "Apple M1 上使用 Podman 遇到的問題",
+        "alternativeHeadline": "",
+        "description": "
       
-      
-      
+        \u003cp\u003e會發現這個問題其實是我在用 mongodb 的 atlas cli 做 local deployment 時，發現卡在這一步很久(hanging)，都沒有下面的 output 喔!\u003c\/p\u003e\u003cfigure\u003e\u003cimg alt=\u0022\u0022 src=\u0022https:\/\/cdn-images-1.medium.com\/max\/857\/1*3eLEACD9EPrC0CoIpT1n9w.png\u0022 \/\u003e\u003c\/figure\u003e\u003cp\u003e然後才一路查到問題是在 podman，修正 podman 啟動的 vm 後，就可以成功 deploy atlas 了\u003c\/p\u003e\u003cfigure\u003e\u003cimg alt=\u0022\u0022 src=\u0022https:\/\/cdn-images-1.medium.com\/max\/839\/1*JsSbu4kkxRKfVLpJg4grEQ.png\u0022 \/\u003e\u003c\/figure\u003e\u003cfigure\u003e\u003cimg alt=\u0022\u0022 src=\u0022https:\/\/cdn-images-1.medium.com\/max\/1024\/1*26vf5YfTyvy81PIjJ-NJmw.png\u0022 \/\u003e\u003c\/figure\u003e\u003cp\u003e問題與解決\u003c\/p\u003e\u003col\u003e\u003cli\u003e啟動 vm 時一直遇到啟動不了的錯誤，vm 砍也砍不掉，一直卡在 currently starting\u003c\/li\u003e\u003c\/ol\u003e\u003cp\u003e作法：ps auxwww | grep podman 然後 kill 那個 process 強制重啟 podman (edited)\u003c\/p\u003e\u003cp\u003e\u003ca href=\u0022https:\/\/sanityrover.slack.com\/archives\/C06AZUP7R5H\/p1703078693617209\u0022\u003e9:24\u003c\/a\u003e\u003c\/p\u003e\u003cp\u003e2. 重啟後可以砍掉了，重新 podman machine init 後，可以建立，但是當要 podman machine start podman-machine-default 時，出現以下錯誤\u003c\/p\u003e\u003cpre\u003e➜  podman machine start podman-machine-default\u003cbr\u003eStarting machine \u0026quot;podman-machine-default\u0026quot;\u003cbr\u003eWaiting for VM ...\u003cbr\u003eError: qemu exited unexpectedly with exit code 1, stderr: qemu-system-aarch64: VCPU supports less PA bits (36) than requested by the memory map (40)\u003c\/pre\u003e\u003cp\u003e這也是 M1 的問題！但是與其花幾萬塊更新 iMac 到 M3，還不如想辦法透過修改啟動設定或是改本機源碼解決問題\u003cbr\u003e雖然網路上的討論不多，但果然最後找到方法了\u003cbr\u003e要去修改這個檔案：\u003c\/p\u003e
+
 
       
+
+
+    ",
+        "inLanguage": "en-us",
+        "isFamilyFriendly": "true",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/localhost:80\/posts\/2023-12-20-apple-m1-podman\/"
+        },
+        "author" : {
+            "@type": "Person",
+            "name": "Veck"
+        },
+        "creator" : {
+            "@type": "Person",
+            "name": "Veck"
+        },
+        "accountablePerson" : {
+            "@type": "Person",
+            "name": "Veck"
+        },
+        "copyrightHolder" : {
+            "@type": "Person",
+            "name": "Veck"
+        },
+        "copyrightYear" : "0001",
+        "dateCreated": "0001-01-01T00:00:00.00Z",
+        "datePublished": "0001-01-01T00:00:00.00Z",
+        "dateModified": "0001-01-01T00:00:00.00Z",
+        "publisher":{
+            "@type":"Organization",
+            "name": "Veck",
+            "url": "http://localhost:80/",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "http:\/\/localhost:80\/favicon-32x32.png",
+                "width":"32",
+                "height":"32"
+            }
+        },
+        "image": 
+      [
+      ]
+
+    ,
+        "url" : "http:\/\/localhost:80\/posts\/2023-12-20-apple-m1-podman\/",
+        "wordCount" : "103",
+        "genre" : [ ],
+        "keywords" : [ ]
+    }
+  </script>
+
+
+</head>
+<body class="body">
+    <div class="wrapper">
+      <aside
+        
+          class="wrapper__sidebar"
+        
+      ><div
+  class="sidebar
+    animated fadeInDown
+  "
+>
+  <div class="sidebar__content">
+    <div class="sidebar__introduction">
+      <img
+        class="sidebar__introduction-profileimage"
+        src="/images/profile.jpg"
+        alt="profile picture"
+      />
       
-    </header>
-    <div class="nested-copy-line-height lh-copy serif f4 nested-links mid-gray pr4-l w-two-thirds-l">
-<p>會發現這個問題其實是我在用 mongodb 的 atlas cli 做 local deployment 時，發現卡在這一步很久(hanging)，都沒有下面的 output 喔!</p><figure><img alt="" src="https://cdn-images-1.medium.com/max/857/1*3eLEACD9EPrC0CoIpT1n9w.png" /></figure><p>然後才一路查到問題是在 podman，修正 podman 啟動的 vm 後，就可以成功 deploy atlas 了</p><figure><img alt="" src="https://cdn-images-1.medium.com/max/839/1*JsSbu4kkxRKfVLpJg4grEQ.png" /></figure><figure><img alt="" src="https://cdn-images-1.medium.com/max/1024/1*26vf5YfTyvy81PIjJ-NJmw.png" /></figure><p>問題與解決</p><ol><li>啟動 vm 時一直遇到啟動不了的錯誤，vm 砍也砍不掉，一直卡在 currently starting</li></ol><p>作法：ps auxwww | grep podman 然後 kill 那個 process 強制重啟 podman (edited)</p><p><a href="https://sanityrover.slack.com/archives/C06AZUP7R5H/p1703078693617209">9:24</a></p><p>2. 重啟後可以砍掉了，重新 podman machine init 後，可以建立，但是當要 podman machine start podman-machine-default 時，出現以下錯誤</p><pre>➜  podman machine start podman-machine-default<br>Starting machine &quot;podman-machine-default&quot;<br>Waiting for VM ...<br>Error: qemu exited unexpectedly with exit code 1, stderr: qemu-system-aarch64: VCPU supports less PA bits (36) than requested by the memory map (40)</pre><p>這也是 M1 的問題！但是與其花幾萬塊更新 iMac 到 M3，還不如想辦法透過修改啟動設定或是改本機源碼解決問題<br>雖然網路上的討論不多，但果然最後找到方法了<br>要去修改這個檔案：</p><pre>vim ~/.config/containers/podman/machine/qemu/podman-machine-default.json</pre><p>將 “-M” 下一行的 “virt,highmem=on” 改成 “virt,highmem=off”</p><figure><img alt="" src="https://cdn-images-1.medium.com/max/404/1*N5FhVYnIWlAGUKr_SP6zaQ.png" /></figure><p>然後再重新啟動一次，就可以了！</p><figure><img alt="" src="https://cdn-images-1.medium.com/max/1024/1*q-QZzDDZxJkffTlxQu6pJg.png" /></figure><p>確認啟動狀態以變更為 currently runnning</p><figure><img alt="" src="https://cdn-images-1.medium.com/max/662/1*5Mb2vHlM70_8AgxSVCf9Wg@2x.png" /></figure><img src="https://medium.com/_/stat?event=post.clientViewed&referrerSource=full_rss&postId=96a7a448fb8b" width="1" height="1" alt="">
-<ul class="pa0">
-  
-</ul>
-<div class="mt6 instapaper_ignoref">
+        <div class="sidebar__introduction-title">
+          <a href="/"></a>
+        </div>
       
-      
+      <div class="sidebar__introduction-description">
+        <p>Welcome to Program City!<br />My name is Veck. A guy from Taiwan.<br /></p>
       </div>
     </div>
-
-    <aside class="w-30-l mt6-l">
-
-
-
-
-</aside>
-
-  </article>
-
-    </main>
-    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
-  <div class="flex justify-between">
-  <a class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3" href="http://localhost:80/" >
-    &copy;  Welcome to Veck's Program City 2025 
-  </a>
-    <div><div class="ananke-socials"></div>
-</div>
-  </div>
+    <ul class="sidebar__list">
+      
+        <li class="sidebar__list-item">
+          <a
+            href="mailto:fbukevin@gmail.com"
+            target="_blank"
+            rel="noopener me"
+            aria-label="e-mail"
+            title="e-mail"
+          >
+            <i class="fas fa-envelope fa-2x" aria-hidden="true"></i>
+          </a>
+        </li>
+      
+        <li class="sidebar__list-item">
+          <a
+            href="https://www.linkedin.com/in/veckhsiao/"
+            target="_blank"
+            rel="noopener me"
+            aria-label="LinkedIn"
+            title="LinkedIn"
+          >
+            <i class="fa-brands fa-linkedin fa-2x" aria-hidden="true"></i>
+          </a>
+        </li>
+      
+        <li class="sidebar__list-item">
+          <a
+            href="https://github.com/fbukevin"
+            target="_blank"
+            rel="noopener me"
+            aria-label="GitHub"
+            title="GitHub"
+          >
+            <i class="fa-brands fa-github fa-2x" aria-hidden="true"></i>
+          </a>
+        </li>
+      
+    </ul>
+  </div><footer class="footer footer__sidebar">
+  <ul class="footer__list">
+    <li class="footer__item">
+      &copy;
+      
+        2015-2025
+      
+    </li>
+    
+  </ul>
 </footer>
+  
+  <script
+    type="text/javascript"
+    src="/js/medium-zoom.min.1248fa75275e5ef0cbef27e8c1e27dc507c445ae3a2c7d2ed0be0809555dac64.js"
+    integrity="sha256-Ekj6dSdeXvDL7yfoweJ9xQfERa46LH0u0L4ICVVdrGQ="
+    crossorigin="anonymous"
+  ></script></div>
+</aside>
+      <main
+        
+          class="wrapper__main"
+        
+      >
+        <header class="header"><div
+  class="
+    animated fadeInDown
+  "
+>
+  <a role="button" class="navbar-burger" data-target="navMenu" aria-label="menu" aria-expanded="false">
+    <span aria-hidden="true" class="navbar-burger__line"></span>
+    <span aria-hidden="true" class="navbar-burger__line"></span>
+    <span aria-hidden="true" class="navbar-burger__line"></span>
+  </a>
+  <nav class="nav">
+    <ul class="nav__list" id="navMenu">
+      
+      
+        
+        
+          <li class="nav__list-item">
+            
+            <a
+              
+              href="/"
+              
+              title=""
+              >Posts</a
+            >
+          </li>
+        
 
-  </body>
+      
+        
+        
+          <li class="nav__list-item">
+            
+            <a
+              
+              href="/about/"
+              
+              title=""
+              >About</a
+            >
+          </li>
+        
+
+      
+    </ul>
+    <ul class="nav__list nav__list--end">
+      
+      
+        <li class="nav__list-item">
+          <div class="themeswitch">
+            <a title="Switch Theme">
+              <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a>
+          </div>
+        </li>
+      
+    </ul>
+  </nav>
+</div>
+</header>
+  <div
+    class="post 
+      animated fadeInDown
+    "
+  >
+    
+    <div class="post__content">
+      
+        <h1>Apple M1 上使用 Podman 遇到的問題</h1>
+      
+      
+<p>會發現這個問題其實是我在用 mongodb 的 atlas cli 做 local deployment 時，發現卡在這一步很久(hanging)，都沒有下面的 output 喔!</p><figure><img alt="" src="https://cdn-images-1.medium.com/max/857/1*3eLEACD9EPrC0CoIpT1n9w.png" /></figure><p>然後才一路查到問題是在 podman，修正 podman 啟動的 vm 後，就可以成功 deploy atlas 了</p><figure><img alt="" src="https://cdn-images-1.medium.com/max/839/1*JsSbu4kkxRKfVLpJg4grEQ.png" /></figure><figure><img alt="" src="https://cdn-images-1.medium.com/max/1024/1*26vf5YfTyvy81PIjJ-NJmw.png" /></figure><p>問題與解決</p><ol><li>啟動 vm 時一直遇到啟動不了的錯誤，vm 砍也砍不掉，一直卡在 currently starting</li></ol><p>作法：ps auxwww | grep podman 然後 kill 那個 process 強制重啟 podman (edited)</p><p><a href="https://sanityrover.slack.com/archives/C06AZUP7R5H/p1703078693617209">9:24</a></p><p>2. 重啟後可以砍掉了，重新 podman machine init 後，可以建立，但是當要 podman machine start podman-machine-default 時，出現以下錯誤</p><pre>➜  podman machine start podman-machine-default<br>Starting machine &quot;podman-machine-default&quot;<br>Waiting for VM ...<br>Error: qemu exited unexpectedly with exit code 1, stderr: qemu-system-aarch64: VCPU supports less PA bits (36) than requested by the memory map (40)</pre><p>這也是 M1 的問題！但是與其花幾萬塊更新 iMac 到 M3，還不如想辦法透過修改啟動設定或是改本機源碼解決問題<br>雖然網路上的討論不多，但果然最後找到方法了<br>要去修改這個檔案：</p><pre>vim ~/.config/containers/podman/machine/qemu/podman-machine-default.json</pre><p>將 “-M” 下一行的 “virt,highmem=on” 改成 “virt,highmem=off”</p><figure><img alt="" src="https://cdn-images-1.medium.com/max/404/1*N5FhVYnIWlAGUKr_SP6zaQ.png" /></figure><p>然後再重新啟動一次，就可以了！</p><figure><img alt="" src="https://cdn-images-1.medium.com/max/1024/1*q-QZzDDZxJkffTlxQu6pJg.png" /></figure><p>確認啟動狀態以變更為 currently runnning</p><figure><img alt="" src="https://cdn-images-1.medium.com/max/662/1*5Mb2vHlM70_8AgxSVCf9Wg@2x.png" /></figure><img src="https://medium.com/_/stat?event=post.clientViewed&referrerSource=full_rss&postId=96a7a448fb8b" width="1" height="1" alt="">
+</div>
+    <div class="post__footer">
+      
+
+      
+    </div>
+
+    
+  </div>
+
+      </main>
+    </div><footer class="footer footer__base">
+  <ul class="footer__list">
+    <li class="footer__item">
+      &copy;
+      
+        2015-2025
+      
+    </li>
+    
+  </ul>
+</footer>
+  
+  <script
+    type="text/javascript"
+    src="/js/medium-zoom.min.1248fa75275e5ef0cbef27e8c1e27dc507c445ae3a2c7d2ed0be0809555dac64.js"
+    integrity="sha256-Ekj6dSdeXvDL7yfoweJ9xQfERa46LH0u0L4ICVVdrGQ="
+    crossorigin="anonymous"
+  ></script></body>
 </html>

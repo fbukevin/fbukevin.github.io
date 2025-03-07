@@ -1,40 +1,163 @@
-<!DOCTYPE html>
-<html lang="en-us">
-  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=80&amp;path=livereload" data-no-instant defer></script>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    
-    <title>[OpenStack] 透過 DevStack 在 AWS EC2 Linux 上安裝 OpenStack | Welcome to Veck&#39;s Program City</title>
-    <meta name="viewport" content="width=device-width,minimum-scale=1">
-    <meta name="description" content="Create a EC2 instance and loginCreate a stack user$ sudo useradd -s /bin/bash -d /opt/stack -m stack$ echo “stack ALL=(ALL) NOPASSWD: ALL” | sudo tee /etc/sudoers.d/stack$ sudo su — stack3. Download DevStackgit clone https://git.openstack.org/openstack-dev/devstack4. create a local.conf in projectcd devstackvim local.conf然後[[local|localrc]]ADMIN_PASSWORD=secretDATABASE_PASSWORD=$ADMIN_PASSWORDRABBIT_PASSWORD=$ADMIN_PASSWORDSERVICE_PASSWORD=$ADMIN_PASSWORD5. start the install: ./stack.sh. This will take a 15–20 mins. Once the installation done, all is done.=========================DevStack Component Timing (times are in seconds) =========================run_process 15test_with_retry 2apt-get-update 12pip_install 287osc 112wait_for_service 15git_timed 193dbsync 23apt-get 265 — — — — — — — — — — — — -Unaccounted time 341=========================Total runtime 1265This is your host IP address: 172.31.21.104This is your host IPv6 address: ::1Horizon is now available at http://172.31.21.104/dashboardKeystone is serving at http://172.31.21.104/identity/The default users are: admin and demoThe password: secretWARNING: Using lib/neutron-legacy is deprecated, and it will be removed in the futureServices are running under systemd unit files.For more information see: https://docs.openstack.org/devstack/latest/systemd.htmlDevStack Version: queensChange: 28b4be186105888b72300d27166deb771857df06 Merge “Make stackenv file visible” 2018–01–03 23:19:46 &#43;0000OS Version: Ubuntu 16.04 xenial2018–01–08 05:30:33.155 | stack.sh completed in 1265 seconds.最後完成的訊息就這樣，就算完成安裝了">
-    <meta name="generator" content="Hugo 0.139.4">
-    
-    
-    
-      <meta name="robots" content="noindex, nofollow">
-    
-    
-
-    
-<link rel="stylesheet" href="/ananke/css/main.min.css" >
-
-
-
-    
-
+<!doctype html>
+<html
+  dir="ltr"
+  lang="en"
+  data-theme=""
+  
+    class="html theme--light"
+  
+><head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=80&amp;path=livereload" data-no-instant defer></script>
+  <meta charset="utf-8" />
+  <title>
     
       
+        [OpenStack] 透過 DevStack 在 AWS EC2 Linux 上安裝 OpenStack |
+      Veck
 
-    
+  </title>
 
+  <meta name="generator" content="Hugo 0.139.4"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <meta name="author" content="Veck" />
+  <meta
+    name="description"
+    content="Welcome to Program City!
+My name is Veck. A guy from Taiwan.
+"
+  />
+  
+  
     
+    
+    <link
+      rel="stylesheet"
+      href="/scss/main.min.8d4fad7e6916ad2e291e8d97ada157c70350d6d7150fea137e7243340967befb.css"
+      integrity="sha256-jU&#43;tfmkWrS4pHo2XraFXxwNQ1tcVD&#43;oTfnJDNAlnvvs="
+      crossorigin="anonymous"
+      type="text/css"
+    />
+  
 
-    
-      <link rel="canonical" href="http://localhost:80/posts/2018-08-07-openstack-devstack-aws-ec2-linux-openstack/">
-    
+  
+  <link
+    rel="stylesheet"
+    href="/css/markupHighlight.min.73ccfdf28df555e11009c13c20ced067af3cb021504cba43644c705930428b00.css"
+    integrity="sha256-c8z98o31VeEQCcE8IM7QZ688sCFQTLpDZExwWTBCiwA="
+    crossorigin="anonymous"
+    type="text/css"
+  />
+  
+  
+  <link
+    rel="stylesheet"
+    href="/fontawesome/css/fontawesome.min.137b1cf3cea9a8adb7884343a9a5ddddf4280f59153f74dc782fb7f7bf0d0519.css"
+    integrity="sha256-E3sc886pqK23iENDqaXd3fQoD1kVP3TceC&#43;3978NBRk="
+    crossorigin="anonymous"
+    type="text/css"
+  />
+  
+  <link
+    rel="stylesheet"
+    href="/fontawesome/css/solid.min.e65dc5b48fb5f39b142360c57c3a215744c94e56c755c929cc3e88fe12aab4d3.css"
+    integrity="sha256-5l3FtI&#43;185sUI2DFfDohV0TJTlbHVckpzD6I/hKqtNM="
+    crossorigin="anonymous"
+    type="text/css"
+  />
+  
+  <link
+    rel="stylesheet"
+    href="/fontawesome/css/regular.min.6f4f16d58da1c82c0c3a3436e021a3d39b4742f741192c546e73e947eacfd92f.css"
+    integrity="sha256-b08W1Y2hyCwMOjQ24CGj05tHQvdBGSxUbnPpR&#43;rP2S8="
+    crossorigin="anonymous"
+    type="text/css"
+  />
+  
+  <link
+    rel="stylesheet"
+    href="/fontawesome/css/brands.min.e10425ad768bc98ff1fb272a0ac8420f9d1ba22f0612c08ff1010c95080ffe7e.css"
+    integrity="sha256-4QQlrXaLyY/x&#43;ycqCshCD50boi8GEsCP8QEMlQgP/n4="
+    crossorigin="anonymous"
+    type="text/css"
+  />
+  
+  <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
 
-    <meta property="og:url" content="http://localhost:80/posts/2018-08-07-openstack-devstack-aws-ec2-linux-openstack/">
-  <meta property="og:site_name" content="Welcome to Veck&#39;s Program City">
+  <link rel="canonical" href="http://localhost:80/posts/2018-08-07-openstack-devstack-aws-ec2-linux-openstack/" />
+
+  
+  
+  
+  
+  <script
+    type="text/javascript"
+    src="/js/anatole-header.min.f9132794301a01ff16550ed66763482bd848f62243d278f5e550229a158bfd32.js"
+    integrity="sha256-&#43;RMnlDAaAf8WVQ7WZ2NIK9hI9iJD0nj15VAimhWL/TI="
+    crossorigin="anonymous"
+  ></script>
+
+  
+    
+    
+    <script
+      type="text/javascript"
+      src="/js/anatole-theme-switcher.min.d6d329d93844b162e8bed1e915619625ca91687952177552b9b3e211014a2957.js"
+      integrity="sha256-1tMp2ThEsWLovtHpFWGWJcqRaHlSF3VSubPiEQFKKVc="
+      crossorigin="anonymous"
+    ></script>
+  
+
+  
+
+  
+
+
+  
+  
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="[OpenStack] 透過 DevStack 在 AWS EC2 Linux 上安裝 OpenStack">
+  <meta name="twitter:description" content="Create a EC2 instance and loginCreate a stack user$ sudo useradd -s /bin/bash -d /opt/stack -m stack
+$ echo “stack ALL=(ALL) NOPASSWD: ALL” | sudo tee /etc/sudoers.d/stack
+$ sudo su — stack3. Download DevStack
+git clone https://git.openstack.org/openstack-dev/devstack4. create a local.conf in project
+cd devstack
+vim local.conf然後
+[[local|localrc]]
+ADMIN_PASSWORD=secret
+DATABASE_PASSWORD=$ADMIN_PASSWORD
+RABBIT_PASSWORD=$ADMIN_PASSWORD
+SERVICE_PASSWORD=$ADMIN_PASSWORD5. start the install: ./stack.sh. This will take a 15–20 mins. Once the installation done, all is done.
+=========================
+DevStack Component Timing
+(times are in seconds) =========================
+run_process 15
+test_with_retry 2
+apt-get-update 12
+pip_install 287
+osc 112
+wait_for_service 15
+git_timed 193
+dbsync 23
+apt-get 265
+— — — — — — — — — — — — -
+Unaccounted time 341
+=========================
+Total runtime 1265This is your host IP address: 172.31.21.104
+This is your host IPv6 address: ::1
+Horizon is now available at http://172.31.21.104/dashboard
+Keystone is serving at http://172.31.21.104/identity/
+The default users are: admin and demo
+The password: secretWARNING: Using lib/neutron-legacy is deprecated, and it will be removed in the futureServices are running under systemd unit files.
+For more information see: https://docs.openstack.org/devstack/latest/systemd.htmlDevStack Version: queens
+Change: 28b4be186105888b72300d27166deb771857df06 Merge “Make stackenv file visible” 2018–01–03 23:19:46 &#43;0000
+OS Version: Ubuntu 16.04 xenial2018–01–08 05:30:33.155 | stack.sh completed in 1265 seconds.最後完成的訊息就這樣，就算完成安裝了">
+
+
+
+  
+  <meta property="og:url" content="http://localhost:80/posts/2018-08-07-openstack-devstack-aws-ec2-linux-openstack/">
+  <meta property="og:site_name" content="Program City">
   <meta property="og:title" content="[OpenStack] 透過 DevStack 在 AWS EC2 Linux 上安裝 OpenStack">
   <meta property="og:description" content="Create a EC2 instance and loginCreate a stack user$ sudo useradd -s /bin/bash -d /opt/stack -m stack
 $ echo “stack ALL=(ALL) NOPASSWD: ALL” | sudo tee /etc/sudoers.d/stack
@@ -75,159 +198,269 @@ OS Version: Ubuntu 16.04 xenial2018–01–08 05:30:33.155 | stack.sh completed 
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
 
-  <meta itemprop="name" content="[OpenStack] 透過 DevStack 在 AWS EC2 Linux 上安裝 OpenStack">
-  <meta itemprop="description" content="Create a EC2 instance and loginCreate a stack user$ sudo useradd -s /bin/bash -d /opt/stack -m stack
-$ echo “stack ALL=(ALL) NOPASSWD: ALL” | sudo tee /etc/sudoers.d/stack
-$ sudo su — stack3. Download DevStack
-git clone https://git.openstack.org/openstack-dev/devstack4. create a local.conf in project
-cd devstack
-vim local.conf然後
-[[local|localrc]]
-ADMIN_PASSWORD=secret
-DATABASE_PASSWORD=$ADMIN_PASSWORD
-RABBIT_PASSWORD=$ADMIN_PASSWORD
-SERVICE_PASSWORD=$ADMIN_PASSWORD5. start the install: ./stack.sh. This will take a 15–20 mins. Once the installation done, all is done.
-=========================
-DevStack Component Timing
-(times are in seconds) =========================
-run_process 15
-test_with_retry 2
-apt-get-update 12
-pip_install 287
-osc 112
-wait_for_service 15
-git_timed 193
-dbsync 23
-apt-get 265
-— — — — — — — — — — — — -
-Unaccounted time 341
-=========================
-Total runtime 1265This is your host IP address: 172.31.21.104
-This is your host IPv6 address: ::1
-Horizon is now available at http://172.31.21.104/dashboard
-Keystone is serving at http://172.31.21.104/identity/
-The default users are: admin and demo
-The password: secretWARNING: Using lib/neutron-legacy is deprecated, and it will be removed in the futureServices are running under systemd unit files.
-For more information see: https://docs.openstack.org/devstack/latest/systemd.htmlDevStack Version: queens
-Change: 28b4be186105888b72300d27166deb771857df06 Merge “Make stackenv file visible” 2018–01–03 23:19:46 &#43;0000
-OS Version: Ubuntu 16.04 xenial2018–01–08 05:30:33.155 | stack.sh completed in 1265 seconds.最後完成的訊息就這樣，就算完成安裝了">
-  <meta itemprop="wordCount" content="291">
-  <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="[OpenStack] 透過 DevStack 在 AWS EC2 Linux 上安裝 OpenStack">
-  <meta name="twitter:description" content="Create a EC2 instance and loginCreate a stack user$ sudo useradd -s /bin/bash -d /opt/stack -m stack
-$ echo “stack ALL=(ALL) NOPASSWD: ALL” | sudo tee /etc/sudoers.d/stack
-$ sudo su — stack3. Download DevStack
-git clone https://git.openstack.org/openstack-dev/devstack4. create a local.conf in project
-cd devstack
-vim local.conf然後
-[[local|localrc]]
-ADMIN_PASSWORD=secret
-DATABASE_PASSWORD=$ADMIN_PASSWORD
-RABBIT_PASSWORD=$ADMIN_PASSWORD
-SERVICE_PASSWORD=$ADMIN_PASSWORD5. start the install: ./stack.sh. This will take a 15–20 mins. Once the installation done, all is done.
-=========================
-DevStack Component Timing
-(times are in seconds) =========================
-run_process 15
-test_with_retry 2
-apt-get-update 12
-pip_install 287
-osc 112
-wait_for_service 15
-git_timed 193
-dbsync 23
-apt-get 265
-— — — — — — — — — — — — -
-Unaccounted time 341
-=========================
-Total runtime 1265This is your host IP address: 172.31.21.104
-This is your host IPv6 address: ::1
-Horizon is now available at http://172.31.21.104/dashboard
-Keystone is serving at http://172.31.21.104/identity/
-The default users are: admin and demo
-The password: secretWARNING: Using lib/neutron-legacy is deprecated, and it will be removed in the futureServices are running under systemd unit files.
-For more information see: https://docs.openstack.org/devstack/latest/systemd.htmlDevStack Version: queens
-Change: 28b4be186105888b72300d27166deb771857df06 Merge “Make stackenv file visible” 2018–01–03 23:19:46 &#43;0000
-OS Version: Ubuntu 16.04 xenial2018–01–08 05:30:33.155 | stack.sh completed in 1265 seconds.最後完成的訊息就這樣，就算完成安裝了">
 
-	
-  </head><body class="ma0 avenir bg-near-white development">
 
-    
-   
   
-
-  <header>
-    <div class="bg-black">
-      <nav class="pv3 ph3 ph4-ns" role="navigation">
-  <div class="flex-l justify-between items-center center">
-    <a href="/" class="f3 fw2 hover-white no-underline white-90 dib">
-      
-        Welcome to Veck&#39;s Program City
-      
-    </a>
-    <div class="flex-l items-center">
-      
-
-      
-      <div class="ananke-socials"></div>
-
-    </div>
-  </div>
-</nav>
-
-    </div>
-  </header>
-
-
-
-    <main class="pb7" role="main">
-      
   
-  <article class="flex-l flex-wrap justify-between mw8 center ph3">
-    <header class="mt4 w-100">
-      <aside class="instapaper_ignoref b helvetica tracked ttu">
-          
-        Posts
-      </aside><div id="sharing" class="mt3 ananke-socials"></div>
-<h1 class="f1 athelas mt3 mb1">[OpenStack] 透過 DevStack 在 AWS EC2 Linux 上安裝 OpenStack</h1>
+  
+  
+  <script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "articleSection": "posts",
+        "name": "[OpenStack] 透過 DevStack 在 AWS EC2 Linux 上安裝 OpenStack",
+        "headline": "[OpenStack] 透過 DevStack 在 AWS EC2 Linux 上安裝 OpenStack",
+        "alternativeHeadline": "",
+        "description": "
       
-      
-      
+        \u003col\u003e\u003cli\u003eCreate a EC2 instance and login\u003c\/li\u003e\u003cli\u003eCreate a stack user\u003c\/li\u003e\u003c\/ol\u003e\u003cpre\u003e$ sudo useradd -s \/bin\/bash -d \/opt\/stack -m stack\u003cbr\u003e$ echo “stack ALL=(ALL) NOPASSWD: ALL” | sudo tee \/etc\/sudoers.d\/stack\u003cbr\u003e$ sudo su — stack\u003c\/pre\u003e\u003cp\u003e3. Download DevStack\u003c\/p\u003e\u003cpre\u003egit clone https:\/\/git.openstack.org\/openstack-dev\/devstack\u003c\/pre\u003e\u003cp\u003e4. create a local.conf in project\u003c\/p\u003e\u003cpre\u003ecd devstack\u003cbr\u003evim local.conf\u003c\/pre\u003e\u003cp\u003e然後\u003c\/p\u003e\u003cpre\u003e[[local|localrc]]\u003cbr\u003eADMIN_PASSWORD=secret\u003cbr\u003eDATABASE_PASSWORD=$ADMIN_PASSWORD\u003cbr\u003eRABBIT_PASSWORD=$ADMIN_PASSWORD\u003cbr\u003eSERVICE_PASSWORD=$ADMIN_PASSWORD\u003c\/pre\u003e\u003cp\u003e5. start the install: .\/stack.sh. This will take a 15–20 mins. Once the installation done, all is done.\u003c\/p\u003e\u003cpre\u003e=========================\u003cbr\u003eDevStack Component Timing\u003cbr\u003e (times are in seconds) \u003cbr\u003e=========================\u003cbr\u003erun_process 15\u003cbr\u003etest_with_retry 2\u003cbr\u003eapt-get-update 12\u003cbr\u003epip_install 287\u003cbr\u003eosc 112\u003cbr\u003ewait_for_service 15\u003cbr\u003egit_timed 193\u003cbr\u003edbsync 23\u003cbr\u003eapt-get 265\u003cbr\u003e — — — — — — — — — — — — -\u003cbr\u003eUnaccounted time 341\u003cbr\u003e=========================\u003cbr\u003eTotal runtime 1265\u003c\/pre\u003e\u003cpre\u003eThis is your host IP address: 172.31.21.104\u003cbr\u003eThis is your host IPv6 address: ::1\u003cbr\u003eHorizon is now available at \u003ca href=\u0022http:\/\/172.31.21.104\/dashboard\u0022\u003ehttp:\/\/172.31.21.104\/dashboard\u003c\/a\u003e\u003cbr\u003eKeystone is serving at \u003ca href=\u0022http:\/\/172.31.21.104\/identity\/\u0022\u003ehttp:\/\/172.31.21.104\/identity\/\u003c\/a\u003e\u003cbr\u003eThe default users are: admin and demo\u003cbr\u003eThe password: secret\u003c\/pre\u003e\u003cpre\u003eWARNING: \u003cbr\u003eUsing lib\/neutron-legacy is deprecated, and it will be removed in the future\u003c\/pre\u003e\u003cpre\u003eServices are running under systemd unit files.\u003cbr\u003eFor more information see: \u003cbr\u003e\u003ca href=\u0022https:\/\/docs.openstack.org\/devstack\/latest\/systemd.html\u0022\u003ehttps:\/\/docs.openstack.org\/devstack\/latest\/systemd.html\u003c\/a\u003e\u003c\/pre\u003e\u003cpre\u003eDevStack Version: queens\u003cbr\u003eChange: 28b4be186105888b72300d27166deb771857df06 Merge “Make stackenv file visible” 2018–01–03 23:19:46 \u002b0000\u003cbr\u003eOS Version: Ubuntu 16.04 xenial\u003c\/pre\u003e\u003cpre\u003e2018–01–08 05:30:33.155 | stack.sh completed in 1265 seconds.\u003c\/pre\u003e\u003cp\u003e最後完成的訊息就這樣，就算完成安裝了\u003c\/p\u003e
+
 
       
+
+
+    ",
+        "inLanguage": "en-us",
+        "isFamilyFriendly": "true",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/localhost:80\/posts\/2018-08-07-openstack-devstack-aws-ec2-linux-openstack\/"
+        },
+        "author" : {
+            "@type": "Person",
+            "name": "Veck"
+        },
+        "creator" : {
+            "@type": "Person",
+            "name": "Veck"
+        },
+        "accountablePerson" : {
+            "@type": "Person",
+            "name": "Veck"
+        },
+        "copyrightHolder" : {
+            "@type": "Person",
+            "name": "Veck"
+        },
+        "copyrightYear" : "0001",
+        "dateCreated": "0001-01-01T00:00:00.00Z",
+        "datePublished": "0001-01-01T00:00:00.00Z",
+        "dateModified": "0001-01-01T00:00:00.00Z",
+        "publisher":{
+            "@type":"Organization",
+            "name": "Veck",
+            "url": "http://localhost:80/",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "http:\/\/localhost:80\/favicon-32x32.png",
+                "width":"32",
+                "height":"32"
+            }
+        },
+        "image": 
+      [
+      ]
+
+    ,
+        "url" : "http:\/\/localhost:80\/posts\/2018-08-07-openstack-devstack-aws-ec2-linux-openstack\/",
+        "wordCount" : "291",
+        "genre" : [ ],
+        "keywords" : [ ]
+    }
+  </script>
+
+
+</head>
+<body class="body">
+    <div class="wrapper">
+      <aside
+        
+          class="wrapper__sidebar"
+        
+      ><div
+  class="sidebar
+    animated fadeInDown
+  "
+>
+  <div class="sidebar__content">
+    <div class="sidebar__introduction">
+      <img
+        class="sidebar__introduction-profileimage"
+        src="/images/profile.jpg"
+        alt="profile picture"
+      />
       
-    </header>
-    <div class="nested-copy-line-height lh-copy serif f4 nested-links mid-gray pr4-l w-two-thirds-l">
-<ol><li>Create a EC2 instance and login</li><li>Create a stack user</li></ol><pre>$ sudo useradd -s /bin/bash -d /opt/stack -m stack<br>$ echo “stack ALL=(ALL) NOPASSWD: ALL” | sudo tee /etc/sudoers.d/stack<br>$ sudo su — stack</pre><p>3. Download DevStack</p><pre>git clone https://git.openstack.org/openstack-dev/devstack</pre><p>4. create a local.conf in project</p><pre>cd devstack<br>vim local.conf</pre><p>然後</p><pre>[[local|localrc]]<br>ADMIN_PASSWORD=secret<br>DATABASE_PASSWORD=$ADMIN_PASSWORD<br>RABBIT_PASSWORD=$ADMIN_PASSWORD<br>SERVICE_PASSWORD=$ADMIN_PASSWORD</pre><p>5. start the install: ./stack.sh. This will take a 15–20 mins. Once the installation done, all is done.</p><pre>=========================<br>DevStack Component Timing<br> (times are in seconds) <br>=========================<br>run_process 15<br>test_with_retry 2<br>apt-get-update 12<br>pip_install 287<br>osc 112<br>wait_for_service 15<br>git_timed 193<br>dbsync 23<br>apt-get 265<br> — — — — — — — — — — — — -<br>Unaccounted time 341<br>=========================<br>Total runtime 1265</pre><pre>This is your host IP address: 172.31.21.104<br>This is your host IPv6 address: ::1<br>Horizon is now available at <a href="http://172.31.21.104/dashboard">http://172.31.21.104/dashboard</a><br>Keystone is serving at <a href="http://172.31.21.104/identity/">http://172.31.21.104/identity/</a><br>The default users are: admin and demo<br>The password: secret</pre><pre>WARNING: <br>Using lib/neutron-legacy is deprecated, and it will be removed in the future</pre><pre>Services are running under systemd unit files.<br>For more information see: <br><a href="https://docs.openstack.org/devstack/latest/systemd.html">https://docs.openstack.org/devstack/latest/systemd.html</a></pre><pre>DevStack Version: queens<br>Change: 28b4be186105888b72300d27166deb771857df06 Merge “Make stackenv file visible” 2018–01–03 23:19:46 +0000<br>OS Version: Ubuntu 16.04 xenial</pre><pre>2018–01–08 05:30:33.155 | stack.sh completed in 1265 seconds.</pre><p>最後完成的訊息就這樣，就算完成安裝了</p><p>- DevStack 已經安裝好 keystone, glance, nova, cinder, neutron, 和 horizon，可以試著輸入指令看看<br>- Floating IPs will be available, guests have access to the external world.<br>- 可以試著存取 Web Interface horizon (URL 在最後的安裝訊息中)<br>- `source devstack/openrc 後會多了一個 openstack 指令來管理 DevStack<br>- You can cd `/opt/stack/tempest` and run tempest tests that have been configured to work with your devstack.<br>- You can make code changes to OpenStack and validate them.</p><h3><strong>Note for Using AWS EC2 Ubuntu 16.04</strong></h3><p>因為 EC2 是在 AWS VPC 中所建立的 VM，所以預設認知到的網卡也是區網內的 private IP，因此上面所匹配的 IP Address 173.x.x.x 是 private IP，只需要替換成這個 instance 的 Public IP 就可以成功連線到 dashboard portal 了</p><figure><img alt="" src="https://cdn-images-1.medium.com/max/1024/1*tfQ_fdPYFgqZGhEEgKX9vA.png" /></figure><figure><img alt="" src="https://cdn-images-1.medium.com/max/1024/1*TXKJ2aopGZf39JMrRtSG0Q.png" /></figure><img src="https://medium.com/_/stat?event=post.clientViewed&referrerSource=full_rss&postId=3649714f887" width="1" height="1" alt="">
-<ul class="pa0">
-  
-</ul>
-<div class="mt6 instapaper_ignoref">
+        <div class="sidebar__introduction-title">
+          <a href="/"></a>
+        </div>
       
-      
+      <div class="sidebar__introduction-description">
+        <p>Welcome to Program City!<br />My name is Veck. A guy from Taiwan.<br /></p>
       </div>
     </div>
-
-    <aside class="w-30-l mt6-l">
-
-
-
-
-</aside>
-
-  </article>
-
-    </main>
-    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
-  <div class="flex justify-between">
-  <a class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3" href="http://localhost:80/" >
-    &copy;  Welcome to Veck's Program City 2025 
-  </a>
-    <div><div class="ananke-socials"></div>
-</div>
-  </div>
+    <ul class="sidebar__list">
+      
+        <li class="sidebar__list-item">
+          <a
+            href="mailto:fbukevin@gmail.com"
+            target="_blank"
+            rel="noopener me"
+            aria-label="e-mail"
+            title="e-mail"
+          >
+            <i class="fas fa-envelope fa-2x" aria-hidden="true"></i>
+          </a>
+        </li>
+      
+        <li class="sidebar__list-item">
+          <a
+            href="https://www.linkedin.com/in/veckhsiao/"
+            target="_blank"
+            rel="noopener me"
+            aria-label="LinkedIn"
+            title="LinkedIn"
+          >
+            <i class="fa-brands fa-linkedin fa-2x" aria-hidden="true"></i>
+          </a>
+        </li>
+      
+        <li class="sidebar__list-item">
+          <a
+            href="https://github.com/fbukevin"
+            target="_blank"
+            rel="noopener me"
+            aria-label="GitHub"
+            title="GitHub"
+          >
+            <i class="fa-brands fa-github fa-2x" aria-hidden="true"></i>
+          </a>
+        </li>
+      
+    </ul>
+  </div><footer class="footer footer__sidebar">
+  <ul class="footer__list">
+    <li class="footer__item">
+      &copy;
+      
+        2015-2025
+      
+    </li>
+    
+  </ul>
 </footer>
+  
+  <script
+    type="text/javascript"
+    src="/js/medium-zoom.min.1248fa75275e5ef0cbef27e8c1e27dc507c445ae3a2c7d2ed0be0809555dac64.js"
+    integrity="sha256-Ekj6dSdeXvDL7yfoweJ9xQfERa46LH0u0L4ICVVdrGQ="
+    crossorigin="anonymous"
+  ></script></div>
+</aside>
+      <main
+        
+          class="wrapper__main"
+        
+      >
+        <header class="header"><div
+  class="
+    animated fadeInDown
+  "
+>
+  <a role="button" class="navbar-burger" data-target="navMenu" aria-label="menu" aria-expanded="false">
+    <span aria-hidden="true" class="navbar-burger__line"></span>
+    <span aria-hidden="true" class="navbar-burger__line"></span>
+    <span aria-hidden="true" class="navbar-burger__line"></span>
+  </a>
+  <nav class="nav">
+    <ul class="nav__list" id="navMenu">
+      
+      
+        
+        
+          <li class="nav__list-item">
+            
+            <a
+              
+              href="/"
+              
+              title=""
+              >Posts</a
+            >
+          </li>
+        
 
-  </body>
+      
+        
+        
+          <li class="nav__list-item">
+            
+            <a
+              
+              href="/about/"
+              
+              title=""
+              >About</a
+            >
+          </li>
+        
+
+      
+    </ul>
+    <ul class="nav__list nav__list--end">
+      
+      
+        <li class="nav__list-item">
+          <div class="themeswitch">
+            <a title="Switch Theme">
+              <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a>
+          </div>
+        </li>
+      
+    </ul>
+  </nav>
+</div>
+</header>
+  <div
+    class="post 
+      animated fadeInDown
+    "
+  >
+    
+    <div class="post__content">
+      
+        <h1>[OpenStack] 透過 DevStack 在 AWS EC2 Linux 上安裝 OpenStack</h1>
+      
+      
+<ol><li>Create a EC2 instance and login</li><li>Create a stack user</li></ol><pre>$ sudo useradd -s /bin/bash -d /opt/stack -m stack<br>$ echo “stack ALL=(ALL) NOPASSWD: ALL” | sudo tee /etc/sudoers.d/stack<br>$ sudo su — stack</pre><p>3. Download DevStack</p><pre>git clone https://git.openstack.org/openstack-dev/devstack</pre><p>4. create a local.conf in project</p><pre>cd devstack<br>vim local.conf</pre><p>然後</p><pre>[[local|localrc]]<br>ADMIN_PASSWORD=secret<br>DATABASE_PASSWORD=$ADMIN_PASSWORD<br>RABBIT_PASSWORD=$ADMIN_PASSWORD<br>SERVICE_PASSWORD=$ADMIN_PASSWORD</pre><p>5. start the install: ./stack.sh. This will take a 15–20 mins. Once the installation done, all is done.</p><pre>=========================<br>DevStack Component Timing<br> (times are in seconds) <br>=========================<br>run_process 15<br>test_with_retry 2<br>apt-get-update 12<br>pip_install 287<br>osc 112<br>wait_for_service 15<br>git_timed 193<br>dbsync 23<br>apt-get 265<br> — — — — — — — — — — — — -<br>Unaccounted time 341<br>=========================<br>Total runtime 1265</pre><pre>This is your host IP address: 172.31.21.104<br>This is your host IPv6 address: ::1<br>Horizon is now available at <a href="http://172.31.21.104/dashboard">http://172.31.21.104/dashboard</a><br>Keystone is serving at <a href="http://172.31.21.104/identity/">http://172.31.21.104/identity/</a><br>The default users are: admin and demo<br>The password: secret</pre><pre>WARNING: <br>Using lib/neutron-legacy is deprecated, and it will be removed in the future</pre><pre>Services are running under systemd unit files.<br>For more information see: <br><a href="https://docs.openstack.org/devstack/latest/systemd.html">https://docs.openstack.org/devstack/latest/systemd.html</a></pre><pre>DevStack Version: queens<br>Change: 28b4be186105888b72300d27166deb771857df06 Merge “Make stackenv file visible” 2018–01–03 23:19:46 +0000<br>OS Version: Ubuntu 16.04 xenial</pre><pre>2018–01–08 05:30:33.155 | stack.sh completed in 1265 seconds.</pre><p>最後完成的訊息就這樣，就算完成安裝了</p><p>- DevStack 已經安裝好 keystone, glance, nova, cinder, neutron, 和 horizon，可以試著輸入指令看看<br>- Floating IPs will be available, guests have access to the external world.<br>- 可以試著存取 Web Interface horizon (URL 在最後的安裝訊息中)<br>- `source devstack/openrc 後會多了一個 openstack 指令來管理 DevStack<br>- You can cd `/opt/stack/tempest` and run tempest tests that have been configured to work with your devstack.<br>- You can make code changes to OpenStack and validate them.</p><h3><strong>Note for Using AWS EC2 Ubuntu 16.04</strong></h3><p>因為 EC2 是在 AWS VPC 中所建立的 VM，所以預設認知到的網卡也是區網內的 private IP，因此上面所匹配的 IP Address 173.x.x.x 是 private IP，只需要替換成這個 instance 的 Public IP 就可以成功連線到 dashboard portal 了</p><figure><img alt="" src="https://cdn-images-1.medium.com/max/1024/1*tfQ_fdPYFgqZGhEEgKX9vA.png" /></figure><figure><img alt="" src="https://cdn-images-1.medium.com/max/1024/1*TXKJ2aopGZf39JMrRtSG0Q.png" /></figure><img src="https://medium.com/_/stat?event=post.clientViewed&referrerSource=full_rss&postId=3649714f887" width="1" height="1" alt="">
+</div>
+    <div class="post__footer">
+      
+
+      
+    </div>
+
+    
+  </div>
+
+      </main>
+    </div><footer class="footer footer__base">
+  <ul class="footer__list">
+    <li class="footer__item">
+      &copy;
+      
+        2015-2025
+      
+    </li>
+    
+  </ul>
+</footer>
+  
+  <script
+    type="text/javascript"
+    src="/js/medium-zoom.min.1248fa75275e5ef0cbef27e8c1e27dc507c445ae3a2c7d2ed0be0809555dac64.js"
+    integrity="sha256-Ekj6dSdeXvDL7yfoweJ9xQfERa46LH0u0L4ICVVdrGQ="
+    crossorigin="anonymous"
+  ></script></body>
 </html>

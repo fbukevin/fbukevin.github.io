@@ -1,0 +1,24 @@
+baseURL = 'http://veck.im/'
+languageCode = 'en-us'
+title = "Program City"
+theme = 'anatole'
+
+[markup]
+    [markup.goldmark]
+        [markup.goldmark.renderer]
+        unsafe=false
+
+[taxonomies]
+    category = "categories"
+    series = "series"
+    tag = "tags"
+
+[module]
+  [[module.mounts]]
+  source = 'static'
+  target = 'static'
+
+  [[module.mounts]]
+  source = 'images'
+  target = 'static/images'
+

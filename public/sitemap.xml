@@ -33,6 +33,8 @@
   </url><url>
     <loc>http://localhost:80/posts/2018-01-18-rails-puma-nginx/</loc>
   </url><url>
+    <loc>http://localhost:80/series/</loc>
+  </url><url>
     <loc>http://localhost:80/tags/</loc>
   </url><url>
     <loc>http://localhost:80/posts/2021-03-17-iphone-macbook/</loc>
